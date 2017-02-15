@@ -7,13 +7,15 @@ import { HomePage } from '../pages/home/home';
 
 import { ChordsTabs } from '../pages/chords/tabs/tabs';
 import { ChordsListPage } from '../pages/chords/list/list';
+import { ChordsFavoritesPage } from '../pages/chords/favorites/favorites';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ChordsTabs,
-    ChordsListPage
+    ChordsListPage,
+    ChordsFavoritesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,7 +25,8 @@ import { ChordsListPage } from '../pages/chords/list/list';
     MyApp,
     HomePage,
     ChordsTabs,
-    ChordsListPage
+    ChordsListPage,
+    ChordsFavoritesPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
 
-import { HomePage } from '../../home/home';
-
 import { ChordsListPage } from '../list/list';
+import { ChordsFavoritesPage } from '../favorites/favorites';
 
 @Component({
     templateUrl: 'tabs.html'
@@ -12,7 +11,7 @@ import { ChordsListPage } from '../list/list';
 
 export class ChordsTabs {
     tabListRoot: any = ChordsListPage;
-    tabFavoritesRoot: any = HomePage;
+    tabFavoritesRoot: any = ChordsFavoritesPage;
 
     mySelectedIndex: number;
 

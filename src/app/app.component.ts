@@ -19,7 +19,7 @@ export interface PageInterface {
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-  rootPage = HomePage;
+  rootPage = ChordsTabs;
 
   chordsPages: PageInterface[] = [
     {title: 'List', component: ChordsTabs},
