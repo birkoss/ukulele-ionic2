@@ -6,6 +6,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
 import { ChordsTabs } from '../pages/chords/tabs/tabs';
+import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
 
 export interface PageInterface {
     title: string;
@@ -23,7 +24,8 @@ export class MyApp {
 
   chordsPages: PageInterface[] = [
     {title: 'List', component: ChordsTabs},
-    {title: 'Favorites', component: ChordsTabs, index: 1}
+    {title: 'Favorites', component: ChordsTabs, index: 1},
+    {title: 'Quiz', component: ChordsQuizPage}
   ];
 
   constructor(public platform: Platform, public menu: MenuController) {
