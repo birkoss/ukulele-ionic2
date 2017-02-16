@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
-import { MusicalNote } from '../../../components/musical-note/musical-note';
+import { ChordsFavoritesPage } from '../favorites/favorites';
 
 @Component({
   selector: 'chords-list',
@@ -12,6 +12,10 @@ export class ChordsListPage {
 
   constructor(public navCtrl: NavController) {
     
+  }
+
+  showLink() {
+    this.navCtrl.push(ChordsFavoritesPage);
   }
 
 }
