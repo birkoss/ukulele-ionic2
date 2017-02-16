@@ -10,6 +10,8 @@ import { ChordsListPage } from '../pages/chords/list/list';
 import { ChordsFavoritesPage } from '../pages/chords/favorites/favorites';
 import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
 
+import { MusicalNote } from '../components/musical-note/musical-note';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -17,7 +19,8 @@ import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
     ChordsTabs,
     ChordsListPage,
     ChordsFavoritesPage,
-    ChordsQuizPage
+    ChordsQuizPage,
+    MusicalNote
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -29,7 +32,8 @@ import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
     ChordsTabs,
     ChordsListPage,
     ChordsFavoritesPage,
-    ChordsQuizPage
+    ChordsQuizPage,
+    MusicalNote
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
