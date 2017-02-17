@@ -26,12 +26,26 @@ export class ChordPosition {
 		return this.position.fingers;
 	}
 
+	getFretLabels() {
+		return [1, 2, 3, 4];
+	}
+
 	getFretClasses(finger:any) {
 		let classes:Array<string> = [];
 
-		classes.push('note');
+		classes.push('finger');
 
 		classes.push('fret-' + finger.fret);
+
+		return classes.join(" ");
+	}
+
+	getFretLabelsClasses(index:number) {
+		let classes:Array<string> = [];
+		
+		classes.push('fret-label');
+
+		classes.push('fret-label-' + (index+1));
 
 		return classes.join(" ");
 	}

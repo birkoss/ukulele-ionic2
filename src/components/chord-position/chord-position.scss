@@ -1,0 +1,64 @@
+.chord-position {
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+
+	svg {
+		text {
+    		font-size: 20px;
+		}
+		
+		g.frets {
+			rect {
+				fill: #000000;
+			}
+		}
+
+		g.string {
+			fill: #000000;
+
+			&.muted {
+				fill: #f4f4f4;
+			}
+		}
+
+		g.finger {
+			path.finger-border {
+				fill: #000000;
+			}
+
+			path.finger-filling {
+				fill: #ffffff;
+			}
+
+			&.fret-G1 { transform: translate(3px, 0); }
+			&.fret-C1 { transform: translate(55px, 0); }
+			&.fret-E1 { transform: translate(110px, 0); }
+			&.fret-A1 { transform: translate(165px, 0); }
+
+			&.fret-G2 { transform: translate(3px, 54px); }
+			&.fret-C2 { transform: translate(55px, 54px); }
+			&.fret-E2 { transform: translate(110px, 54px); }
+			&.fret-A2 { transform: translate(165px, 54px); }
+
+			&.fret-G3 { transform: translate(3px, 109px); }
+			&.fret-C3 { transform: translate(55px, 109px); }
+			&.fret-E3 { transform: translate(110px, 109px); }
+			&.fret-A3 { transform: translate(165px, 109px); }
+
+			&.fret-G4 { transform: translate(3px, 164px); }
+			&.fret-C4 { transform: translate(55px, 164px); }
+			&.fret-E4 { transform: translate(110px, 164px); }
+			&.fret-A4 { transform: translate(165px, 164px); }
+		}
+
+		text.fret-label {
+			fill: #000000;
+
+			&.fret-label-1 { transform: translate(-5px, 73px); }
+			&.fret-label-2 { transform: translate(-5px, 128px); }
+			&.fret-label-3 { transform: translate(-5px, 185px); }
+			&.fret-label-4 { transform: translate(-5px, 238px); }
+		}
+	}
+}
