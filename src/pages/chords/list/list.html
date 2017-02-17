@@ -11,12 +11,17 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-card *ngFor="let chord of getChords()">
-        <chord-position [position]="getFirstPosition(chord)"></chord-position>
-        {{chord.positions[0]}}
-        <ion-card-content>
-            <ion-card-title>{{chord.note.name}}</ion-card-title>
-        </ion-card-content>
-    </ion-card>
+<ion-content>
+    <div class="chords">
+        <ion-card *ngFor="let chord of getChords()" class="chord">
+            <ion-card-header>{{chord.note.name}}</ion-card-header>
+            <chord-position [position]="getFirstPosition(chord)"></chord-position>
+            <ion-list>
+                <button ion-item>
+                    <ion-icon name="musical-note" item-left></ion-icon>
+                    Details
+                </button>
+            </ion-list>
+        </ion-card>
+    </div>
 </ion-content>
