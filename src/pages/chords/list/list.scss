@@ -1,41 +1,43 @@
-.chords {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #f4f4f4;
-    padding: 10px;
-
-    .chord {
+chords-list {
+    .chords {
         display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        width: calc(33% - 20px);
+        flex-wrap: wrap;
+        background-color: #f4f4f4;
+        padding: 10px;
 
-        @media (max-width: 412px) { width: calc(50% - 20px); }
+        .chord {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            width: calc(33% - 20px);
 
-        svg {
-            margin: 16px 0;
-            width: 64px;
-            height: auto;
-        }
+            @media (max-width: 412px) { width: calc(50% - 20px); }
 
-        .card-header {
-            background-color: map-get($colors, secondary);
-            color: #ffffff;
-            border-bottom: .55px solid #c8c7cc;
-            text-align: center;
+            svg {
+                margin: 16px 0;
+                width: 64px;
+                height: auto;
+            }
+
+            .card-header {
+                background-color: map-get($colors, secondary);
+                color: #ffffff;
+                border-bottom: .55px solid #c8c7cc;
+                text-align: center;
+            }
         }
     }
-}
-.cards .card_container .card {
-    margin-bottom: inherit;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.cards .card_container .item-text-wrap {
-    text-align: center;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+    .cards .card_container .card {
+        margin-bottom: inherit;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .cards .card_container .item-text-wrap {
+        text-align: center;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
 }
