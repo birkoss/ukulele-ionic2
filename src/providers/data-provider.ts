@@ -27,7 +27,6 @@ export class DataProvider {
         return this.chords;
     }
 
-
     private parseJSON(json:Array<any>) : void {
         for (let i=0; i<json['notes'].length; i++) {
            this.notes.push(new Note(json['notes'][i])); 
@@ -72,6 +71,5 @@ export class DataProvider {
         }
         return null;
     }
-
 }
 

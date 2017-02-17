@@ -13,6 +13,8 @@
 
 <ion-content padding>
     <ion-card *ngFor="let chord of getChords()">
+        <chord-position [position]="getFirstPosition(chord)"></chord-position>
+        {{chord.positions[0]}}
         <ion-card-content>
             <ion-card-title>{{chord.note.name}}</ion-card-title>
         </ion-card-content>

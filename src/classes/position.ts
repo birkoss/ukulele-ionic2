@@ -4,6 +4,7 @@ export class Finger {
 
 export class Position {
     fingers: Array<Finger> = [];
+    position: string = "top";
 
     constructor() {}
 

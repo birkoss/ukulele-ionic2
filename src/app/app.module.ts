@@ -11,6 +11,7 @@ import { ChordsFavoritesPage } from '../pages/chords/favorites/favorites';
 import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
 
 import { MusicalNote } from '../components/musical-note/musical-note';
+import { ChordPosition } from '../components/chord-position/chord-position';
 
 import { DataProvider } from '../providers/data-provider';
 
@@ -23,6 +24,7 @@ import { DataProvider } from '../providers/data-provider';
     ChordsFavoritesPage,
     ChordsQuizPage,
     MusicalNote,
+    ChordPosition,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,7 +37,8 @@ import { DataProvider } from '../providers/data-provider';
     ChordsListPage,
     ChordsFavoritesPage,
     ChordsQuizPage,
-    MusicalNote
+    MusicalNote,
+    ChordPosition,
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

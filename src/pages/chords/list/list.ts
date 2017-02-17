@@ -7,6 +7,7 @@ import { ChordsFavoritesPage } from '../favorites/favorites';
 import { DataProvider } from '../../../providers/data-provider';
 
 import { Chord } from '../../../classes/chord';
+import { Position } from '../../../classes/Position';
 
 @Component({
   selector: 'chords-list',
@@ -20,5 +21,9 @@ export class ChordsListPage {
 
     public getChords() : Array<Chord> {
         return this.dataProvider.getChords();
+    }
+
+    public getFirstPosition(chord:Chord) {
+        return chord.positions[0];
     }
 }
