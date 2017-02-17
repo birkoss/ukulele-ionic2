@@ -12,6 +12,8 @@ import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
 
 import { MusicalNote } from '../components/musical-note/musical-note';
 
+import { DataProvider } from '../providers/data-provider';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -20,7 +22,7 @@ import { MusicalNote } from '../components/musical-note/musical-note';
     ChordsListPage,
     ChordsFavoritesPage,
     ChordsQuizPage,
-    MusicalNote
+    MusicalNote,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,6 +37,9 @@ import { MusicalNote } from '../components/musical-note/musical-note';
     ChordsQuizPage,
     MusicalNote
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
+  ]
 })
 export class AppModule {}
