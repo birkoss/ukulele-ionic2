@@ -3,7 +3,7 @@
       <ion-buttons start>
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
-      <ion-title>List</ion-title>
+      <ion-title>Chords</ion-title>
       <ion-buttons end>
           <button ion-button outline="true">Major</button>
           <button ion-button icon-only><ion-icon name="settings"></ion-icon></button>
@@ -12,7 +12,9 @@
 </ion-header>
 
 <ion-content padding>
-    <p>...</p>
-    <a (click)="showLink()">Link</a>
-    <p>...</p>
+    <ion-card *ngFor="let chord of getChords()">
+        <ion-card-content>
+            <ion-card-title>{{chord.note.name}}</ion-card-title>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

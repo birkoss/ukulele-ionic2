@@ -23,7 +23,8 @@ export class DataProvider {
         console.log('all...');
     }
 
-    getChords() {
+    getChords() : Array<Chord> {
+        return this.chords;
     }
 
 
