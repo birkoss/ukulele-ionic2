@@ -5,7 +5,7 @@
       </ion-buttons>
       <ion-title>Chords</ion-title>
       <ion-buttons end>
-          <button ion-button outline="true">Major</button>
+          <button (click)="showPopup($event, 'filters')" ion-button outline="true">{{config.ChordsFilters.list_chord_type}}</button>
           <button ion-button icon-only><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
@@ -14,7 +14,7 @@
 <ion-content>
     <div class="chords">
         <ion-card *ngFor="let chord of getChords()" class="chord">
-            <ion-card-header>{{chord.note.name}}</ion-card-header>
+            <ion-card-header>{{chord.note.name}} - {{chord.type.name}}</ion-card-header>
             <chord-position [position]="getFirstPosition(chord)"></chord-position>
             <ion-list>
                 <button ion-item>

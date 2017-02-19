@@ -1,7 +1,7 @@
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
     <text *ngFor="let label of getFretLabels(); let i = index" [ngClass]="getFretLabelsClasses(i)" x="-16" y="0" fill="black">{{label}}</text>
 
-    <g *ngIf="getPosition('top')" id="chord-top">
+    <g *ngIf="position.position == 'top'" id="chord-top">
     <g class="frets">
     <rect
        transform="matrix(0,1,-1,0,0,0)"
@@ -96,7 +96,7 @@
     </g>
     </g>
 
-    <g *ngIf="getPosition('middle')" id="chord-middle">
+    <g *ngIf="position.position == 'middle'" id="chord-middle">
     <g class="frets">
     <rect
        style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

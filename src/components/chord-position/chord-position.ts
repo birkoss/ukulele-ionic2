@@ -15,13 +15,6 @@ export class ChordPosition {
 		console.log(this.position);
 	}
 
-	getPosition(direction) {
-		console.log(this);
-		console.log(this.position);
-		console.log(this.position.position);
-		return this.position.position == direction;
-	}
-
 	getFingers() {
 		return this.position.fingers;
 	}

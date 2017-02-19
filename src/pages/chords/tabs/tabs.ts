@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
 
-import { ChordsListPage } from '../list/list';
+import { ChordsListPage } from '../list';
 import { ChordsFavoritesPage } from '../favorites/favorites';
 
 @Component({

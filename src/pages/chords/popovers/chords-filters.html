@@ -1,0 +1,7 @@
+<ion-list radio-group [(ngModel)]="config.ChordsFilters.list_chord_type" (ionChange)="onFilterChanged()">
+	<ion-list-header>Types</ion-list-header>
+    <ion-item *ngFor="let type of data.types">
+        <ion-label>{{type.name}}</ion-label>
+        <ion-radio [value]="type.name"></ion-radio>
+    </ion-item>
+</ion-list>

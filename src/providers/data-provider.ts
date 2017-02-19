@@ -12,7 +12,7 @@ import { Type } from '../classes/type';
 export class DataProvider {
     private notes: Array<Note> = [];
     private families: Array<Family> = [];
-    private types: Array<Type> = [];
+    private _types: Array<Type> = [];
     private chords: Array<Chord> = [];
 
     constructor(public http:Http) {
@@ -21,10 +21,6 @@ export class DataProvider {
 
     public all() : void {
         console.log('all...');
-    }
-
-    getChords() : Array<Chord> {
-        return this.chords;
     }
 
     private parseJSON(json:Array<any>) : void {
@@ -37,7 +33,7 @@ export class DataProvider {
         }
 
         for (let i=0; i<json['types'].length; i++) {
-           this.types.push(new Type(json['types'][i], this.getFamily(json['types'][i]['family']))); 
+           this._types.push(new Type(json['types'][i], this.getFamily(json['types'][i]['family']))); 
         }
 
         for (var i=0; i<json['chords'].length; i++) {
@@ -64,12 +60,26 @@ export class DataProvider {
     }
 
     public getType(type:string, family:string) : Type {
-        for (let i=0; i<this.types.length; i++) {
-            if (this.types[i].name == type && this.types[i].family.name == family) {
-                return this.types[i];
+        for (let i=0; i<this._types.length; i++) {
+            if (this._types[i].name == type && this._types[i].family.name == family) {
+                return this._types[i];
             }
         }
         return null;
     }
+    
+    public getChords(type:string = "") : Array<Chord> {
+        return this.chords.filter((chord) => {
+            if (chord.type.name == type) {
+                return true;
+            }
+        });
+    }
+
+
+    public get types(): Array<Type> {
+        return this._types;
+    }
+
 }
 
