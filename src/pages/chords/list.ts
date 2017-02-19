@@ -22,7 +22,7 @@ export class ChordsListPage {
     }
 
     public getChords() : Array<Chord> {
-        return this.dataProvider.getChords('Major');
+        return this.dataProvider.getChords(this.config.ChordsFilters['list_chord_type']);
     }
 
     public getFirstPosition(chord:Chord) {
@@ -30,8 +30,7 @@ export class ChordsListPage {
     }
 
     public showPopup(event, type:string) {
-        console.log("show popup....");
-        let popover = this.popoverCtrl.create(ChordsFiltersPopover);
+        let popover = this.popoverCtrl.create((type == 'filters' ? ChordsFiltersPopover : ChordsOptionsPopover));
         popover.present({
             ev: event
         });

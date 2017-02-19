@@ -6,7 +6,7 @@
       <ion-title>Chords</ion-title>
       <ion-buttons end>
           <button (click)="showPopup($event, 'filters')" ion-button outline="true">{{config.ChordsFilters.list_chord_type}}</button>
-          <button ion-button icon-only><ion-icon name="settings"></ion-icon></button>
+          <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>

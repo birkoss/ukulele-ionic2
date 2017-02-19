@@ -41,5 +41,9 @@ export class ConfigProvider {
     public get ChordsFilters(): Object {
         return this.configs['chords']['filters'];
     }
+
+    public get ChordsOptions(): Object {
+        return this.configs['chords']['options'];
+    }
 }
 

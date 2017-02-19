@@ -13,6 +13,7 @@ import { ChordsFavoritesPage } from '../pages/chords/favorites/favorites';
 import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
 
 import { ChordsFiltersPopover } from '../pages/chords/popovers/chords-filters';
+import { ChordsOptionsPopover } from '../pages/chords/popovers/chords-options';
 
 import { MusicalNote } from '../components/musical-note/musical-note';
 import { ChordPosition } from '../components/chord-position/chord-position';
@@ -31,6 +32,7 @@ import { ConfigProvider } from '../providers/config-provider';
     MusicalNote,
     ChordPosition,
     ChordsFiltersPopover,
+    ChordsOptionsPopover,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -46,6 +48,7 @@ import { ConfigProvider } from '../providers/config-provider';
     MusicalNote,
     ChordPosition,
     ChordsFiltersPopover,
+    ChordsOptionsPopover,
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
