@@ -10,6 +10,18 @@
 <ion-content>
     <div class="chords">
         <ion-card *ngFor="let position of chord.positions">
+            <ion-card-header *ngIf="config.ChordsOptions.show_scale">
+                Scale
+            </ion-card-header>
+            <ion-card-header *ngIf="config.ChordsOptions.show_notes">
+                Notes
+            </ion-card-header>
+            <ion-card-header *ngIf="config.ChordsOptions.show_strings_name">
+                Strings Name
+            </ion-card-header>
+            <ion-card-header *ngIf="config.ChordsOptions.show_frets">
+                Frets
+            </ion-card-header>
             <ion-card-content>
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
