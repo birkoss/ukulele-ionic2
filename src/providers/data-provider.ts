@@ -68,11 +68,11 @@ export class DataProvider {
         return null;
     }
     
-    public getChords(type:string = "") : Array<Chord> {
+    public getChords(type:string = "", note:string = "") : Array<Chord> {
         return this.chords.filter((chord) => {
-            if (chord.type.name == type) {
-                return true;
-            }
+            if (type != "" && chord.type.name != type) { return false; }
+            if (note != "" && chord.note.name != note) { return false; }
+            return true;
         });
     }
 

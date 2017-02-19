@@ -8,12 +8,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { ChordsTabs } from '../pages/chords/tabs/tabs';
+import { ChordsDetailPage } from '../pages/chords/detail';
 import { ChordsListPage } from '../pages/chords/list';
 import { ChordsFavoritesPage } from '../pages/chords/favorites/favorites';
 import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
 
 import { ChordsFiltersPopover } from '../pages/chords/popovers/chords-filters';
 import { ChordsOptionsPopover } from '../pages/chords/popovers/chords-options';
+import { DetailOptionsPopover } from '../pages/chords/popovers/detail-options';
 
 import { MusicalNote } from '../components/musical-note/musical-note';
 import { ChordPosition } from '../components/chord-position/chord-position';
@@ -28,6 +30,7 @@ import { ConfigProvider } from '../providers/config-provider';
     MyApp,
     HomePage,
     ChordsTabs,
+    ChordsDetailPage,
     ChordsListPage,
     ChordsFavoritesPage,
     ChordsQuizPage,
@@ -37,6 +40,7 @@ import { ConfigProvider } from '../providers/config-provider';
     ChordName,
     ChordsFiltersPopover,
     ChordsOptionsPopover,
+    DetailOptionsPopover,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -46,6 +50,7 @@ import { ConfigProvider } from '../providers/config-provider';
     MyApp,
     HomePage,
     ChordsTabs,
+    ChordsDetailPage,
     ChordsListPage,
     ChordsFavoritesPage,
     ChordsQuizPage,
@@ -55,6 +60,7 @@ import { ConfigProvider } from '../providers/config-provider';
     ChordName,
     ChordsFiltersPopover,
     ChordsOptionsPopover,
+    DetailOptionsPopover,
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

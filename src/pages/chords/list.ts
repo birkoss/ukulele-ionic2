@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { NavController, PopoverController } from 'ionic-angular';
 
+import { ChordsDetailPage } from './detail';
+
 import { ChordsFiltersPopover } from './popovers/chords-filters';
 import { ChordsOptionsPopover } from './popovers/chords-options';
 
@@ -34,5 +36,9 @@ export class ChordsListPage {
         popover.present({
             ev: event
         });
+    }
+
+    public showDetail(chord: Chord): void {
+        this.navCtrl.push(ChordsDetailPage, {note: chord.note, type:chord.type});
     }
 }
