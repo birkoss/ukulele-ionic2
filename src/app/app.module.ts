@@ -17,6 +17,8 @@ import { ChordsOptionsPopover } from '../pages/chords/popovers/chords-options';
 
 import { MusicalNote } from '../components/musical-note/musical-note';
 import { ChordPosition } from '../components/chord-position/chord-position';
+import { NoteName } from '../components/note-name/note-name';
+import { ChordName } from '../components/chord-name/chord-name';
 
 import { DataProvider } from '../providers/data-provider';
 import { ConfigProvider } from '../providers/config-provider';
@@ -31,6 +33,8 @@ import { ConfigProvider } from '../providers/config-provider';
     ChordsQuizPage,
     MusicalNote,
     ChordPosition,
+    NoteName,
+    ChordName,
     ChordsFiltersPopover,
     ChordsOptionsPopover,
   ],
@@ -47,6 +51,8 @@ import { ConfigProvider } from '../providers/config-provider';
     ChordsQuizPage,
     MusicalNote,
     ChordPosition,
+    NoteName,
+    ChordName,
     ChordsFiltersPopover,
     ChordsOptionsPopover,
   ],

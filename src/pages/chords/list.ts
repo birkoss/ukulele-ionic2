@@ -13,7 +13,7 @@ import { Position } from '../../classes/Position';
 
 @Component({
   selector: 'chords-list',
-  templateUrl: 'list.html'
+  templateUrl: 'list.html',
 })
 
 export class ChordsListPage {
