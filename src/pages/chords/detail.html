@@ -9,7 +9,7 @@
 
 <ion-content>
     <div class="chords">
-        <ion-card *ngFor="let position of chord.positions; let i = index;">
+        <ion-card id="position_{{i}}" *ngFor="let position of chord.positions; let i = index;">
             <ion-card-header *ngIf="config.ChordsOptions.show_scale">
                 Scale
             </ion-card-header>

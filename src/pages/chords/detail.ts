@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, Content } from 'ionic-angular';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
@@ -18,15 +18,30 @@ import { Type } from '../../classes/type';
 })
 
 export class ChordsDetailPage {
+    @ViewChild(Content) content: Content;
+
     note: Note;
     type: Type;
+    position: number = 0;
     chord: Chord;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public config: ConfigProvider, public data: DataProvider, public popoverCtrl: PopoverController, public favorites:FavoritesProvider) {
         this.note = navParams.get('note');
         this.type = navParams.get('type');
 
+        if (navParams.get('position') != undefined) {
+            this.position = navParams.get('position');
+
+            console.log( navParams.get('position') );
+        }
+
         this.chord = data.getChords(this.type.name)[0];
+    }
+
+    ngAfterViewChecked() {
+        if (this.position > 0) {
+            this.scrollToElement('position_' + this.position);
+        }
     }
 
     public showPopup(event, type:string) {
@@ -46,5 +61,14 @@ export class ChordsDetailPage {
     
     public removeToFavorite(chord:Chord, index:Number): void {
         this.favorites.remove(this.favorites.getIndex({'note':chord.note.name, 'type':chord.type.name, 'position':index}));
+    }
+
+    scrollToElement(id) { 
+        let el = document.getElementById(id);
+        if (el != undefined) {
+            var rect = el.getBoundingClientRect();
+            this.content.scrollTo(0, rect.top);
+            //this.content.scrollTo(0, rect.top, 800);
+        }
     }
 }

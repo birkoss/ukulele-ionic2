@@ -22,7 +22,6 @@ export class ChordsFavoritesPage {
   }
 
   public showDetail(chord:Object): void {
-      this.navCtrl.push(ChordsDetailPage, {note: chord['note'], type:chord['type']});
+      this.navCtrl.push(ChordsDetailPage, {note: chord['note'], type:chord['type'], 'position':chord['position']});
   }
-
 }
