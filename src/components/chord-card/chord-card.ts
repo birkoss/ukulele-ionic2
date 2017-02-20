@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
@@ -16,6 +16,7 @@ export class ChordCard {
     private _note: Note;
     private _type: Type;
     private _position: Position;
+    private _positionIndex: number;
 
 	@Input('note')
     set note(note: string) {
@@ -27,9 +28,17 @@ export class ChordCard {
     }
 	@Input('position')
     set position(position: number) {
-       this._position = this.dataProvider.getPosition(this._note.name, this._type.name, position);
+        this._positionIndex = position;
+        this._position = this.dataProvider.getPosition(this._note.name, this._type.name, position);
     }
+
+    @Output() onDetailClicked: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(private dataProvider: DataProvider, private config: ConfigProvider) {
 	}
+
+    public showDetail(): void {
+        console.log('ChordCard...showDetail');
+        this.onDetailClicked.emit({'note':this._note, 'type':this._type, 'position':this._positionIndex});
+    }
 }
