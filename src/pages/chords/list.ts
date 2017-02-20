@@ -38,7 +38,6 @@ export class ChordsListPage {
     }
 
     public showDetail(chord:Object): void {
-        console.log(chord);
         this.navCtrl.push(ChordsDetailPage, {note: chord['note'], type:chord['type']});
     }
 }
