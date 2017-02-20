@@ -15,7 +15,7 @@ export class ChordName {
 
     @Input()
     set type(type:Type) {
-        if (type.suffix != "") {
+        if (type.suffix != undefined) {
             this._name = " " + type.suffix;
         }
     }
