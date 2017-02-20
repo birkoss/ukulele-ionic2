@@ -2,11 +2,13 @@
     <ion-card-header>
         <chord-name [note]="_note" [french]="config.ChordsOptions.show_note_in_french" [type]="_type"></chord-name>
     </ion-card-header>
+
     <chord-position *ngIf="_position" [position]="_position"></chord-position>
-    <ion-list>
-        <button ion-item (click)="showDetail()">
+
+    <div class="buttons">
+        <button (click)="showDetail()" ion-button icon-left>
             <ion-icon name="musical-note" item-left></ion-icon>
             Details
         </button>
-    </ion-list>
+    </div>
 </ion-card>

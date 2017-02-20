@@ -25,14 +25,14 @@
             <ion-card-content>
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
-            <ion-list>
-                <button *ngIf="!isFavorite(chord, i)" ion-item (click)="addToFavorite(chord, i)">
+            <div class="buttons">
+                <button *ngIf="!isFavorite(chord, i)" ion-button icon-left (click)="addToFavorite(chord, i)">
                     <ion-icon name="star" item-left></ion-icon> Favorite
                 </button>
-                <button *ngIf="isFavorite(chord, i)" ion-item (click)="removeToFavorite(chord, i)">
+                <button *ngIf="isFavorite(chord, i)" ion-button icon-left (click)="removeToFavorite(chord, i)">
                     <ion-icon name="star" item-left></ion-icon> Unfavorite
                 </button>
-            </ion-list>
+            </div>
         </ion-card>
     </div>
 </ion-content>
