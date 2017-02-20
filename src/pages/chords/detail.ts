@@ -4,6 +4,7 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
+import { FavoritesProvider } from '../../providers/favorites-provider';
 
 import { DetailOptionsPopover } from './popovers/detail-options';
 
@@ -21,7 +22,7 @@ export class ChordsDetailPage {
     type: Type;
     chord: Chord;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public config: ConfigProvider, public data: DataProvider, public popoverCtrl: PopoverController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public config: ConfigProvider, public data: DataProvider, public popoverCtrl: PopoverController, public favorites:FavoritesProvider) {
         this.note = navParams.get('note');
         this.type = navParams.get('type');
 
@@ -33,5 +34,17 @@ export class ChordsDetailPage {
         popover.present({
             ev: event
         });
+    }
+
+    public addToFavorite(chord:Chord, index:Number): void {
+        this.favorites.add({'note':chord.note.name, 'type':chord.type.name, 'position':index});
+    }
+
+    public isFavorite(chord:Chord, index:Number): Boolean {
+        return this.favorites.exists({'note':chord.note.name, 'type':chord.type.name, 'position':index});
+    }
+    
+    public removeToFavorite(chord:Chord, index:Number): void {
+        this.favorites.remove(this.favorites.getIndex({'note':chord.note.name, 'type':chord.type.name, 'position':index}));
     }
 }

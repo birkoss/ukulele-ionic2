@@ -17,13 +17,15 @@ import { ChordsFiltersPopover } from '../pages/chords/popovers/chords-filters';
 import { ChordsOptionsPopover } from '../pages/chords/popovers/chords-options';
 import { DetailOptionsPopover } from '../pages/chords/popovers/detail-options';
 
-import { MusicalNote } from '../components/musical-note/musical-note';
-import { ChordPosition } from '../components/chord-position/chord-position';
-import { NoteName } from '../components/note-name/note-name';
+import { ChordCard } from '../components/chord-card/chord-card';
 import { ChordName } from '../components/chord-name/chord-name';
+import { ChordPosition } from '../components/chord-position/chord-position';
+import { MusicalNote } from '../components/musical-note/musical-note';
+import { NoteName } from '../components/note-name/note-name';
 
-import { DataProvider } from '../providers/data-provider';
 import { ConfigProvider } from '../providers/config-provider';
+import { DataProvider } from '../providers/data-provider';
+import { FavoritesProvider } from '../providers/favorites-provider';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { ConfigProvider } from '../providers/config-provider';
     ChordPosition,
     NoteName,
     ChordName,
+    ChordCard,
     ChordsFiltersPopover,
     ChordsOptionsPopover,
     DetailOptionsPopover,
@@ -58,6 +61,7 @@ import { ConfigProvider } from '../providers/config-provider';
     ChordPosition,
     NoteName,
     ChordName,
+    ChordCard,
     ChordsFiltersPopover,
     ChordsOptionsPopover,
     DetailOptionsPopover,
@@ -65,8 +69,9 @@ import { ConfigProvider } from '../providers/config-provider';
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Storage,
+    ConfigProvider,
     DataProvider,
-    ConfigProvider
+    FavoritesProvider,
   ]
 })
 export class AppModule {}

@@ -10,6 +10,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <p>...</p>
+<ion-content>
+    <div class="chords">
+        <chord-card *ngFor="let favorite of favorites.all()" [note]="favorite.note" [type]="favorite.type" [position]="favorite.position"></chord-card>
+    </div>
 </ion-content>

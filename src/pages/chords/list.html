@@ -13,18 +13,6 @@
 
 <ion-content>
     <div class="chords">
-        <ion-card *ngFor="let chord of getChords()" class="chord">
-            <ion-card-header>
-                <chord-name [note]="chord.note" [french]="config.ChordsOptions.show_note_in_french" [type]="chord.type"></chord-name><br />
-            
-            </ion-card-header>
-            <chord-position [position]="getFirstPosition(chord)"></chord-position>
-            <ion-list>
-                <button ion-item (click)="showDetail(chord)">
-                    <ion-icon name="musical-note" item-left></ion-icon>
-                    Details
-                </button>
-            </ion-list>
-        </ion-card>
+        <chord-card *ngFor="let chord of getChords()" [note]="chord.note.name" [type]="chord.type.name" position="0"></chord-card>
     </div>
 </ion-content>

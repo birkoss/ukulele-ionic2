@@ -7,6 +7,7 @@ import { Chord } from '../classes/chord';
 import { Note } from '../classes/note';
 import { Family } from '../classes/family';
 import { Type } from '../classes/type';
+import { Position } from '../classes/position';
 
 @Injectable()
 export class DataProvider {
@@ -59,7 +60,7 @@ export class DataProvider {
         return null;
     }
 
-    public getType(type:string, family:string) : Type {
+    public getType(type:string, family:string = "Triad") : Type {
         for (let i=0; i<this._types.length; i++) {
             if (this._types[i].name == type && this._types[i].family.name == family) {
                 return this._types[i];
@@ -74,6 +75,15 @@ export class DataProvider {
             if (note != "" && chord.note.name != note) { return false; }
             return true;
         });
+    }
+
+    public getChord(note:string, type:string): Chord {
+        return this.getChords(type, note)[0];
+    }
+
+    public getPosition(note:string, type:string, position:number): Position {
+        console.log('Position:' + position);
+       return this.getChord(note, type).positions[position]; 
     }
 
 

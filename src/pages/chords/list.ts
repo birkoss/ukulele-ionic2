@@ -17,7 +17,6 @@ import { Position } from '../../classes/Position';
   selector: 'chords-list',
   templateUrl: 'list.html',
 })
-
 export class ChordsListPage {
 
     constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private dataProvider: DataProvider, private config: ConfigProvider) {

@@ -9,7 +9,7 @@
 
 <ion-content>
     <div class="chords">
-        <ion-card *ngFor="let position of chord.positions">
+        <ion-card *ngFor="let position of chord.positions; let i = index;">
             <ion-card-header *ngIf="config.ChordsOptions.show_scale">
                 Scale
             </ion-card-header>
@@ -26,8 +26,11 @@
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
             <ion-list>
-                <button ion-item>
+                <button *ngIf="!isFavorite(chord, i)" ion-item (click)="addToFavorite(chord, i)">
                     <ion-icon name="star" item-left></ion-icon> Favorite
+                </button>
+                <button *ngIf="isFavorite(chord, i)" ion-item (click)="removeToFavorite(chord, i)">
+                    <ion-icon name="star" item-left></ion-icon> Unfavorite
                 </button>
             </ion-list>
         </ion-card>
