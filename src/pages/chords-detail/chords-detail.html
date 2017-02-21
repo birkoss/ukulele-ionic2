@@ -15,8 +15,8 @@
                 Scale
             </ion-card-header>
             <ion-row class="scale">
-                <ion-col *ngFor="let note of chord.scales">
-                    <note-name [note]="note"></note-name>
+                <ion-col *ngFor="let note of chord.scales; let i = index;">
+                    <note-name [ngClass]="{'active':type.scale_parts.indexOf(i+1) >= 0}" [note]="note"></note-name>
                 </ion-col>
             </ion-row>
         </ion-card>

@@ -11,4 +11,9 @@ chords-detail {
             text-align: center;
         }
     }
+
+    note-name.active {
+        font-weight: bold;
+        color: #000000;
+    }
 }
