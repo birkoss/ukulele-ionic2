@@ -13,6 +13,7 @@ export class Chord {
             for (let fret in chord.positions[i]) {
                 position.add(new Finger(fret, chord.positions[i][fret]));
             }
+            position.generate();
             this.positions.push(position);
         }
     }

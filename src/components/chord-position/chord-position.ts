@@ -20,7 +20,11 @@ export class ChordPosition {
 	}
 
 	getFretLabels() {
-		return [1, 2, 3, 4];
+        let labels:Array<number> = [];
+        for (let i:number=0; i<4; i++) {
+            labels.push(this.position.start + i);
+        }
+        return labels;
 	}
 
 	getFretClasses(finger:any) {
@@ -28,7 +32,7 @@ export class ChordPosition {
 
 		classes.push('finger');
 
-		classes.push('fret-' + finger.fret);
+		classes.push('fret-' + finger.className);
 
 		return classes.join(" ");
 	}
