@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, PopoverController } from 'ionic-angular';
 
 import { ChordsDetailPage } from '../chords-detail/chords-detail';
+
+import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
@@ -17,8 +19,15 @@ import { Position } from '../../classes/Position';
 })
 export class ChordsFavoritesPage {
 
-  constructor(public navCtrl: NavController, public dataProvider: DataProvider, private config: ConfigProvider, private favorites: FavoritesProvider) {
+  constructor(public navCtrl: NavController, public dataProvider: DataProvider, private config: ConfigProvider, private favorites: FavoritesProvider, public popoverCtrl: PopoverController) {
     
+  }
+
+  public showPopup(event, type:string) {
+      let popover = this.popoverCtrl.create(ChordsOptionsPopover);
+      popover.present({
+          ev: event
+      });
   }
 
   public showDetail(chord:Object): void {

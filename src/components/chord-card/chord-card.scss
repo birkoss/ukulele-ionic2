@@ -1,7 +1,6 @@
 chord-card {
         display: flex;
         flex-direction: column;
-        margin-top: 10px;
         width: calc(33%);
 
         @media (max-width: 412px) { width: calc(50%); }
