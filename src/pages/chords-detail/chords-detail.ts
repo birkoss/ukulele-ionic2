@@ -31,11 +31,9 @@ export class ChordsDetailPage {
 
         if (navParams.get('position') != undefined) {
             this.position = navParams.get('position');
-
-            console.log( navParams.get('position') );
         }
 
-        this.chord = data.getChords(this.type.name)[0];
+        this.chord = data.getChord(this.note.name, this.type.name);
     }
 
     ngAfterViewChecked() {

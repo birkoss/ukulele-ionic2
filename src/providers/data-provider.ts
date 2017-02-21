@@ -20,27 +20,7 @@ export class DataProvider {
         this.http.get('assets/json/data.json').map(res => res.json()).subscribe(result => {this.parseJSON(result[0]);});
     }
 
-    public all() : void {
-        console.log('all...');
-    }
-
-    private parseJSON(json:Array<any>) : void {
-        for (let i=0; i<json['notes'].length; i++) {
-           this.notes.push(new Note(json['notes'][i])); 
-        }
-
-        for (let i=0; i<json['families'].length; i++) {
-           this.families.push(new Family(json['families'][i])); 
-        }
-
-        for (let i=0; i<json['types'].length; i++) {
-           this._types.push(new Type(json['types'][i], this.getFamily(json['types'][i]['family']))); 
-        }
-
-        for (var i=0; i<json['chords'].length; i++) {
-            this.chords.push(new Chord(json['chords'][i], this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family'])));
-        }
-    }
+    /* Public */
 
     public getFamily(name:string) : Family {
         for (let i=0; i<this.families.length; i++) {
@@ -86,10 +66,28 @@ export class DataProvider {
        return this.getChord(note, type).positions[position]; 
     }
 
-
     public get types(): Array<Type> {
         return this._types;
     }
 
+    /* Private */
+
+    private parseJSON(json:Array<any>) : void {
+        for (let i=0; i<json['notes'].length; i++) {
+           this.notes.push(new Note(json['notes'][i])); 
+        }
+
+        for (let i=0; i<json['families'].length; i++) {
+           this.families.push(new Family(json['families'][i])); 
+        }
+
+        for (let i=0; i<json['types'].length; i++) {
+           this._types.push(new Type(json['types'][i], this.getFamily(json['types'][i]['family']))); 
+        }
+
+        for (var i=0; i<json['chords'].length; i++) {
+            this.chords.push(new Chord(json['chords'][i], this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family'])));
+        }
+    }
 }
 
