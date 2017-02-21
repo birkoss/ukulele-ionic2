@@ -69,4 +69,8 @@ export class ChordsDetailPage {
             //this.content.scrollTo(0, rect.top, 800);
         }
     }
+
+    public getStrings():Array<Note> {
+        return [this.data.getNote('G'), this.data.getNote('C'), this.data.getNote('E'), this.data.getNote('A')];
+    }
 }
