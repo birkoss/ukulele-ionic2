@@ -15,7 +15,6 @@ export class Finger {
 
 export class Position {
     fingers:Array<Finger> = [];
-    position:string = "top";
 
     start:number = 1;
 
