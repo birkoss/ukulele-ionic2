@@ -1,5 +1,12 @@
 chords-detail {
     ion-card {
+        ion-row.scale {
+            ion-col {
+                text-align: center;
+                color: #cccccc;
+            }
+        }
+
         ion-card-content {
             text-align: center;
         }

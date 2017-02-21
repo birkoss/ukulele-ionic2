@@ -114,8 +114,6 @@ export class DataProvider {
             this.buildScale(chord, scale_notes); 
 
             this.chords.push(chord);
-
-            console.log(chord);
         }
     }
 

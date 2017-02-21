@@ -9,19 +9,52 @@
 
 <ion-content>
     <div class="chords">
-        <ion-card id="position_{{i}}" *ngFor="let position of chord.positions; let i = index;">
-            <ion-card-header *ngIf="config.ChordsOptions.show_scale">
+
+        <ion-card *ngIf="config.ChordsOptions.show_scale">
+            <ion-card-header>
                 Scale
             </ion-card-header>
-            <ion-card-header *ngIf="config.ChordsOptions.show_notes">
+            <ion-row class="scale">
+                <ion-col *ngFor="let note of chord.scales">
+                    <note-name [note]="note"></note-name>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+        <ion-card *ngIf="config.ChordsOptions.show_notes">
+            <ion-card-header>
                 Notes
             </ion-card-header>
-            <ion-card-header *ngIf="config.ChordsOptions.show_strings_name">
+            <ion-row class="scale">
+                <ion-col *ngFor="let note of chord.scales">
+                    <note-name [note]="note"></note-name>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+        <ion-card *ngIf="config.ChordsOptions.show_strings_name">
+            <ion-card-header>
                 Strings Name
             </ion-card-header>
-            <ion-card-header *ngIf="config.ChordsOptions.show_frets">
+            <ion-row class="scale">
+                <ion-col *ngFor="let note of chord.scales">
+                    <note-name [note]="note"></note-name>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+        <ion-card *ngIf="config.ChordsOptions.show_frets">
+            <ion-card-header>
                 Frets
             </ion-card-header>
+            <ion-row class="scale">
+                <ion-col *ngFor="let note of chord.scales">
+                    <note-name [note]="note"></note-name>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+        <ion-card id="position_{{i}}" *ngFor="let position of chord.positions; let i = index;">
             <ion-card-content>
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
@@ -34,5 +67,6 @@
                 </button>
             </div>
         </ion-card>
+
     </div>
 </ion-content>
