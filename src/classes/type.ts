@@ -9,5 +9,7 @@ export class Type {
     constructor(type:any, public family: Family) {
         this.name = type.name;
         this.suffix = type.suffix;
+        this.scale = type.scale;
+        this.scale_part = type.scale_part;
     }
 }

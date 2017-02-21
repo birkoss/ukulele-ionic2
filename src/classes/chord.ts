@@ -5,6 +5,8 @@ import { Position, Finger } from './position';
 
 export class Chord {
     positions: Array<Position> = [];
+    scales: Array<Note> = [];
+
     constructor(chord:any, public note:Note, public family:Family, public type:Type) {
         for (let i=0; i<chord.positions.length; i++) {
             var position:Position = new Position();
@@ -14,4 +16,9 @@ export class Chord {
             this.positions.push(position);
         }
     }
+
+    public addScale(note:Note):void {
+        this.scales.push(note);
+    }
+
 }
