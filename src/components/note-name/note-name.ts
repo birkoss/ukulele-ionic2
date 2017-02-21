@@ -20,9 +20,7 @@ export class NoteName {
     @Input()
     set french(french: Boolean) {
         this._french = french;
-        if (this._french) {
-            this._name = this._note.french;
-        }
+        this._name = (this._french ? this._note.french : this._note.name);
     }
 
     constructor() { }

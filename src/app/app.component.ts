@@ -4,9 +4,8 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { HomePage } from '../pages/home/home';
-import { ChordsTabs } from '../pages/chords/tabs/tabs';
-import { ChordsQuizPage } from '../pages/chords/quiz/quiz';
+import { ChordsTabs } from '../pages/chords-tabs/chords-tabs';
+import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 
 export interface PageInterface {
     title: string;

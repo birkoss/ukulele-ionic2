@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 import { NavController, PopoverController } from 'ionic-angular';
 
-import { ChordsDetailPage } from './detail';
+import { ChordsDetailPage } from '../chords-detail/chords-detail';
 
-import { ChordsFiltersPopover } from './popovers/chords-filters';
-import { ChordsOptionsPopover } from './popovers/chords-options';
+import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
+import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
 
 import { DataProvider } from '../../providers/data-provider';
 import { ConfigProvider } from '../../providers/config-provider';
@@ -15,7 +15,7 @@ import { Position } from '../../classes/Position';
 
 @Component({
   selector: 'chords-list',
-  templateUrl: 'list.html',
+  templateUrl: 'chords-list.html',
 })
 export class ChordsListPage {
 

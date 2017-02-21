@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
 
-import { ChordsListPage } from '../list';
-import { ChordsFavoritesPage } from '../favorites/favorites';
+import { ChordsListPage } from '../../pages/chords-list/chords-list';
+import { ChordsFavoritesPage } from '../../pages/chords-favorites/chords-favorites';
 
 @Component({
-    templateUrl: 'tabs.html'
+    templateUrl: 'chords-tabs.html'
 })
 
 export class ChordsTabs {

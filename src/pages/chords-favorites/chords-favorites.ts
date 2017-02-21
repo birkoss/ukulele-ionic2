@@ -2,18 +2,18 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
-import { ChordsDetailPage } from '../detail';
+import { ChordsDetailPage } from '../chords-detail/chords-detail';
 
-import { ConfigProvider } from '../../../providers/config-provider';
-import { DataProvider } from '../../../providers/data-provider';
-import { FavoritesProvider } from '../../../providers/favorites-provider';
+import { ConfigProvider } from '../../providers/config-provider';
+import { DataProvider } from '../../providers/data-provider';
+import { FavoritesProvider } from '../../providers/favorites-provider';
 
-import { Chord } from '../../../classes/chord';
-import { Position } from '../../../classes/Position';
+import { Chord } from '../../classes/chord';
+import { Position } from '../../classes/Position';
 
 @Component({
   selector: 'chords-favorites',
-  templateUrl: 'favorites.html'
+  templateUrl: 'chords-favorites.html'
 })
 export class ChordsFavoritesPage {
 

@@ -6,7 +6,7 @@ import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
-import { DetailOptionsPopover } from './popovers/detail-options';
+import { DetailOptionsPopover } from '../../popovers/detail-options/detail-options';
 
 import { Chord } from '../../classes/chord';
 import { Note } from '../../classes/note';
@@ -14,7 +14,7 @@ import { Type } from '../../classes/type';
 
 @Component({
     selector: "chords-detail",
-    templateUrl: "detail.html",
+    templateUrl: "chords-detail.html",
 })
 
 export class ChordsDetailPage {
