@@ -114,7 +114,7 @@ export class DataProvider {
 
             this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);
 
-            //this.generatePosition(chord, scale_notes);
+            chord.init();
 
             this.chords.push(chord);
         }
@@ -176,7 +176,6 @@ export class DataProvider {
 
                 position.update(s, fret, this.getNoteFromFretPosition(chord, s, fret, notes), parseInt(positions[i][frets]));
             }
-
             chord.addPosition(position);
         }
     }

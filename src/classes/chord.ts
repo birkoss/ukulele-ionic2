@@ -25,4 +25,10 @@ export class Chord {
         }
         return false;
     }
+
+    public init():void {
+        for (let i:number=0; i<this.positions.length; i++) {
+            this.positions[i].init();
+        }
+    }
 }

@@ -11,6 +11,7 @@ export class Position {
     strings:Array<String> = [];
 
     start:number = 1;
+    end:number = 1;
 
     constructor() {}
 
@@ -26,6 +27,22 @@ export class Position {
                 this.strings[i].note = note;
                 this.strings[i].finger = finger;
                 break;
+            }
+        }
+    }
+
+    public init():void {
+        console.log(this.start);
+        this.start = 20;
+        this.end = 0;
+        for (let i:number=0; i<this.strings.length; i++) {
+            if (this.strings[i].fret > 0) {
+                if (this.start > this.strings[i].fret) {
+                    this.start = this.strings[i].fret;
+                }
+                if (this.end < this.strings[i].fret) {
+                    this.end = this.strings[i].fret;
+                }
             }
         }
     }

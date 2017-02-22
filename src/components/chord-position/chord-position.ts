@@ -16,7 +16,9 @@ export class ChordPosition {
 	}
 
 	getFingers() {
-        return this.position.strings;
+        return this.position.strings.filter(s => {
+            return s.fret > 0;
+        });
 	}
 
 	getFretLabels() {
@@ -32,7 +34,7 @@ export class ChordPosition {
 
 		classes.push('finger');
 
-		classes.push('fret-' + finger.className);
+		classes.push('fret-' + finger.name.name + finger.fret);
 
 		return classes.join(" ");
 	}
