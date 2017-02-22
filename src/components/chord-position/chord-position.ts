@@ -16,7 +16,8 @@ export class ChordPosition {
 	}
 
 	getFingers() {
-		return this.position.fingers;
+        return [1, 2, 3, 4];
+		//return this.position.fingers;
 	}
 
 	getFretLabels() {

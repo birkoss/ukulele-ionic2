@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Chord } from '../classes/chord';
+import { String } from '../classes/string';
 import { Note } from '../classes/note';
 import { Family } from '../classes/family';
 import { Type } from '../classes/type';
@@ -96,24 +97,24 @@ export class DataProvider {
                 note = last_note + "/" + note;
                 last_note = "";
             }
-
             /* Stop after the first duplicate */
             if (scale_notes.length > 1 && note == scale_notes[0]) { break; }
-           
             /* Add the note if it's not a sharp note */
             if (last_note == "") { scale_notes.push(note); }
         }
 
-        /* Double the notes array to make sure we can build our scale */
+        /* Double the notes array to make sure we can build our scale correctly */
         scale_notes = scale_notes.concat(scale_notes);
 
         /* Generate all the chords */
         for (var i=0; i<json['chords'].length; i++) {
-            let chord = new Chord(json['chords'][i], this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
+            let chord = new Chord(this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
 
             this.buildScale(chord, scale_notes); 
 
-            this.generatePosition(chord, scale_notes);
+            this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);
+
+            //this.generatePosition(chord, scale_notes);
 
             this.chords.push(chord);
         }
@@ -161,37 +162,38 @@ export class DataProvider {
         }
     }
 
-    private generatePosition(chord:Chord, notes:Array<string>):void {
-        for (let i:number=0; i<chord.positions.length; i++) {
-            let positionNotes = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
-            let positionFrets = {'G':0, 'C':0, 'E':0, 'A':0};
+    private buildPositions(chord:Chord, positions:any, notes:Array<string>):void {
+        for (let i:number=0; i<positions.length; i++) {
+            let position:Position = new Position();
+            position.addString(this.getNote('G'));
+            position.addString(this.getNote('C'));
+            position.addString(this.getNote('E'));
+            position.addString(this.getNote('A'));
 
-            /* Build the frets position and the notes */
-            for (let j:number=0; j<chord.positions[i].fingers.length; j++) {
-                let finger_position:string = chord.positions[i].fingers[j].fret;
-                let fret_string:string = finger_position.substr(0, 1);
-                let fret_position:number = parseInt(finger_position.substr(1));
+            for (let frets in positions[i]) {
+                var s:string = frets.substr(0, 1);
+                var fret:number = parseInt(frets.substr(1));
 
-                for (let k:number=0; k<notes.length; k++) {
-                    if (notes[k] == fret_string) {
-                        positionNotes[fret_string] = notes[k + fret_position];
-                        if (positionNotes[fret_string].indexOf('/') >= 0) {
-                            let parts = positionNotes[fret_string].split('/');
-                            positionNotes[fret_string] = (chord.hasNoteInScale(parts[0]) ? parts[0] : parts[1]);
-                        }
-                        break;
-                    }
-                }
-
-                positionFrets[fret_string] = fret_position;
+                position.update(s, fret, this.getNoteFromFretPosition(chord, s, fret, notes), parseInt(positions[i][frets]));
             }
 
-            /* Generate the frets position */
-            for (let s in positionFrets) { chord.positions[i].frets.push(positionFrets[s]); }
-
-            /* Generate the notes */
-            for (let s in positionNotes) { chord.positions[i].notes.push(this.getNote(positionNotes[s])); }
+            chord.addPosition(position);
         }
+    }
+
+    private getNoteFromFretPosition(chord:Chord, stringName:string, direction:number, notes:Array<string>):Note {
+        let note:string = "";
+        for (let i:number=0; i<notes.length; i++) {
+            if (notes[i] == stringName) {
+                note = notes[i + direction];
+                if (note.indexOf('/') >= 0) {
+                    let parts = note.split('/');
+                    note = (chord.hasNoteInScale(parts[0]) ? parts[0] : parts[1]);
+                }
+                break;
+            }
+        }
+        return this.getNote(note);
     }
 }
 
