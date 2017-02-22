@@ -12,6 +12,6 @@
 
 <ion-content>
     <div class="chords">
-        <chord-card *ngFor="let favorite of favorites.all()" [note]="favorite.note" [type]="favorite.type" [position]="favorite.position" (onDetailClicked)="showDetail($event)"></chord-card>
+        <chord-card *ngFor="let favorite of favorites.all()" [note]="favorite.note" [type]="favorite.type" [family]="favorite.family" [position]="favorite.position" (onDetailClicked)="showDetail($event)"></chord-card>
     </div>
 </ion-content>

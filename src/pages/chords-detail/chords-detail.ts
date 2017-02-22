@@ -50,15 +50,15 @@ export class ChordsDetailPage {
     }
 
     public addToFavorite(chord:Chord, index:Number): void {
-        this.favorites.add({'note':chord.note.name, 'type':chord.type.name, 'position':index});
+        this.favorites.add({'note':chord.note.name, 'type':chord.type.name, 'family':chord.type.family.name, 'position':index});
     }
 
     public isFavorite(chord:Chord, index:Number): Boolean {
-        return this.favorites.exists({'note':chord.note.name, 'type':chord.type.name, 'position':index});
+        return this.favorites.exists({'note':chord.note.name, 'type':chord.type.name, 'family':chord.type.family.name, 'position':index});
     }
     
     public removeToFavorite(chord:Chord, index:Number): void {
-        this.favorites.remove(this.favorites.getIndex({'note':chord.note.name, 'type':chord.type.name, 'position':index}));
+        this.favorites.remove(this.favorites.getIndex({'note':chord.note.name, 'type':chord.type.name, 'family':chord.type.family.name, 'position':index}));
     }
 
     scrollToElement(id) { 
