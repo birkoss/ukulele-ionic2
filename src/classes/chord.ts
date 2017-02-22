@@ -22,4 +22,12 @@ export class Chord {
         this.scales.push(note);
     }
 
+    public hasNoteInScale(note:string):Boolean {
+        for (let i:number=0; i<this.scales.length; i++) {
+            if (this.scales[i].name == note) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

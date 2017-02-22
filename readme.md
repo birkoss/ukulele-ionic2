@@ -1,9 +1,7 @@
 Chord in DataProvider
 =====================
 
-* Generate notes from chords
-* Generate strings
-* Generate frets
+* Generate muted strings
 
 * Add all chords/notes from V1
 

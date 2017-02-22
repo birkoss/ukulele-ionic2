@@ -113,6 +113,8 @@ export class DataProvider {
 
             this.buildScale(chord, scale_notes); 
 
+            this.generatePosition(chord, scale_notes);
+
             this.chords.push(chord);
         }
     }
@@ -156,6 +158,39 @@ export class DataProvider {
 
         for (let i:number=0; i<scales.length; i++) {
             chord.addScale(this.getNote(scales[i]));
+        }
+    }
+
+    private generatePosition(chord:Chord, notes:Array<string>):void {
+        for (let i:number=0; i<chord.positions.length; i++) {
+            let positionNotes = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
+            let positionFrets = {'G':0, 'C':0, 'E':0, 'A':0};
+
+            /* Build the frets position and the notes */
+            for (let j:number=0; j<chord.positions[i].fingers.length; j++) {
+                let finger_position:string = chord.positions[i].fingers[j].fret;
+                let fret_string:string = finger_position.substr(0, 1);
+                let fret_position:number = parseInt(finger_position.substr(1));
+
+                for (let k:number=0; k<notes.length; k++) {
+                    if (notes[k] == fret_string) {
+                        positionNotes[fret_string] = notes[k + fret_position];
+                        if (positionNotes[fret_string].indexOf('/') >= 0) {
+                            let parts = positionNotes[fret_string].split('/');
+                            positionNotes[fret_string] = (chord.hasNoteInScale(parts[0]) ? parts[0] : parts[1]);
+                        }
+                        break;
+                    }
+                }
+
+                positionFrets[fret_string] = fret_position;
+            }
+
+            /* Generate the frets position */
+            for (let s in positionFrets) { chord.positions[i].frets.push(positionFrets[s]); }
+
+            /* Generate the notes */
+            for (let s in positionNotes) { chord.positions[i].notes.push(this.getNote(positionNotes[s])); }
         }
     }
 }

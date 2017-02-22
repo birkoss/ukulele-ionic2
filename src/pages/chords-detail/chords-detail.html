@@ -21,17 +21,6 @@
             </ion-row>
         </ion-card>
 
-        <ion-card *ngIf="config.ChordsOptions.show_notes">
-            <ion-card-header>
-                Notes
-            </ion-card-header>
-            <ion-row class="scale">
-                <ion-col *ngFor="let note of chord.scales">
-                    <note-name [note]="note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
-                </ion-col>
-            </ion-row>
-        </ion-card>
-
         <ion-card *ngIf="config.ChordsOptions.show_strings_name">
             <ion-card-header>
                 Strings Name
@@ -43,21 +32,30 @@
             </ion-row>
         </ion-card>
 
-        <ion-card *ngIf="config.ChordsOptions.show_frets">
-            <ion-card-header>
-                Frets
-            </ion-card-header>
-            <ion-row class="scale">
-                <ion-col *ngFor="let note of chord.scales">
-                    <note-name [note]="note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
-                </ion-col>
-            </ion-row>
-        </ion-card>
-
         <ion-card id="position_{{i}}" *ngFor="let position of chord.positions; let i = index;">
             <ion-card-content>
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
+            <div *ngIf="config.ChordsOptions.show_frets">
+                <ion-card-header>
+                    Frets
+                </ion-card-header>
+                <ion-row class="scale">
+                    <ion-col *ngFor="let fret of position.frets">
+                        {{fret}}
+                    </ion-col>
+                </ion-row>
+            </div>
+            <div *ngIf="config.ChordsOptions.show_notes">
+                <ion-card-header>
+                    Notes
+                </ion-card-header>
+                <ion-row class="scale">
+                    <ion-col *ngFor="let note of position.notes">
+                        <note-name [note]="note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
+                    </ion-col>
+                </ion-row>
+            </div>
             <div class="buttons">
                 <button *ngIf="!isFavorite(chord, i)" ion-button icon-left (click)="addToFavorite(chord, i)">
                     <ion-icon name="star" item-left></ion-icon> Favorite

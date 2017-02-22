@@ -1,3 +1,5 @@
+import { Note } from './note';
+
 export class Finger {
     className:string = "";
 
@@ -15,6 +17,8 @@ export class Finger {
 
 export class Position {
     fingers:Array<Finger> = [];
+    frets:Array<number> = [];
+    notes:Array<Note> = [];
 
     start:number = 1;
 
