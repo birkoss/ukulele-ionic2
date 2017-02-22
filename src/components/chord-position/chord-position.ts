@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Position } from '../../classes/position';
+import { Note } from '../../classes/note';
 
 @Component({
     selector: 'chord-position',
@@ -8,44 +9,35 @@ import { Position } from '../../classes/position';
 })
 
 export class ChordPosition {
-	@Input('position') position: Position;
+    private _position:Position;
 
-	constructor() {
-		console.log(this);
-		console.log(this.position);
-	}
+    start:number = 0;
+    strings:Array<any>;
+    fingers:Array<any> = [];
+    muted:Object = {};
+    labels:Array<number> = [];
 
-	getFingers() {
-        return this.position.strings.filter(s => {
-            return s.fret > 0;
+	@Input('position')
+    set position(position:Position) {
+        this._position = position;
+
+        this.start = this._position.start;
+        this.strings = this._position.strings;
+
+        this._position.strings.filter(s => {
+            if (s.fret > 0) {
+                this.fingers.push(s);
+            }
+
+            if (s.finger == -1) {
+                this.muted[s.note.name] = true;
+            }
         });
-	}
 
-	getFretLabels() {
-        let labels:Array<number> = [];
         for (let i:number=0; i<4; i++) {
-            labels.push(this.position.start + i);
+            this.labels.push(this.start + i);
         }
-        return labels;
-	}
+    }
 
-	getFretClasses(finger:any) {
-		let classes:Array<string> = [];
-
-		classes.push('finger');
-
-		classes.push('fret-' + finger.name.name + (finger.fret - this.position.start + 1));
-
-		return classes.join(" ");
-	}
-
-	getFretLabelsClasses(index:number) {
-		let classes:Array<string> = [];
-		
-		classes.push('fret-label');
-
-		classes.push('fret-label-' + (index+1));
-
-		return classes.join(" ");
-	}
+	constructor() { }
 }

@@ -1,6 +1,9 @@
 Chord in DataProvider
 =====================
 
+* Rewrite chord-position to use a set positon and calculate there
+
+* See how to specify alternate name
 * Generate muted strings
 
 * Add all chords/notes from V1
