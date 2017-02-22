@@ -4,6 +4,7 @@ import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 
 import { Note } from '../../classes/note';
+import { Family } from '../../classes/family';
 import { Position } from '../../classes/position';
 import { Type } from '../../classes/type';
 
@@ -15,6 +16,8 @@ import { Type } from '../../classes/type';
 export class ChordCard {
     private _note: Note;
     private _type: Type;
+    private _family: Family;
+    private familyName:string;
     private _position: Position;
     private _positionIndex: number;
 
@@ -22,9 +25,14 @@ export class ChordCard {
     set note(note: string) {
         this._note = this.dataProvider.getNote(note); 
     }
+    @Input('family')
+    set family(family:string) {
+        this.familyName = family;
+    }
 	@Input('type')
     set type(type: string) {
-        this._type = this.dataProvider.getType(type);
+        console.log('set type...');
+        this._type = this.dataProvider.getType(type, this.familyName);
     }
 	@Input('position')
     set position(position: number) {

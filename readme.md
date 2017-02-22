@@ -1,6 +1,8 @@
 Chord in DataProvider
 =====================
 
+* Add the family in the favorites (also saved)
+
 * Generate muted strings
 
 * Add all chords/notes from V1
