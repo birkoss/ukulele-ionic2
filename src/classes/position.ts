@@ -10,8 +10,9 @@ export class String {
 export class Position {
     strings:Array<String> = [];
 
+    min:number = 1;
     start:number = 1;
-    end:number = 1;
+    max:number = 1;
 
     constructor() {}
 
@@ -32,18 +33,22 @@ export class Position {
     }
 
     public init():void {
-        console.log(this.start);
-        this.start = 20;
-        this.end = 0;
+        console.log(this.min);
+        this.min = 20;
+        this.max = 0;
         for (let i:number=0; i<this.strings.length; i++) {
             if (this.strings[i].fret > 0) {
-                if (this.start > this.strings[i].fret) {
-                    this.start = this.strings[i].fret;
+                if (this.min > this.strings[i].fret) {
+                    this.min = this.strings[i].fret;
                 }
-                if (this.end < this.strings[i].fret) {
-                    this.end = this.strings[i].fret;
+                if (this.max < this.strings[i].fret) {
+                    this.max = this.strings[i].fret;
                 }
             }
+        }
+
+        if (this.max > 4) {
+            this.start = this.min;
         }
     }
 }

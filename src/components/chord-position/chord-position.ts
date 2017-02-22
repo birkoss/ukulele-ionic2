@@ -34,7 +34,7 @@ export class ChordPosition {
 
 		classes.push('finger');
 
-		classes.push('fret-' + finger.name.name + finger.fret);
+		classes.push('fret-' + finger.name.name + (finger.fret - this.position.start + 1));
 
 		return classes.join(" ");
 	}
