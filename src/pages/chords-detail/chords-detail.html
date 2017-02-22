@@ -26,8 +26,8 @@
                 Strings Name
             </ion-card-header>
             <ion-row class="scale">
-                <ion-col *ngFor="let note of getStrings()">
-                    <note-name [note]="note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
+                <ion-col *ngFor="let s of getStrings()">
+                    <note-name [note]="s.name" [french]="config.ChordsOptions.show_note_in_french"></note-name>
                 </ion-col>
             </ion-row>
         </ion-card>
@@ -41,8 +41,8 @@
                     Frets
                 </ion-card-header>
                 <ion-row class="scale">
-                    <ion-col *ngFor="let fret of position.frets">
-                        {{fret}}
+                    <ion-col *ngFor="let s of position.strings">
+                        {{s.fret}}
                     </ion-col>
                 </ion-row>
             </div>
@@ -51,8 +51,8 @@
                     Notes
                 </ion-card-header>
                 <ion-row class="scale">
-                    <ion-col *ngFor="let note of position.notes">
-                        <note-name [note]="note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
+                    <ion-col *ngFor="let s of position.strings">
+                        <note-name [note]="s.note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
                     </ion-col>
                 </ion-row>
             </div>

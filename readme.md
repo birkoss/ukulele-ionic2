@@ -10,7 +10,7 @@ Chord in DataProvider
 * Remove the method in the Component and generate variable (to optimise)
 * Fix the note-name when they are in English, to remove the space "A m" to "Am"
 
-* Redo the start position
+* See if String is an existing ionic/angular classes (and rename it if it is)
 
 * Instead of having multiple array in Position, should be String based
     * Position:

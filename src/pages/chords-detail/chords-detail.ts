@@ -70,7 +70,7 @@ export class ChordsDetailPage {
         }
     }
 
-    public getStrings():Array<Note> {
-        return [this.data.getNote('G'), this.data.getNote('C'), this.data.getNote('E'), this.data.getNote('A')];
+    public getStrings():Array<any> {
+        return this.chord.positions[0].strings;
     }
 }
