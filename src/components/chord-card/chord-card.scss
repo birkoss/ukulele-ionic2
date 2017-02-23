@@ -11,6 +11,14 @@ chord-card {
             margin: 16px 0;
             width: 64px;
             height: auto;
+
+            text.fret-label {
+                display: none;
+            }
+
+            path.finger-filling {
+                fill: #000000 !important;
+            }
         }
 
         .card-header {
