@@ -41,7 +41,7 @@
                 </ion-card-header>
                 <ion-row class="scale">
                     <ion-col *ngFor="let s of position.strings">
-                        <note-name [note]="s.note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
+                        <note-name *ngIf="s.finger >= 0" [note]="s.note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
                     </ion-col>
                 </ion-row>
             </div>
