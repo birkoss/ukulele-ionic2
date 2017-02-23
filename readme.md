@@ -5,7 +5,6 @@ Chord in DataProvider
 
 * See how to specify alternate name
 
-* Show a message when no favorites are present
 * Remove the method in the Component and generate variable (to optimise)
 * Fix the note-name when they are in English, to remove the space "A m" to "Am"
 

@@ -16,3 +16,16 @@ div.buttons {
 .content {
     background-color: #f4f4f4;
 }
+
+.label-container {
+    height: 100%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        color: #bdbdbd;
+        font-weight: bold;
+    }
+}
