@@ -17,7 +17,7 @@ export class ConfigProvider {
     private init(): void {
         this.configs['chords'] = {};
         this.configs['chords']['filters'] = {'list_chord_type': 'Major'};
-        this.configs['chords']['options'] = {'show_note_in_french': true, 'show_strings_name': false, 'show_scale': false, 'show_notes': false, 'show_frets': false};
+        this.configs['chords']['options'] = {'show_note_in_french': true, 'show_strings_name': false, 'show_notes': false, 'show_frets': false};
 
         console.log('init...');
 

@@ -63,7 +63,6 @@ export class DataProvider {
     }
 
     public getPosition(note:string, type:string, position:number): Position {
-        console.log('Position:' + position);
        return this.getChord(note, type).positions[position]; 
     }
 
@@ -94,6 +93,9 @@ export class DataProvider {
             if (note[1] == "♯") {
                 last_note = note;
             } else if (note[1] == "♭") {
+                if (last_note == "") {
+                    continue;
+                }
                 note = last_note + "/" + note;
                 last_note = "";
             }
@@ -110,55 +112,11 @@ export class DataProvider {
         for (var i=0; i<json['chords'].length; i++) {
             let chord = new Chord(this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
 
-            this.buildScale(chord, scale_notes); 
-
             this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);
 
             chord.init();
 
             this.chords.push(chord);
-        }
-    }
-
-    private buildScale(chord:Chord, notes:Array<string>): void {
-        let scales:Array<string> = [];
-
-        for (let i:number=0; i<notes.length; i++) {
-            if (notes[i] == chord.note.name) {
-                scales.push(notes[i]);
-                for (let j:number=0; j<chord.type.scale.length; j++) {
-                    i += chord.type.scale[j];
-                    let double_notes = notes[i].split('/');
-                    let note = double_notes[0];
-
-                    /* Find the nest note if it's a double notes (sharp or flat) */
-                    if (double_notes.length > 1) {
-                        /* If the previous note start with the same letter, use the flat instead */
-                        if (scales[scales.length-1].substr(0, 1) == note.substr(0, 1)) {
-                            note = double_notes[1];
-                        }
-
-                        /* If the first note is a flat, use a flat */
-                        if (notes[0][1] == '♭') {
-                            note = double_notes[1];
-                        }
-                    } else {
-                        /* Special case where a C♭ (instead of a B) or an E♯ (instead of F) may be required */
-                        if (note == 'B' || note == 'F') {
-                            let special_cases = {'B': 'C♭', 'F': 'E♯'};
-                            if (scales[scales.length-1].substr(0, 1) == note) {
-                                note = special_cases[note];
-                            }
-                        }
-                    }
-
-                    scales.push(note);
-                }
-            }
-        }
-
-        for (let i:number=0; i<scales.length; i++) {
-            chord.addScale(this.getNote(scales[i]));
         }
     }
 
@@ -187,7 +145,7 @@ export class DataProvider {
                 note = notes[i + direction];
                 if (note.indexOf('/') >= 0) {
                     let parts = note.split('/');
-                    note = (chord.hasNoteInScale(parts[0]) ? parts[0] : parts[1]);
+                    note = parts[0]; /* @todo: Maybe use parts[1] */
                 }
                 break;
             }

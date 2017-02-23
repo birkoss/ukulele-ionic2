@@ -21,10 +21,6 @@ import { DataProvider } from '../../providers/data-provider';
             <ion-toggle [(ngModel)]="config.ChordsOptions.show_frets" (ionChange)="onOptionChanged()"></ion-toggle>
         </ion-item>
         <ion-item>
-            <ion-label>Show scale</ion-label>
-            <ion-toggle [(ngModel)]="config.ChordsOptions.show_scale" (ionChange)="onOptionChanged()"></ion-toggle>
-        </ion-item>
-        <ion-item>
             <ion-label>Show French name</ion-label>
             <ion-toggle [(ngModel)]="config.ChordsOptions.show_note_in_french" (ionChange)="onOptionChanged()"></ion-toggle>
         </ion-item>
