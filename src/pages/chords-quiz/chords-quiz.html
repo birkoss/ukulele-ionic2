@@ -5,12 +5,13 @@
       </ion-buttons>
       <ion-title>Quiz</ion-title>
       <ion-buttons end>
-          <button ion-button outline="true">Major</button>
-          <button ion-button icon-only><ion-icon name="settings"></ion-icon></button>
+          <button ion-button (click)="showPopup($event, 'filters')" outline="true">Major</button>
+          <button ion-button icon-only (click)="showPopup($event, 'options')"><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <p>...</p>
+    <h1>Reproduce a <chord-name [note]="current_note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_type"></chord-name></h1>
+    <chord-position></chord-position>
 </ion-content>
