@@ -24,6 +24,7 @@ export class ChordsDetailPage {
     type: Type;
     position: number = 0;
     chord: Chord;
+    hasScrolled:Boolean = false;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public config: ConfigProvider, public data: DataProvider, public popoverCtrl: PopoverController, public favorites:FavoritesProvider) {
         this.note = navParams.get('note');
@@ -36,8 +37,8 @@ export class ChordsDetailPage {
         this.chord = data.getChord(this.note.name, this.type.name);
     }
 
-    ngAfterViewChecked() {
-        if (this.position > 0) {
+    ionViewDidEnter() {
+        if (this.position > 0 && !this.hasScrolled) {
             this.scrollToElement('position_' + this.position);
         }
     }
@@ -66,7 +67,6 @@ export class ChordsDetailPage {
         if (el != undefined) {
             var rect = el.getBoundingClientRect();
             this.content.scrollTo(0, rect.top);
-            //this.content.scrollTo(0, rect.top, 800);
         }
     }
 
