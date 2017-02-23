@@ -1,10 +1,19 @@
 chords-detail {
     ion-card {
-        ion-row.scale {
+        ion-row.strings-container {
+            max-width: 220px;
+            margin: 16px auto;
+
             ion-col {
                 text-align: center;
-                color: #cccccc;
             }
+        }
+
+        ion-card-header {
+            font-weight: bold;
+            text-align: center;
+            background-color: map-get($colors, 'secondary');
+            color: #ffffff !important;
         }
 
         ion-card-content {

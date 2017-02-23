@@ -11,10 +11,8 @@
     <div class="chords">
 
         <ion-card *ngIf="config.ChordsOptions.show_strings_name">
-            <ion-card-header>
-                Strings Name
-            </ion-card-header>
-            <ion-row class="scale">
+            <ion-card-header>Strings</ion-card-header>
+            <ion-row class="strings-container">
                 <ion-col *ngFor="let s of getStrings()">
                     <note-name [note]="s.name" [french]="config.ChordsOptions.show_note_in_french"></note-name>
                 </ion-col>
@@ -26,20 +24,16 @@
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
             <div *ngIf="config.ChordsOptions.show_frets">
-                <ion-card-header>
-                    Frets
-                </ion-card-header>
-                <ion-row class="scale">
+                <ion-card-header>Frets</ion-card-header>
+                <ion-row class="strings-container">
                     <ion-col *ngFor="let s of position.strings">
                         {{s.fret}}
                     </ion-col>
                 </ion-row>
             </div>
             <div *ngIf="config.ChordsOptions.show_notes">
-                <ion-card-header>
-                    Notes
-                </ion-card-header>
-                <ion-row class="scale">
+                <ion-card-header>Notes</ion-card-header>
+                <ion-row class="strings-container">
                     <ion-col *ngFor="let s of position.strings">
                         <note-name *ngIf="s.finger >= 0" [note]="s.note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
                     </ion-col>
