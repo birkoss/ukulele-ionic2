@@ -14,14 +14,18 @@ export class NoteName {
     @Input()
     set note(note: Note) {
         this._note = note;
-        this._name = this._note.name;
+        this.updateName();
     }
 
     @Input()
     set french(french: Boolean) {
         this._french = french;
-        this._name = (this._french ? this._note.french : this._note.name);
+        this.updateName();
     }
 
     constructor() { }
+
+    private updateName():void {
+        this._name = (this._french ? this._note.french : this._note.name);
+    }
 }
