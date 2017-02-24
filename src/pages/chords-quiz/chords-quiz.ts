@@ -15,6 +15,9 @@ import { Position } from '../../classes/position';
     templateUrl: 'chords-quiz.html'
 })
 export class ChordsQuizPage {
+    chordIndex:number = 0;
+    chords:Array<Chord> = [];
+
     current_chord:Chord;
     current_note:Note;
     current_type:Type;
@@ -22,16 +25,29 @@ export class ChordsQuizPage {
     labels:Array<number> = [];
     position:Position;
 
-    isWaiting:Boolean = false;;
+    isWaiting:Boolean = false;
 
     constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController) {
+        this.generateList();
         this.pickChord();
     }
 
+    private generateList():void {
+        this.chords = [];
+        this.chordIndex = 0;
+
+        this.data.getChords().filter(item => {
+            this.chords.push(item);
+        });
+    }
+
     public pickChord():void {
-        this.current_chord = this.data.getChord('C', 'Major');
+        this.current_chord = this.chords[this.chordIndex];
         this.isWaiting = true;
         this.start = 1;
+console.log(this.current_chord);
+        this.chordIndex++;
+        /* @todo: Better detecting of the end, and reshuffle the list */
     }
 
     public showSolution(index:number = 0):void {
