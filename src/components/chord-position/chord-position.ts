@@ -29,7 +29,7 @@ export class ChordPosition {
 
         this._position.strings.filter(s => {
             if (s.fret > 0) {
-                this.fingers.push(s);
+                this.fingers.push({'string':s.name.name, 'fret':s.fret, 'finger':s.finger});
             }
 
             if (s.finger == -1) {
@@ -97,10 +97,11 @@ export class ChordPosition {
             let stringName = strings[p_x];
             let fretPosition = (p_y+1);
 
+            console.log(stringName + " : " + fretPosition);
             // Find if this position already exists
             let found = false;
             for (var i=0; i<this.fingers.length; i++) {
-                if (this.fingers[i].name.name == stringName && this.fingers[i].fret == fretPosition) {
+                if (this.fingers[i].string == stringName && this.fingers[i].fret == fretPosition) {
                     found = true;
                     this.fingers.splice(i, 1);
                     break;
@@ -109,7 +110,7 @@ export class ChordPosition {
 
             /* Add this position if it's a new position */
             if (!found) {
-                this.fingers.push({'name':this.data.getNote(stringName), 'fret':fretPosition});
+                this.fingers.push({'string':stringName, 'fret':fretPosition + 0});
             }
 
             this.onMarkerToggled.emit(this.fingers);

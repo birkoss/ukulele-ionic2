@@ -37,7 +37,7 @@ export class ChordsQuizPage {
 
         let answerPositions:Array<string> = [];
         answer.filter(item => {
-            answerPositions.push(item.name.name + item.fret);
+            answerPositions.push(item.string + item.fret);
         });
         answerPositions.sort();
 
