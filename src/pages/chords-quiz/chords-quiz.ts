@@ -18,6 +18,8 @@ export class ChordsQuizPage {
     current_chord:Chord;
     current_note:Note;
     current_type:Type;
+    start:number = 1;
+    labels:Array<number> = [];
 
     isWaiting:Boolean = false;;
 
@@ -28,6 +30,7 @@ export class ChordsQuizPage {
     public pickChord():void {
         this.current_chord = this.data.getChord('C', 'Major');
         this.isWaiting = true;
+        this.start = 1;
     }
 
     public verifyAnswer(answer:Array<any>):void {
@@ -57,6 +60,17 @@ export class ChordsQuizPage {
                 alert.present();
                 break;
             }
+        }
+    }
+
+    public moveFret(direction:number):void {
+        this.start += direction;
+    }
+
+    private updateLabels():void {
+        this.labels = [];
+        for (let i:number=0; i<4; i++) {
+            this.labels.push(this.start+i);
         }
     }
 

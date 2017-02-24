@@ -53,6 +53,16 @@ export class ChordPosition {
         console.log(interactive);
     }
 
+    @Input('startPosition')
+    set startPosition(start:number) {
+        this.start = start;
+
+        this.labels = [];
+        for (let i:number=0; i<4; i++) {
+            this.labels.push(i + this.start);
+        }
+    }
+
     @Output() onMarkerToggled: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public data:DataProvider) { }
