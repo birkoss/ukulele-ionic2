@@ -12,6 +12,10 @@
 </ion-header>
 
 <ion-content padding>
-    <h1>Reproduce a <chord-name [note]="current_note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_type"></chord-name></h1>
-    <chord-position></chord-position>
+    <h1>Reproduce a <chord-name [note]="current_chord.note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_chord.type"></chord-name></h1>
+    <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting"></chord-position>
+    <div class="buttons">
+
+        <button ion-button (click)="pickChord()">Pick new chord</button>
+    </div>
 </ion-content>

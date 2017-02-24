@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { Position } from '../../classes/position';
 import { Note } from '../../classes/note';
+
+import { DataProvider } from '../../providers/data-provider';
 
 @Component({
     selector: 'chord-position',
@@ -16,6 +18,7 @@ export class ChordPosition {
     fingers:Array<any> = [];
     muted:Object = {};
     labels:Array<number> = [];
+    _interactive:Boolean = false;
 
 	@Input('position')
     set position(position:Position) {
@@ -39,5 +42,67 @@ export class ChordPosition {
         }
     }
 
-	constructor() { }
+    @Input('interactive')
+    set interactive(interactive:Boolean) {
+        this._interactive = interactive;
+        if (this._interactive) {
+            this.fingers = [];
+        }
+        this.labels = [1, 2, 3, 4];
+        this.start = 1;
+        console.log(interactive);
+    }
+
+    @Output() onMarkerToggled: EventEmitter<Object> = new EventEmitter<Object>();
+
+	constructor(public data:DataProvider) { }
+
+    public toggleMarker(event):void {
+        if (this._interactive) {
+            let svg_parent;
+            for (var i=0; i<event.path.length; i++) {
+                if (event.path[i].nodeName == 'svg') {
+                    svg_parent = event.path[i];
+                }
+            }
+
+            var x = event.offsetX;
+            var y = event.offsetY;
+            var parent_width = svg_parent.clientWidth;
+            var parent_height = svg_parent.clientHeight;
+
+            var scale = (parent_width / 250);
+
+            var origin_start = 36 * scale;
+            var grid_size = 55 * scale;
+
+            x-= origin_start;
+            y-= origin_start;
+
+            var p_x = Math.min(3, Math.max(0, Math.round(x / grid_size)));
+            var p_y = Math.min(3, Math.max(0, Math.floor(y / grid_size)));
+
+            var strings = {'0':'G', '1':'C', '2':'E', '3':'A'};
+
+            let stringName = strings[p_x];
+            let fretPosition = (p_y+1);
+
+            // Find if this position already exists
+            let found = false;
+            for (var i=0; i<this.fingers.length; i++) {
+                if (this.fingers[i].name.name == stringName && this.fingers[i].fret == fretPosition) {
+                    found = true;
+                    this.fingers.splice(i, 1);
+                    break;
+                }
+            }
+
+            /* Add this position if it's a new position */
+            if (!found) {
+                this.fingers.push({'name':this.data.getNote(stringName), 'fret':fretPosition});
+            }
+
+            this.onMarkerToggled.emit(this.fingers);
+        }
+    }
 }

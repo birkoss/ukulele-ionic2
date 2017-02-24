@@ -1,4 +1,4 @@
-<svg *ngIf="labels" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
+<svg (click)="toggleMarker($event)" *ngIf="labels" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
     <text *ngFor="let label of labels; let i = index" [ngClass]="['fret-label fret-label-' + (i+1)]" x="-16" y="0" fill="black">{{label}}</text>
 
     <g *ngIf="start == 1" id="chord-top">
