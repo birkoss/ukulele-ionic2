@@ -13,14 +13,14 @@
 
 <ion-content padding>
     <h1>Reproduce a <chord-name [note]="current_chord.note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_chord.type"></chord-name></h1>
-    <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting" [(startPosition)]="start"></chord-position>
+    <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting" [(startPosition)]="start" [position]="position"></chord-position>
     <div class="buttons">
 
-        <button ion-button [disabled]="start <= 1" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
+        <button ion-button [disabled]="start <= 1 || !isWaiting" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
         <button *ngIf="!isWaiting" ion-button (click)="pickChord()">Pick new chord</button>
-        <button *ngIf="isWaiting" ion-button (click)="pickChord()">Show the solution</button>
+        <button *ngIf="isWaiting" ion-button (click)="showSolution()">Show the solution</button>
 
-        <button ion-button [disabled]="start >= 12" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
+        <button ion-button [disabled]="start >= 12 || !isWaiting" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
 
     </div>
 </ion-content>

@@ -11,3 +11,5 @@ Chord in DataProvider
 * See if String is an existing ionic/angular classes (and rename it if it is)
 
 * Quiz - Build a list to pick from, when at the end, shuffle the list
+
+* Quiz - Show the solution with [position]

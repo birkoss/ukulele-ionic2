@@ -20,6 +20,7 @@ export class ChordsQuizPage {
     current_type:Type;
     start:number = 1;
     labels:Array<number> = [];
+    position:Position;
 
     isWaiting:Boolean = false;;
 
@@ -33,11 +34,15 @@ export class ChordsQuizPage {
         this.start = 1;
     }
 
-    public verifyAnswer(answer:Array<any>):void {
+    public showSolution():void {
+        this.position = this.current_chord.positions[0];
+        this.isWaiting = false;
+    }
 
+    public verifyAnswer(answer:Array<any>):void {
         let answerPositions:Array<string> = [];
         answer.filter(item => {
-            answerPositions.push(item.string + item.fret);
+            answerPositions.push(item.string + (item.fret + this.start - 1));
         });
         answerPositions.sort();
 
@@ -51,11 +56,16 @@ export class ChordsQuizPage {
             chordPositions.sort();
 
             if (answerPositions.toString() === chordPositions.toString()) {
-                this.isWaiting = false;
                 let alert = this.alertCtrl.create({
                     title: 'Good job!',
                     subTitle: 'It\' a valid chord!',
-                    buttons: ['OK']
+                    enableBackdropDismiss: false,
+                    buttons: [{
+                        text: 'OK',
+                        handler: data => {
+                            this.isWaiting = false;
+                        }
+                    }]
                 });
                 alert.present();
                 break;

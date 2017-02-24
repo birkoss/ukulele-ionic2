@@ -22,11 +22,17 @@ export class ChordPosition {
 
 	@Input('position')
     set position(position:Position) {
+        if (position == null || position == undefined) {
+            return;
+        }
+
         this._position = position;
 
         this.start = this._position.start;
         this.strings = this._position.strings;
 
+        this.labels = [];
+        this.fingers = [];
         this._position.strings.filter(s => {
             if (s.fret > 0) {
                 this.fingers.push({'string':s.name.name, 'fret':s.fret, 'finger':s.finger});
@@ -47,10 +53,9 @@ export class ChordPosition {
         this._interactive = interactive;
         if (this._interactive) {
             this.fingers = [];
+            this.labels = [1, 2, 3, 4];
+            this.start = 1;
         }
-        this.labels = [1, 2, 3, 4];
-        this.start = 1;
-        console.log(interactive);
     }
 
     @Input('startPosition')
@@ -61,6 +66,9 @@ export class ChordPosition {
         for (let i:number=0; i<4; i++) {
             this.labels.push(i + this.start);
         }
+
+        /* Trigger the markers on every fret position changes */
+        this.onMarkerToggled.emit(this.fingers);
     }
 
     @Output() onMarkerToggled: EventEmitter<Object> = new EventEmitter<Object>();
@@ -79,7 +87,6 @@ export class ChordPosition {
             var x = event.offsetX;
             var y = event.offsetY;
             var parent_width = svg_parent.clientWidth;
-            var parent_height = svg_parent.clientHeight;
 
             var scale = (parent_width / 250);
 
