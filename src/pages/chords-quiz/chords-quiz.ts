@@ -34,8 +34,8 @@ export class ChordsQuizPage {
         this.start = 1;
     }
 
-    public showSolution():void {
-        this.position = this.current_chord.positions[0];
+    public showSolution(index:number = 0):void {
+        this.position = this.current_chord.positions[index];
         this.isWaiting = false;
     }
 
@@ -63,7 +63,7 @@ export class ChordsQuizPage {
                     buttons: [{
                         text: 'OK',
                         handler: data => {
-                            this.isWaiting = false;
+                            this.showSolution(i);
                         }
                     }]
                 });
