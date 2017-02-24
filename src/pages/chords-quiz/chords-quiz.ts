@@ -39,15 +39,21 @@ export class ChordsQuizPage {
         this.data.getChords().filter(item => {
             this.chords.push(item);
         });
+
+        this.shuffle(this.chords);
     }
 
     public pickChord():void {
         this.current_chord = this.chords[this.chordIndex];
         this.isWaiting = true;
         this.start = 1;
-console.log(this.current_chord);
+
+        /* When the last chord is reach, shuffle the list and start again */
         this.chordIndex++;
-        /* @todo: Better detecting of the end, and reshuffle the list */
+        if (this.chordIndex >= this.chords.length) {
+            this.shuffle(this.chords);
+            this.chordIndex = 0;
+        }
     }
 
     public showSolution(index:number = 0):void {
@@ -97,6 +103,13 @@ console.log(this.current_chord);
         this.labels = [];
         for (let i:number=0; i<4; i++) {
             this.labels.push(this.start+i);
+        }
+    }
+
+    private shuffle(a) {
+        for (let i = a.length; i; i--) {
+            let j = Math.floor(Math.random() * i);
+            [a[i - 1], a[j]] = [a[j], a[i - 1]];
         }
     }
 
