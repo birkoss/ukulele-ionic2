@@ -18,7 +18,7 @@
         <ion-item *ngFor="let type of data.types">
             {{type.name}}
             <ion-label>{{type.name}}</ion-label>
-            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_chord_types[type.name]" (ionChange)="onFilterChanged()"></ion-toggle>
+            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_chord_types[type.name]" (ionChange)="onFilterChanged($event, type.name)"></ion-toggle>
         </ion-item>
     </ion-list>
 
