@@ -4,6 +4,7 @@ import { ModalController, NavController, AlertController, PopoverController } fr
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
+import { FavoritesProvider } from '../../providers/favorites-provider';
 
 import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
 import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
@@ -30,12 +31,19 @@ export class ChordsQuizPage {
     labels:Array<number> = [];
     position:Position;
 
-    isWaiting:Boolean = false;
+    isWaiting:Boolean = true;
 
-    constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController) {
+    constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) {
+        console.log('ChordsQuizPage()');
+    }
 
+    ionViewWillEnter() {
+        console.log('ionViewDidEnter()');
         /* Pick all chord type if no quiz options exists */
+        /*
         if (Object.keys(this.config.ChordsFilters['quiz_chord_types']).length == 0) {
+            console.log("Not options...");
+            console.log(this.config.ChordsFilters['quiz_chord_types']);
             for (let key in this.data.types) {
                 this.config.ChordsFilters['quiz_chord_types'][this.data.types[key].name] = true;
             }
@@ -44,6 +52,37 @@ export class ChordsQuizPage {
 
         this.generateList();
         this.pickChord();
+        */
+    }
+
+    private getChords():Array<Chord> {
+        return this.data.getChords().filter(item => {
+
+            if (!this.config.ChordsFilters['quiz_chord_types'][item.type.name]) { return false; }
+
+            if (!this.config.ChordsFilters['quiz_use_flat'] && item.note.name.substr(1) == '♭') { return false; }
+
+            if (!this.config.ChordsFilters['quiz_use_sharp'] && item.note.name.substr(1) == '♯') { return false; }
+
+            if (this.favorites.all().length > 0) {
+                if (this.config.ChordsFilters['quiz_use_favorites']) {
+                    return this.hasFavorited(item.note.name, item.type.name);
+                }
+            }
+            
+            return true;
+        });
+    }
+
+    private hasFavorited(noteName:string, typeName:string):Boolean {
+        console.log('hasFavorited: ' + this.favorites.all().length);
+        this.favorites.all().filter(item => {
+            if (item['note'] == noteName && item['type'] == typeName) {
+                console.log(item['note'] + "/" + noteName + " ... " + item['type'] + "/" + typeName);
+                return true;
+            }
+        });
+        return false;
     }
 
     private generateList():void {

@@ -27,7 +27,7 @@ export class FavoritesProvider {
 
     /* Public */
 
-    public all(type:string = "chords"): Object {
+    public all(type:string = "chords"):Array<Object> {
         return this.favorites[type];
     }
 

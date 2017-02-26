@@ -19,7 +19,8 @@ export interface PageInterface {
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-  rootPage = ChordsTabs;
+  //rootPage = ChordsTabs;
+  rootPage = ChordsQuizPage;
 
   chordsPages: PageInterface[] = [
     {title: 'List', component: ChordsTabs},

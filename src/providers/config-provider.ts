@@ -8,26 +8,21 @@ export class ConfigProvider {
 
     constructor(public storage: Storage) {
         console.log('ConfigProvider()');
-
-        this.init();
+        storage.ready().then(() => {
+            this.init();
+        });
     }
 
     /* Private */
 
     private init(): void {
+        console.log('ConfigProvider.init()');
         this.configs['chords'] = {};
         this.configs['chords']['filters'] = {'list_chord_type':'Major', 'quiz_chord_types':{}, 'quiz_use_favorites':'only', 'quiz_use_flat':false, 'quiz_use_sharp':false};
         this.configs['chords']['options'] = {'show_note_in_french': true, 'show_strings_name': false, 'show_notes': false, 'show_frets': false};
 
-        console.log('init...');
-
-        console.log(this.configs);
-        console.log(this.configs['chords']['filters']);
-        this.storage.get('config').then(data => {
+        return this.storage.get('config').then(data => {
             if (data != null) {
-                //this.configs = JSON.parse(data);
-
-                console.log(this.configs['chords']['filters']);
                 this.configs = this.merge(this.configs, JSON.parse(data));
             }
         });
@@ -36,7 +31,7 @@ export class ConfigProvider {
     /* Public */
 
     public save(): void {
-        console.log('saving config...');
+        console.log('ConfigProvider.save()');
         this.storage.set('config', JSON.stringify(this.configs));
     }
 
@@ -52,7 +47,6 @@ export class ConfigProvider {
 
 
     private merge(obj1, obj2) {
-
         for (var p in obj2) {
             try {
                 // Property in destination object set; update its value.
