@@ -11,13 +11,46 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
-    <ion-list radio-group [(ngModel)]="config.ChordsFilters.list_chord_type" (ionChange)="onFilterChanged()">
-        <ion-list-header>Choisir les types disponibles</ion-list-header>
+    <ion-list>
+        <ion-item-divider>Choisir les types disponibles</ion-item-divider>
         <ion-item *ngFor="let type of data.types">
+            {{type.name}}
             <ion-label>{{type.name}}</ion-label>
-            <ion-radio [value]="type.name"></ion-radio>
+            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_chord_types[type.name]" (ionChange)="onFilterChanged()"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+    <ion-list radio-group [(ngModel)]="config.ChordsFilters.quiz_use_favorites">
+        <ion-item-divider>Favoris</ion-item-divider>
+        <ion-item>
+            <ion-label>Exclure</ion-label>
+            <ion-radio value="exclude"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>Inclure</ion-label>
+            <ion-radio value="include"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>Seulement utiliser ces accords</ion-label>
+            <ion-radio value="only" [disabled]="this.favorites.all().length == 0"></ion-radio>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>Bémol</ion-item-divider>
+        <ion-item>
+            <ion-label>Inclure</ion-label>
+            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_use_flat" (ionChange)="onFilterChanged()"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>Dièse</ion-item-divider>
+        <ion-item>
+            <ion-label>Inclure</ion-label>
+            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_use_sharp" (ionChange)="onFilterChanged()"></ion-toggle>
         </ion-item>
     </ion-list>
 

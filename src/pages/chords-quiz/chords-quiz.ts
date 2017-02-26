@@ -33,6 +33,15 @@ export class ChordsQuizPage {
     isWaiting:Boolean = false;
 
     constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController) {
+
+        /* Pick all chord type if no quiz options exists */
+        if (Object.keys(this.config.ChordsFilters['quiz_chord_types']).length == 0) {
+            for (let key in this.data.types) {
+                this.config.ChordsFilters['quiz_chord_types'][this.data.types[key].name] = true;
+            }
+            this.config.save();
+        }
+
         this.generateList();
         this.pickChord();
     }

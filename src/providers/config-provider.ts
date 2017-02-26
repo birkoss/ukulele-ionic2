@@ -16,15 +16,19 @@ export class ConfigProvider {
 
     private init(): void {
         this.configs['chords'] = {};
-        this.configs['chords']['filters'] = {'list_chord_type': 'Major'};
+        this.configs['chords']['filters'] = {'list_chord_type':'Major', 'quiz_chord_types':{}, 'quiz_use_favorites':'only', 'quiz_use_flat':false, 'quiz_use_sharp':false};
         this.configs['chords']['options'] = {'show_note_in_french': true, 'show_strings_name': false, 'show_notes': false, 'show_frets': false};
 
         console.log('init...');
 
         console.log(this.configs);
+        console.log(this.configs['chords']['filters']);
         this.storage.get('config').then(data => {
             if (data != null) {
-                this.configs = JSON.parse(data);
+                //this.configs = JSON.parse(data);
+
+                console.log(this.configs['chords']['filters']);
+                this.configs = this.merge(this.configs, JSON.parse(data));
             }
         });
     }
@@ -44,6 +48,30 @@ export class ConfigProvider {
 
     public get ChordsOptions(): Object {
         return this.configs['chords']['options'];
+    }
+
+
+    private merge(obj1, obj2) {
+
+        for (var p in obj2) {
+            try {
+                // Property in destination object set; update its value.
+                if ( obj2[p].constructor==Object ) {
+                    obj1[p] = this.merge(obj1[p], obj2[p]);
+
+                } else {
+                    obj1[p] = obj2[p];
+
+                }
+
+            } catch(e) {
+                // Property in destination object not set; create it and set its value.
+                obj1[p] = obj2[p];
+
+            }
+        }
+
+        return obj1;
     }
 }
 
