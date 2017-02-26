@@ -14,11 +14,11 @@ export class ChordsQuizModal {
     constructor(public viewCtrl: ViewController, private data: DataProvider, private config: ConfigProvider) {
     }
 
-    close() {
+    public close():void {
         this.viewCtrl.dismiss();
     }
 
-    public onFilterChanged(): void {
+    public onFilterChanged():void {
         this.config.save();
     }
 }
