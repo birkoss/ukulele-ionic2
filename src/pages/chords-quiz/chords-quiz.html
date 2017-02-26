@@ -12,15 +12,31 @@
 </ion-header>
 
 <ion-content padding>
-    <h1>Reproduce a <chord-name [note]="current_chord.note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_chord.type"></chord-name></h1>
-    <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting" [(startPosition)]="start" [position]="position"></chord-position>
-    <div class="buttons">
 
-        <button ion-button [disabled]="start <= 1 || !isWaiting" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
-        <button *ngIf="!isWaiting" ion-button (click)="pickChord()">Pick new chord</button>
-        <button *ngIf="isWaiting" ion-button (click)="showSolution()">Show the solution</button>
-
-        <button ion-button [disabled]="start >= 12 || !isWaiting" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
-
+    <div class="intro">
+        <ion-row>
+            <button (click)="startQuiz()" ion-button>Commencer</button>
+        </ion-row>
+        <ion-row>
+            <button (click)="showConfiguration()" ion-button clear>Configuration</button>
+        </ion-row>
+        <ion-row>
+            XYZ accords
+        </ion-row>
     </div>
+
+    <div *ngIf="!isWaiting">
+        <h1>Reproduce a <chord-name [note]="current_chord.note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_chord.type"></chord-name></h1>
+        <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting" [(startPosition)]="start" [position]="position"></chord-position>
+        <div class="buttons">
+
+            <button ion-button [disabled]="start <= 1 || !isWaiting" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
+            <button *ngIf="!isWaiting" ion-button (click)="pickChord()">Pick new chord</button>
+            <button *ngIf="isWaiting" ion-button (click)="showSolution()">Show the solution</button>
+
+            <button ion-button [disabled]="start >= 12 || !isWaiting" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
+
+        </div>
+    </div>
+
 </ion-content>

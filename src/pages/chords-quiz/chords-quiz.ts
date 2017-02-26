@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 
-import { NavController, AlertController, PopoverController } from 'ionic-angular';
+import { ModalController, NavController, AlertController, PopoverController } from 'ionic-angular';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 
 import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
 import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
+
+import { ChordsQuizModal } from '../../modals/chords-quiz/chords-quiz'
 
 import { Note } from '../../classes/note';
 import { Type } from '../../classes/type';
@@ -30,7 +32,7 @@ export class ChordsQuizPage {
 
     isWaiting:Boolean = false;
 
-    constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController) {
+    constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController) {
         this.generateList();
         this.pickChord();
     }
@@ -121,6 +123,11 @@ export class ChordsQuizPage {
         popover.present({
             ev: event
         });
+    }
+
+    public showConfiguration() {
+        let modal = this.modalCtrl.create(ChordsQuizModal);
+        modal.present();
     }
 
 }

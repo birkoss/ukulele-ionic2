@@ -13,7 +13,10 @@ import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 
 import { ChordsFiltersPopover } from '../popovers/chords-filters/chords-filters';
 import { ChordsOptionsPopover } from '../popovers/chords-options/chords-options';
+import { ChordsQuizFiltersPopover } from '../popovers/chords-quiz-filters/chords-quiz-filters';
 import { DetailOptionsPopover } from '../popovers/detail-options/detail-options';
+
+import { ChordsQuizModal } from '../modals/chords-quiz/chords-quiz';
 
 import { ChordCard } from '../components/chord-card/chord-card';
 import { ChordName } from '../components/chord-name/chord-name';
@@ -43,8 +46,11 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordCard,
 
     ChordsFiltersPopover,
+    ChordsQuizFiltersPopover,
     ChordsOptionsPopover,
     DetailOptionsPopover,
+
+    ChordsQuizModal,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -67,8 +73,11 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordCard,
 
     ChordsFiltersPopover,
+    ChordsQuizFiltersPopover,
     ChordsOptionsPopover,
     DetailOptionsPopover,
+
+    ChordsQuizModal,
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

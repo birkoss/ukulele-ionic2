@@ -1,0 +1,14 @@
+chords-quiz {
+    .intro {
+        display: flex;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        ion-row {
+            justify-content: center;
+        }
+    }
+}
