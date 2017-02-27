@@ -9,19 +9,19 @@ import { DataProvider } from '../../providers/data-provider';
     template: ` 
     <ion-list>
         <ion-item>
-            <ion-label>Show strings name</ion-label>
+            <ion-label>Montrer les noms de corde</ion-label>
             <ion-toggle [(ngModel)]="config.ChordsOptions.show_strings_name" (ionChange)="onOptionChanged()"></ion-toggle>
         </ion-item>
         <ion-item>
-            <ion-label>Show notes</ion-label>
+            <ion-label>Montrer les notes</ion-label>
             <ion-toggle [(ngModel)]="config.ChordsOptions.show_notes" (ionChange)="onOptionChanged()"></ion-toggle>
         </ion-item>
         <ion-item>
-            <ion-label>Show frets</ion-label>
+            <ion-label>Montrer les positions</ion-label>
             <ion-toggle [(ngModel)]="config.ChordsOptions.show_frets" (ionChange)="onOptionChanged()"></ion-toggle>
         </ion-item>
         <ion-item>
-            <ion-label>Show French name</ion-label>
+            <ion-label>Voir les noms en français</ion-label>
             <ion-toggle [(ngModel)]="config.ChordsOptions.show_note_in_french" (ionChange)="onOptionChanged()"></ion-toggle>
         </ion-item>
     </ion-list>

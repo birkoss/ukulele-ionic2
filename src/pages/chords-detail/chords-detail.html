@@ -11,7 +11,7 @@
     <div class="chords">
 
         <ion-card *ngIf="config.ChordsOptions.show_strings_name">
-            <ion-card-header>Strings</ion-card-header>
+            <ion-card-header>Nom des cordes</ion-card-header>
             <ion-row class="strings-container">
                 <ion-col *ngFor="let s of getStrings()">
                     <note-name [note]="s.name" [french]="config.ChordsOptions.show_note_in_french"></note-name>
@@ -24,7 +24,7 @@
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
             <div *ngIf="config.ChordsOptions.show_frets">
-                <ion-card-header>Frets</ion-card-header>
+                <ion-card-header>Position</ion-card-header>
                 <ion-row class="strings-container">
                     <ion-col *ngFor="let s of position.strings">
                         {{s.fret}}
@@ -41,10 +41,10 @@
             </div>
             <div class="buttons">
                 <button *ngIf="!isFavorite(chord, i)" ion-button icon-left (click)="addToFavorite(chord, i)">
-                    <ion-icon name="star" item-left></ion-icon> Favorite
+                    <ion-icon name="star" item-left></ion-icon> Ajouter
                 </button>
                 <button *ngIf="isFavorite(chord, i)" ion-button icon-left (click)="removeToFavorite(chord, i)">
-                    <ion-icon name="star" item-left></ion-icon> Unfavorite
+                    <ion-icon name="star" item-left></ion-icon> Enlever
                 </button>
             </div>
         </ion-card>
