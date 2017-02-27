@@ -26,8 +26,8 @@ export class MyApp {
   rootPage = LoadingPage;
 
   chordsPages: PageInterface[] = [
-    {title: 'List', component: ChordsTabs},
-    {title: 'Favorites', component: ChordsTabs, index: 1},
+    {title: 'Liste', component: ChordsTabs},
+    {title: 'Favoris', component: ChordsTabs, index: 1},
     {title: 'Quiz', component: ChordsQuizPage}
   ];
 
