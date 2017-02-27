@@ -26,6 +26,7 @@ export class ChordsQuizPage {
 
     isPlaying:Boolean = false;
     isDone:Boolean = false;
+    isWaiting:Boolean = true;
 
     current_chord:Chord;
     current_note:Note;
@@ -34,7 +35,7 @@ export class ChordsQuizPage {
     labels:Array<number> = [];
     position:Position;
 
-    isWaiting:Boolean = true;
+    goodAnswer:number;
 
     constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) {
         console.log('ChordsQuizPage()');
@@ -53,8 +54,13 @@ export class ChordsQuizPage {
         }
     }
 
+    public reset():void {
+        this.isDone = false;
+        this.isPlaying = false;
+    }
 
     private startQuiz():void {
+        this.goodAnswer = 0;
         this.chords = this.getChords();
         this.chordIndex = 0;
         this.shuffle(this.chords);
@@ -130,9 +136,10 @@ export class ChordsQuizPage {
             chordPositions.sort();
 
             if (answerPositions.toString() === chordPositions.toString()) {
+                this.goodAnswer++;
                 let alert = this.alertCtrl.create({
-                    title: 'Good job!',
-                    subTitle: 'It\' a valid chord!',
+                    title: 'Bravo!',
+                    subTitle: 'C\'est un bon accord!',
                     enableBackdropDismiss: false,
                     buttons: [{
                         text: 'OK',

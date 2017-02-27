@@ -4,7 +4,7 @@
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
       <ion-title>Quiz</ion-title>
-      <ion-buttons end *ngIf="isPlaying">
+      <ion-buttons end *ngIf="isPlaying && !isDone">
           <button ion-button icon-only (click)="showPopup($event, 'options')"><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
@@ -37,8 +37,16 @@
         </div>
     </div>
 
-    <div *ngIf="isDone">
-        done...
+    <div *ngIf="isDone" class="done">
+        <h1>Résultat</h1>
+
+        <h2>{{goodAnswer}}</h2>
+        <h2 class="divider">sur</h2>
+        <h2>{{chords.length}}</h2>
+
+        <div class="buttons">
+            <button ion-button (click)="reset()">OK</button>
+        </div>
     </div>
 
 </ion-content>
