@@ -1,14 +1,14 @@
 <ion-menu [content]="content">
 
     <ion-header>
-        <ion-toolbar>
-            <ion-title>Pages</ion-title>
+        <ion-toolbar color="primary">
+            <ion-title>Ukulele</ion-title>
         </ion-toolbar>
     </ion-header>
     
-    <ion-content>
+    <ion-content padding>
         <ion-list>
-            <ion-list-header>Chords</ion-list-header>
+            <ion-item-divider color="secondary">Chords</ion-item-divider>
             <button ion-item *ngFor="let p of chordsPages" (click)="openPage(p)">{{p.title}}</button>
         </ion-list>
     </ion-content>
