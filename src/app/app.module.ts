@@ -23,6 +23,7 @@ import { DetailOptionsPopover } from '../popovers/detail-options/detail-options
 import { ChordsQuizModal } from '../modals/chords-quiz/chords-quiz';
 
 import { ChordCard } from '../components/chord-card/chord-card';
+import { NoteCard } from '../components/note-card/note-card';
 import { ChordName } from '../components/chord-name/chord-name';
 import { ChordPosition } from '../components/chord-position/chord-position';
 import { MusicalNote } from '../components/musical-note/musical-note';
@@ -53,6 +54,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     NoteName,
     ChordName,
     ChordCard,
+    NoteCard,
 
     ChordsFiltersPopover,
     ChordsOptionsPopover,
@@ -84,6 +86,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     NoteName,
     ChordName,
     ChordCard,
+    NoteCard,
 
     ChordsFiltersPopover,
     ChordsOptionsPopover,

@@ -5,14 +5,13 @@
       </ion-buttons>
       <ion-title>Notes</ion-title>
       <ion-buttons end>
-          <button (click)="showPopup($event, 'filters')" ion-button outline="true">{{config.ChordsFilters.list_chord_type}}</button>
           <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div class="chords">
-        <chord-card *ngFor="let chord of getChords()" [note]="chord.note.name" [type]="chord.type.name" [family]="chord.family.name" position="0" (onDetailClicked)="showDetail($event)"></chord-card>
+    <div class="notes">
+        <note-card *ngFor="let note of getNotes()" [note]="note"></note-card>
     </div>
 </ion-content>

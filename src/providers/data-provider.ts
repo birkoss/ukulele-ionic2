@@ -32,6 +32,10 @@ export class DataProvider {
         return null;
     }
 
+    public getNotes():Array<Note> {
+        return this.notes;
+    }
+
     public getNote(name:string) : Note {
         for (let i=0; i<this.notes.length; i++) {
             if (this.notes[i].name == name) {

@@ -1,23 +1,31 @@
 import { Component, Input } from '@angular/core';
 
+import { Note } from '../../classes/note';
+
 @Component({
     selector: 'musical-note',
     templateUrl: 'musical-note.html'
 })
 export class MusicalNote {
-    @Input('note') note: string = "";
-    @Input() direction: string = "up";
+    _note:Note;
+    _direction:string;
 
-    constructor() {
-        console.log(this.note);
-        console.log(this.direction);
-console.log('----------------------');
+    @Input('note')
+    set note(note:Note) {
+        this._note = note;
+        this._direction = "up";//note.direction;
     }
+
+    constructor() { }
 
     getClasses() {
         let classes: Array<string> = [];
 
-        classes.push('direction-' + this.direction);
+        classes.push('direction-' + this._direction);
+
+        if (this._note != undefined) {
+            classes.push('note-' + this._note.name[0]);
+        }
 /*
         classes.push('note-' + this.note[0]);
         if (this.note[1] == '♭') {
@@ -26,10 +34,6 @@ console.log('----------------------');
             classes.push('note-sharp');
         }
 */
-		console.log( this.note );
-		console.log( this.direction );
-console.log('----------------------');
-
         return classes.join(" ");
     }
 }
