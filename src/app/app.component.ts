@@ -6,6 +6,9 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { ChordsTabs } from '../pages/chords-tabs/chords-tabs';
 import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
+import { LoadingPage } from '../pages/loading/loading';
+
+import { ConfigProvider } from '../providers/config-provider';
 
 export interface PageInterface {
     title: string;
@@ -20,7 +23,7 @@ export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
   //rootPage = ChordsTabs;
-  rootPage = ChordsQuizPage;
+  rootPage = LoadingPage;
 
   chordsPages: PageInterface[] = [
     {title: 'List', component: ChordsTabs},
@@ -28,8 +31,8 @@ export class MyApp {
     {title: 'Quiz', component: ChordsQuizPage}
   ];
 
-  constructor(public platform: Platform, public menu: MenuController) {
-    this.init();
+  constructor(public platform: Platform, public menu: MenuController, public config:ConfigProvider) {
+      this.init();
   }
 
   init() {

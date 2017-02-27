@@ -24,6 +24,9 @@ export class ChordsQuizPage {
     chordIndex:number = 0;
     chords:Array<Chord> = [];
 
+    isPlaying:Boolean = false;
+    isDone:Boolean = false;
+
     current_chord:Chord;
     current_note:Note;
     current_type:Type;
@@ -40,7 +43,6 @@ export class ChordsQuizPage {
     ionViewWillEnter() {
         console.log('ionViewDidEnter()');
         /* Pick all chord type if no quiz options exists */
-        /*
         if (Object.keys(this.config.ChordsFilters['quiz_chord_types']).length == 0) {
             console.log("Not options...");
             console.log(this.config.ChordsFilters['quiz_chord_types']);
@@ -49,10 +51,16 @@ export class ChordsQuizPage {
             }
             this.config.save();
         }
+    }
 
-        this.generateList();
+
+    private startQuiz():void {
+        this.chords = this.getChords();
+        this.chordIndex = 0;
+        this.shuffle(this.chords);
+
+        this.isPlaying = true;
         this.pickChord();
-        */
     }
 
     private getChords():Array<Chord> {
@@ -75,38 +83,29 @@ export class ChordsQuizPage {
     }
 
     private hasFavorited(noteName:string, typeName:string):Boolean {
-        console.log('hasFavorited: ' + this.favorites.all().length);
+        let favorited:Boolean = false;
         this.favorites.all().filter(item => {
             if (item['note'] == noteName && item['type'] == typeName) {
-                console.log(item['note'] + "/" + noteName + " ... " + item['type'] + "/" + typeName);
-                return true;
+                favorited = true;
             }
         });
-        return false;
-    }
-
-    private generateList():void {
-        this.chords = [];
-        this.chordIndex = 0;
-
-        this.data.getChords().filter(item => {
-            this.chords.push(item);
-        });
-
-        this.shuffle(this.chords);
+        return favorited;
     }
 
     public pickChord():void {
-        this.current_chord = this.chords[this.chordIndex];
-        this.isWaiting = true;
-        this.start = 1;
+        if (this.isLastQuestion()) {
+            this.isDone = true;
+        } else {
+            this.current_chord = this.chords[this.chordIndex];
+            this.isWaiting = true;
+            this.start = 1;
 
-        /* When the last chord is reach, shuffle the list and start again */
-        this.chordIndex++;
-        if (this.chordIndex >= this.chords.length) {
-            this.shuffle(this.chords);
-            this.chordIndex = 0;
+            this.chordIndex++;
         }
+    }
+
+    public isLastQuestion():Boolean {
+        return (this.chordIndex >= this.chords.length);
     }
 
     public showSolution(index:number = 0):void {

@@ -4,8 +4,7 @@
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
       <ion-title>Quiz</ion-title>
-      <ion-buttons end>
-          <button ion-button (click)="showPopup($event, 'filters')" outline="true">Major</button>
+      <ion-buttons end *ngIf="isPlaying">
           <button ion-button icon-only (click)="showPopup($event, 'options')"><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
@@ -13,9 +12,9 @@
 
 <ion-content padding>
 
-    <div class="intro">
+    <div class="intro" *ngIf="!isPlaying">
         <ion-row>
-            <button (click)="startQuiz()" ion-button>Commencer</button>
+            <button (click)="startQuiz()" [disabled]="getChords().length == 0" ion-button>Commencer</button>
         </ion-row>
         <ion-row>
             <button (click)="showConfiguration()" ion-button clear>Configuration</button>
@@ -25,17 +24,21 @@
         </ion-row>
     </div>
 
-    <div *ngIf="!isWaiting">
-        <h1>Reproduce a <chord-name [note]="current_chord.note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_chord.type"></chord-name></h1>
+    <div *ngIf="isPlaying && !isDone">
+        <h1>Reproduire cet accord <chord-name [note]="current_chord.note" [french]="config.ChordsOptions.show_note_in_french" [type]="current_chord.type"></chord-name></h1>
         <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting" [(startPosition)]="start" [position]="position"></chord-position>
         <div class="buttons">
+            <button *ngIf="isWaiting" ion-button [disabled]="start <= 1" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
+            <button *ngIf="!isWaiting && !isLastQuestion()" ion-button (click)="pickChord()">Prochaine question</button>
+            <button *ngIf="!isWaiting && isLastQuestion()" ion-button (click)="pickChord()">Voir le résultat</button>
+            <button *ngIf="isWaiting" ion-button (click)="showSolution()">Abandonner</button>
 
-            <button ion-button [disabled]="start <= 1 || !isWaiting" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
-            <button *ngIf="!isWaiting" ion-button (click)="pickChord()">Pick new chord</button>
-            <button *ngIf="isWaiting" ion-button (click)="showSolution()">Show the solution</button>
-
-            <button ion-button [disabled]="start >= 12 || !isWaiting" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
+            <button *ngIf="isWaiting" ion-button [disabled]="start >= 12" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
         </div>
+    </div>
+
+    <div *ngIf="isDone">
+        done...
     </div>
 
 </ion-content>

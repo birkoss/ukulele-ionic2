@@ -26,7 +26,7 @@
         <ion-item-divider>Favoris</ion-item-divider>
         <ion-item>
             <ion-label>Seulement utiliser ces accords</ion-label>
-            <ion-toggle value="exclude" [(ngModel)]="config.ChordsFilters.quiz_use_favorites" [disabled]="this.favorites.all().length == 0"></ion-toggle>
+            <ion-toggle value="exclude" [(ngModel)]="config.ChordsFilters.quiz_use_favorites" [disabled]="this.favorites.all().length == 0" (ionChange)="onFilterChanged($event)"></ion-toggle>
         </ion-item>
     </ion-list>
 
