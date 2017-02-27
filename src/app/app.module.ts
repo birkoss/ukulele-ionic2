@@ -10,6 +10,10 @@ import { ChordsDetailPage } from '../pages/chords-detail/chords-detail';
 import { ChordsFavoritesPage } from '../pages/chords-favorites/chords-favorites';
 import { ChordsListPage } from '../pages/chords-list/chords-list';
 import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
+
+import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
+import { NotesListPage } from '../pages/notes-list/notes-list';
+
 import { LoadingPage } from '../pages/loading/loading';
 
 import { ChordsFiltersPopover } from '../popovers/chords-filters/chords-filters';
@@ -33,11 +37,15 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     MyApp,
 
     ChordsTabs,
+    NotesTabs,
 
     ChordsDetailPage,
     ChordsListPage,
     ChordsFavoritesPage,
     ChordsQuizPage,
+
+    NotesListPage,
+
     LoadingPage,
 
     MusicalNote,
@@ -60,11 +68,15 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     MyApp,
 
     ChordsTabs,
+    NotesTabs,
 
     ChordsDetailPage,
     ChordsListPage,
     ChordsFavoritesPage,
     ChordsQuizPage,
+
+    NotesListPage,
+
     LoadingPage,
 
     MusicalNote,

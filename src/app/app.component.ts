@@ -8,6 +8,8 @@ import { ChordsTabs } from '../pages/chords-tabs/chords-tabs';
 import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 import { LoadingPage } from '../pages/loading/loading';
 
+import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
+
 import { ConfigProvider } from '../providers/config-provider';
 
 export interface PageInterface {
@@ -22,12 +24,17 @@ export interface PageInterface {
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-  //rootPage = ChordsTabs;
   rootPage = LoadingPage;
 
   chordsPages: PageInterface[] = [
     {title: 'Liste', component: ChordsTabs},
     {title: 'Favoris', component: ChordsTabs, index: 1},
+    {title: 'Quiz', component: ChordsQuizPage}
+  ];
+
+  notesPages: PageInterface[] = [
+    {title: 'Liste', component: NotesTabs},
+    {title: 'Favoris', component: NotesTabs, index: 1},
     {title: 'Quiz', component: ChordsQuizPage}
   ];
 
