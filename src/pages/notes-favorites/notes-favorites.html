@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+      <ion-buttons start>
+          <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>Favoris</ion-title>
+      <ion-buttons end>
+          <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="notes" *ngIf="favorites.all('notes').length > 0">
+        <note-card *ngFor="let favorite of favorites.all('notes')" [note]="favorite.note" [direction]="favorite.direction"></note-card>
+    </div>
+
+    <div class="label-container" *ngIf="favorites.all('notes').length == 0">
+        <p>Aucun favori!</p> 
+    </div>
+</ion-content>

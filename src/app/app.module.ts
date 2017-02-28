@@ -13,6 +13,7 @@ import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 
 import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
 import { NotesListPage } from '../pages/notes-list/notes-list';
+import { NotesFavoritesPage } from '../pages/notes-favorites/notes-favorites';
 
 import { LoadingPage } from '../pages/loading/loading';
 
@@ -46,6 +47,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordsQuizPage,
 
     NotesListPage,
+    NotesFavoritesPage,
 
     LoadingPage,
 
@@ -78,6 +80,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordsQuizPage,
 
     NotesListPage,
+    NotesFavoritesPage,
 
     LoadingPage,
 

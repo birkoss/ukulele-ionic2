@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 
 import { NotesListPage } from '../../pages/notes-list/notes-list';
-import { ChordsFavoritesPage } from '../../pages/chords-favorites/chords-favorites';
+import { NotesFavoritesPage } from '../../pages/notes-favorites/notes-favorites';
 
 @Component({
     templateUrl: 'notes-tabs.html'
@@ -11,7 +11,7 @@ import { ChordsFavoritesPage } from '../../pages/chords-favorites/chords-favorit
 
 export class NotesTabs {
     tabListRoot: any = NotesListPage;
-    tabFavoritesRoot: any = ChordsFavoritesPage;
+    tabFavoritesRoot: any = NotesFavoritesPage;
 
     mySelectedIndex: number;
 
