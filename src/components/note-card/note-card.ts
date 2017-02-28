@@ -12,31 +12,34 @@ import { Note } from '../../classes/note';
 })
 
 export class NoteCard {
-    private _note: Note;
-    private _favorited:Boolean;
+    private noteName:string;
+    private noteDirection:string;
+
+    private _note:Note;
     
     isReady:Boolean = false;
 
 	@Input('note')
-    set note(note: Note) {
-        this._note = note;
+    set note(note:string) {
+        this.noteName = note;
     }
 
-    @Input('favorited')
-    set favorited(favorited: Boolean) {
-        this._favorited = favorited;
+    @Input('direction')
+    set direction(direction:string) {
+        this.noteDirection = direction;
     }
 
 	constructor(private dataProvider:DataProvider, private config:ConfigProvider, public favorites:FavoritesProvider) { }
 
     ngOnInit() {
         this.favorites.load().then(data => {
+            this._note = this.dataProvider.getNote(this.noteName, this.noteDirection);
             this.isReady = true;
         });
     }
 
     public favorite():void {
-        let fav = {'name':this._note.name, 'direction':this._note.direction};
+        let fav = {'note':this._note.name, 'direction':this._note.direction};
 
         let index:number = this.favorites.getIndex(fav, 'notes');
         if (index == -1) {
@@ -47,6 +50,6 @@ export class NoteCard {
     }
 
     public isFavorited():Boolean {
-        return this.favorites.exists({'name':this._note.name, 'direction':this._note.direction}, 'notes');
+        return this.favorites.exists({'note':this._note.name, 'direction':this._note.direction}, 'notes');
     }
 }

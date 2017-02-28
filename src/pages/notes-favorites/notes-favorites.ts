@@ -14,10 +14,10 @@ import { Chord } from '../../classes/chord';
 import { Position } from '../../classes/Position';
 
 @Component({
-  selector: 'chords-favorites',
-  templateUrl: 'chords-favorites.html'
+  selector: 'notes-favorites',
+  templateUrl: 'notes-favorites.html'
 })
-export class ChordsFavoritesPage {
+export class NotesFavoritesPage {
 
   constructor(public navCtrl: NavController, public dataProvider: DataProvider, private config: ConfigProvider, private favorites: FavoritesProvider, public popoverCtrl: PopoverController) {
     

@@ -12,6 +12,6 @@
 
 <ion-content>
     <div class="notes">
-        <note-card *ngFor="let note of notes" [note]="note"></note-card>
+        <note-card *ngFor="let note of notes" [note]="note.name" [direction]="note.direction"></note-card>
     </div>
 </ion-content>
