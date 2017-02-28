@@ -13,7 +13,6 @@ export class MusicalNote {
     @Input('note')
     set note(note:Note) {
         this._note = note;
-        this._direction = "up";//note.direction;
     }
 
     constructor() { }
@@ -21,19 +20,18 @@ export class MusicalNote {
     getClasses() {
         let classes: Array<string> = [];
 
-        classes.push('direction-' + this._direction);
+        classes.push('direction-' + this._note.direction);
 
         if (this._note != undefined) {
             classes.push('note-' + this._note.name[0]);
+
+            if (this._note.name[1] == '♭') {
+                classes.push('note-flat');
+            } else if (this._note.name[1] == '♯') {
+                classes.push('note-sharp');
+            }
         }
-/*
-        classes.push('note-' + this.note[0]);
-        if (this.note[1] == '♭') {
-            classes.push('note-flat');
-        } else if (this.note[1] == '♯') {
-            classes.push('note-sharp');
-        }
-*/
+
         return classes.join(" ");
     }
 }
