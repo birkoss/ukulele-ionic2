@@ -47,7 +47,7 @@ export class ConfigProvider {
     }
 
 
-    private merge(obj1, obj2) {
+    public merge(obj1, obj2) {
         for (var p in obj2) {
             try {
                 // Property in destination object set; update its value.

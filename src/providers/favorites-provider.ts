@@ -2,26 +2,27 @@ import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
 
+import { ConfigProvider } from '../providers/config-provider';
+
 @Injectable()
 export class FavoritesProvider {
-    favorites: Object = {};
+    favorites:Object;
 
-    constructor(public storage: Storage) {
-        console.log('FavoritesProvider()');
-        this.favorites['chords'] = []
+    constructor(public storage:Storage, public config:ConfigProvider) { }
 
-        this.load();
-    }
+    public load() {
+        if (this.favorites) {
+            return Promise.resolve(this.favorites);
+        }
 
-    /* Private */
-
-    private load(): void {
-        this.storage.get('favorites').then(data => {
-            if (data != null) {
-                this.favorites = JSON.parse(data);
-                console.log('FavoritesProvider.load()');
-                console.log(this.favorites);
-            }
+        return new Promise(resolve => {
+            this.storage.get('favorites').then(data => {
+                this.favorites = {'chords':[], 'notes':[]};
+                if (data != null) {
+                    this.favorites = this.config.merge(this.favorites, JSON.parse(data));
+                }
+                resolve(this.favorites);
+            });
         });
     }
 
@@ -32,7 +33,6 @@ export class FavoritesProvider {
     }
 
     public save(): void {
-        console.log(this.favorites);
         this.storage.set('favorites', JSON.stringify(this.favorites));
     }
 

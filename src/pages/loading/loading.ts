@@ -6,6 +6,7 @@ import { DataProvider } from '../../providers/data-provider';
 import { ConfigProvider } from '../../providers/config-provider';
 
 import { ChordsQuizPage } from '../../pages/chords-quiz/chords-quiz';
+import { NotesTabs } from '../../pages/notes-tabs/notes-tabs';
 
 @Component({
     template: '[...]',
@@ -16,7 +17,7 @@ export class LoadingPage {
 
     ionViewWillEnter() {
         this.config.init().then(data => {
-            this.navCtrl.setRoot(ChordsQuizPage);
+            this.navCtrl.setRoot(NotesTabs);
         });
     }
 }
