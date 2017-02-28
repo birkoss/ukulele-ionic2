@@ -31,7 +31,9 @@ import { MusicalNote } from '../components/musical-note/musical-note';
 import { NoteName } from '../components/note-name/note-name';
 
 import { ConfigProvider } from '../providers/config-provider';
+import { Data } from '../providers/data';
 import { DataProvider } from '../providers/data-provider';
+import { Favorites } from '../providers/favorites';
 import { FavoritesProvider } from '../providers/favorites-provider';
 
 @NgModule({
@@ -103,6 +105,8 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ConfigProvider,
     DataProvider,
     FavoritesProvider,
+    Favorites,
+    Data,
   ]
 })
 export class AppModule {}
