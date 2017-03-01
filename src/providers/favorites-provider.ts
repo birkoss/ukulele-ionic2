@@ -11,18 +11,20 @@ export class FavoritesProvider {
     constructor(public storage:Storage, public config:ConfigProvider) { }
 
     public load() {
+        console.log('FP.load...');
         if (this.favorites) {
             return Promise.resolve(this.favorites);
         }
 
-        return new Promise(resolve => {
-            this.storage.get('favorites').then(data => {
-                this.favorites = {'chords':[], 'notes':[]};
-                if (data != null) {
-                    this.favorites = this.config.merge(this.favorites, JSON.parse(data));
-                }
-                resolve(this.favorites);
-            });
+        console.log('FP.loading...');
+        return this.storage.get('favorites').then(data => {
+            this.favorites = {'chords':[], 'notes':[]};
+            if (data != null) {
+                console.log('FP.loaded...');
+                console.log(data);
+                this.favorites = this.config.merge(this.favorites, JSON.parse(data));
+            }
+            Promise.resolve(true);
         });
     }
 
@@ -33,6 +35,7 @@ export class FavoritesProvider {
     }
 
     public save(): void {
+        console.log(this.favorites);
         this.storage.set('favorites', JSON.stringify(this.favorites));
     }
 

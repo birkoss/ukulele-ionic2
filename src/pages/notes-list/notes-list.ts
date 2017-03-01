@@ -23,9 +23,7 @@ export class NotesListPage {
     }
 
     ionViewDidEnter() {
-        this.dataService.getNotes().subscribe(notes => {
-            this.notes = notes;
-        });
+        this.notes = this.dataProvider.getNotes();
     }
 
     public showPopup(event, type:string) {

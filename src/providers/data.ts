@@ -24,21 +24,15 @@ export class Data {
 
     /*
      * Parse the JSON once, and store the data for future reference
-     *
-     * @return Observable Object
      */
-    private load():Observable<Object> {
-        return new Observable(observer => {
-            if (this.notes.length > 0) {
-                observer.next({'state':'cache'});
-            } else {
-                this.http.get('assets/json/data.json').map(res => res.json()).subscribe(result => {
-                    this.parseJSON(result[0]);
-                    observer.next({'state':'parse'});
-                });
-            }
+    /*
+    private load():Promise<Boolean> {
+        return this.http.get('assets/json/data.json').map(res => res.json()).subscribe(result => {
+            this.parseJSON(result[0]);
+            return Promise.resolve(true);
         });
     }
+    */
 
 
     /*
@@ -46,6 +40,7 @@ export class Data {
      *
      * @return Observable Note
      */
+    /*
     public getNote(noteName:string, noteDirection:string = "up"):Observable<Note> {
         return new Observable(observer => {
             this.getNotes().subscribe(notes => {
@@ -57,12 +52,14 @@ export class Data {
             });
         });
     }
+    */
 
     /*
      * Get all the notes
      *
      * @return Observable Array<Note>
      */
+    /*
     public getNotes():Observable<Array<Note>> {
         return new Observable(observer => {
             this.load().subscribe(
@@ -72,6 +69,7 @@ export class Data {
             );
         });
     }
+    */
 
 
 

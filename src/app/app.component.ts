@@ -11,6 +11,8 @@ import { LoadingPage } from '../pages/loading/loading';
 import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
 
 import { ConfigProvider } from '../providers/config-provider';
+import { DataProvider } from '../providers/data-provider';
+import { FavoritesProvider } from '../providers/favorites-provider';
 
 export interface PageInterface {
     title: string;
@@ -19,43 +21,52 @@ export interface PageInterface {
 }
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-  rootPage = LoadingPage;
+    //rootPage = LoadingPage;
+    rootPage:Component;
 
-  chordsPages: PageInterface[] = [
-    {title: 'Liste', component: ChordsTabs},
-    {title: 'Favoris', component: ChordsTabs, index: 1},
-    {title: 'Quiz', component: ChordsQuizPage}
-  ];
+    chordsPages: PageInterface[] = [
+        {title: 'Liste', component: ChordsTabs},
+        {title: 'Favoris', component: ChordsTabs, index: 1},
+        {title: 'Quiz', component: ChordsQuizPage}
+    ];
 
-  notesPages: PageInterface[] = [
-    {title: 'Liste', component: NotesTabs},
-    {title: 'Favoris', component: NotesTabs, index: 1},
-    {title: 'Quiz', component: ChordsQuizPage}
-  ];
+    notesPages: PageInterface[] = [
+        {title: 'Liste', component: NotesTabs},
+        {title: 'Favoris', component: NotesTabs, index: 1},
+        {title: 'Quiz', component: ChordsQuizPage}
+    ];
 
-  constructor(public platform: Platform, public menu: MenuController, public config:ConfigProvider) {
-      this.init();
-  }
-
-  init() {
-    this.platform.ready().then(() => {
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-    });
-  }
-
-  openPage(page) {
-    this.menu.close();
-
-    if (page.index) {
-        this.nav.setRoot(page.component, {tabIndex: page.index});
-    } else {
-        this.nav.setRoot(page.component);
+    constructor(public platform: Platform, public menu: MenuController, public config:ConfigProvider, public favorites:FavoritesProvider, public data:DataProvider) {
+        this.init();
     }
-  }
+
+    init() {
+        console.log('App.init...');
+        this.platform.ready().then(() => {
+            StatusBar.styleDefault();
+            Splashscreen.hide();
+            this.favorites.load().then(result => {
+                console.log('favorites.loaded?' + result);
+                this.data.load().then(result => {
+                    console.log('data.loaded?');
+                    this.rootPage = LoadingPage;
+                });
+            });
+        });
+    }
+
+    openPage(page) {
+        this.menu.close();
+
+        if (page.index) {
+            this.nav.setRoot(page.component, {tabIndex: page.index});
+        } else {
+            this.nav.setRoot(page.component);
+        }
+    }
 }

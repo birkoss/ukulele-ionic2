@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import { Chord } from '../classes/chord';
 import { String } from '../classes/string';
@@ -18,10 +19,17 @@ export class DataProvider {
     private chords: Array<Chord> = [];
 
     constructor(public http:Http) {
-        this.http.get('assets/json/data.json').map(res => res.json()).subscribe(result => {this.parseJSON(result[0]);});
+        //this.http.get('assets/json/data.json').toPromise().then(res => res.json())scribe(result => {this.parseJSON(result[0]);});
     }
 
     /* Public */
+
+    public load():Promise<Boolean> {
+        return this.http.get('assets/json/data.json').toPromise().then(res => {
+            this.parseJSON(res.json()[0]);
+            return Promise.resolve(true);
+        });
+    }
 
     public getFamily(name:string) : Family {
         for (let i=0; i<this.families.length; i++) {

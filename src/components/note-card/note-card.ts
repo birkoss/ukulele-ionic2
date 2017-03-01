@@ -33,19 +33,29 @@ export class NoteCard {
         this.noteDirection = direction;
     }
 
-	constructor(private dataProvider:DataProvider, private config:ConfigProvider, public favoritesService:Favorites, private dataService:Data) { }
+	constructor(private dataProvider:DataProvider, private config:ConfigProvider, public favoritesService:Favorites, private dataService:Data, public favoritesProvider:FavoritesProvider) { }
 
     ngOnInit() {
-        this.dataService.getNote(this.noteName, this.noteDirection).subscribe(note => {
-            this.favoritesService.all().subscribe(favorites => {
-                favorites.filter(favorite => {
-                    if (favorite['name'] == note.name && favorite['direction'] == note.direction) {
-                        this.isFavorited = true;
-                    }
-                });
+        this._note = this.dataProvider.getNote(this.noteName, this.noteDirection);
+
+        this.isFavorited = this.favoritesProvider.exists({'note':this.noteName, 'direction':this.noteDirection}, 'notes');
+
+        /*
+        this.favoritesService.all('notes').subscribe(favorites => {
+            this.dataService.getNote(this.noteName, this.noteDirection).subscribe(note => {
+                if (favorites != null) {
+                    console.log(favorites);
+                    favorites.filter(favorite => {
+                        console.log("check favorite...");
+                        if (favorite['name'] == note.name && favorite['direction'] == note.direction) {
+                            this.isFavorited = true;
+                        }
+                    });
+                }
+                this._note = note;
             });
-            this._note = note;
         });
+        */
     }
 
     public favorite():void {
@@ -53,16 +63,12 @@ export class NoteCard {
 
         console.log('favorite()');
         let fav = {'note':this._note.name, 'direction':this._note.direction};
-        this.favoritesService.add(fav);
-        /*
-        let fav = {'note':this._note.name, 'direction':this._note.direction};
 
-        let index:number = this.favorites.getIndex(fav, 'notes');
+        let index:number = this.favoritesProvider.getIndex(fav, 'notes');
         if (index == -1) {
-            this.favorites.add(fav, 'notes');
+            this.favoritesProvider.add(fav, 'notes');
         } else {
-            this.favorites.remove(index, 'notes');
+            this.favoritesProvider.remove(index, 'notes');
         }
-        */
     }
 }
