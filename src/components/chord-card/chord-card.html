@@ -1,4 +1,4 @@
-<ion-card class="chord-card">
+<ion-card class="chord-card" *ngIf="_note">
     <ion-card-header>
         <chord-name [note]="_note" [french]="config.ChordsOptions.show_note_in_french" [type]="_type"></chord-name>
     </ion-card-header>

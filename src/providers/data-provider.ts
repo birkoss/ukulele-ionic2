@@ -56,9 +56,9 @@ export class DataProvider {
         return this.notes;
     }
 
-    public getNote(name:string, direction:string = "up"):Note {
+    public getNote(name:string, direction:string = ""):Note {
         for (let i=0; i<this.notes.length; i++) {
-            if (this.notes[i].name == name && this.notes[i].direction == direction) {
+            if (this.notes[i].name == name && (direction == "" || this.notes[i].direction == direction)) {
                 return this.notes[i];
             }
         }
@@ -136,6 +136,9 @@ export class DataProvider {
 
         /* Generate all the chords */
         for (var i=0; i<json['chords'].length; i++) {
+            console.log("I:" + i);
+            console.log(json['chords'][i]['note']);
+            console.log(this.getNote(json['chords'][i]['note']));
             let chord = new Chord(this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
 
             this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);

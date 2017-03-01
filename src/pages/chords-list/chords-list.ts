@@ -19,8 +19,7 @@ import { Position } from '../../classes/Position';
 })
 export class ChordsListPage {
 
-    constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private dataProvider: DataProvider, private config: ConfigProvider) {
-    }
+    constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private dataProvider: DataProvider, private config: ConfigProvider) { }
 
     public getChords() : Array<Chord> {
         return this.dataProvider.getChords(this.config.ChordsFilters['list_chord_type']);
