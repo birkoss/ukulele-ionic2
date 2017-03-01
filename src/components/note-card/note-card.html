@@ -6,8 +6,8 @@
     <musical-note [note]="_note"></musical-note>
 
     <div class="buttons">
-        <button *ngIf="!isFavorited" ion-button icon-left (click)="favorite()"><ion-icon name="star"></ion-icon>Ajouter</button>
-        <button *ngIf="isFavorited" ion-button icon-left (click)="favorite()"><ion-icon name="star"></ion-icon>Enlever</button>
+        <button *ngIf="!_note.isFavorited" ion-button icon-left (click)="favorite()"><ion-icon name="star"></ion-icon>Ajouter</button>
+        <button *ngIf="_note.isFavorited" ion-button icon-left (click)="favorite()"><ion-icon name="star"></ion-icon>Enlever</button>
     </div>
 
 </ion-card>

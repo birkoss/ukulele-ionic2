@@ -3,6 +3,8 @@ export class Note {
     french:string;
     direction:string;
 
+    isFavorited:Boolean = false;
+
     constructor(note:any) {
         this.name = note.name;
         this.french = note.french;
@@ -10,5 +12,9 @@ export class Note {
         if (!this.direction) {
             this.direction = 'up';
         }
+    }
+
+    toFavorite():Object {
+        return {'note':this.name, 'direction':this.direction};
     }
 }

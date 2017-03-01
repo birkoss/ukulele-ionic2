@@ -34,15 +34,15 @@ export class FavoritesProvider {
         return this.favorites[type];
     }
 
-    public save(): void {
-        console.log(this.favorites);
+    public save(favorites:Object):void {
+        this.favorites['notes'] = favorites['notes'];
         this.storage.set('favorites', JSON.stringify(this.favorites));
     }
 
     public add(favorite:Object, type:string = "chords"): void {
         if (!this.exists(favorite, type)) {
             this.favorites[type].push(favorite);
-            this.save();
+            //this.save();
         }
     }
 
@@ -62,7 +62,7 @@ export class FavoritesProvider {
 
     public remove(index:number, type:string = "chords"): void {
         this.favorites[type].splice(index, 1);
-        this.save();
+        //this.save();
     }
 
 }

@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import { FavoritesProvider } from './favorites-provider';
+
 import { Chord } from '../classes/chord';
 import { String } from '../classes/string';
 import { Note } from '../classes/note';
@@ -18,9 +20,7 @@ export class DataProvider {
     private _types: Array<Type> = [];
     private chords: Array<Chord> = [];
 
-    constructor(public http:Http) {
-        //this.http.get('assets/json/data.json').toPromise().then(res => res.json())scribe(result => {this.parseJSON(result[0]);});
-    }
+    constructor(public http:Http, public favoritesProvider:FavoritesProvider) { }
 
     /* Public */
 
@@ -29,6 +29,18 @@ export class DataProvider {
             this.parseJSON(res.json()[0]);
             return Promise.resolve(true);
         });
+    }
+
+    public save():void {
+        console.log('dp.save');
+        let favorites:Object = {'notes':[]};
+        for (let i=0; i<this.notes.length; i++) {
+            if (this.notes[i].isFavorited) {
+                favorites['notes'].push(this.notes[i].toFavorite());
+            }
+        }
+        console.log(favorites);
+        this.favoritesProvider.save(favorites);
     }
 
     public getFamily(name:string) : Family {
@@ -61,7 +73,7 @@ export class DataProvider {
         }
         return null;
     }
-    
+
     public getChords(type:string = "", note:string = "") : Array<Chord> {
         return this.chords.filter((chord) => {
             if (type != "" && chord.type.name != type) { return false; }
@@ -75,7 +87,7 @@ export class DataProvider {
     }
 
     public getPosition(note:string, type:string, position:number): Position {
-       return this.getChord(note, type).positions[position]; 
+        return this.getChord(note, type).positions[position]; 
     }
 
     public get types(): Array<Type> {
@@ -86,15 +98,17 @@ export class DataProvider {
 
     private parseJSON(json:Array<any>) : void {
         for (let i=0; i<json['notes'].length; i++) {
-           this.notes.push(new Note(json['notes'][i])); 
+            let note:Note = new Note(json['notes'][i]);
+            note.isFavorited = this.favoritesProvider.exists({'note':note.name, 'direction':note.direction}, 'notes');
+            this.notes.push(note); 
         }
 
         for (let i=0; i<json['families'].length; i++) {
-           this.families.push(new Family(json['families'][i])); 
+            this.families.push(new Family(json['families'][i])); 
         }
 
         for (let i=0; i<json['types'].length; i++) {
-           this._types.push(new Type(json['types'][i], this.getFamily(json['types'][i]['family']))); 
+            this._types.push(new Type(json['types'][i], this.getFamily(json['types'][i]['family']))); 
         }
 
         /* Build the notes array used to build the scale */
