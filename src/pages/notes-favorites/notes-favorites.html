@@ -12,7 +12,7 @@
 
 <ion-content>
     <div class="notes" *ngIf="favorites.length > 0">
-        <note-card *ngFor="let favorite of favorites" [note]="favorite.note" [direction]="favorite.direction"></note-card>
+        <note-card *ngFor="let favorite of favorites" [note]="favorite.note" [direction]="favorite.direction" (onItemChanged)="generateList()"></note-card>
     </div>
 
     <div class="label-container" *ngIf="favorites.length == 0">

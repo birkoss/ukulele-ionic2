@@ -8,7 +8,6 @@ import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-optio
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
-import { Favorites } from '../../providers/favorites';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
 import { Chord } from '../../classes/chord';
@@ -21,19 +20,10 @@ import { Position } from '../../classes/Position';
 export class NotesFavoritesPage {
     favorites:Array<Object> = [];
 
-    constructor(public navCtrl: NavController, public dataProvider: DataProvider, private config: ConfigProvider, public popoverCtrl: PopoverController, private favoritesService:Favorites) { }
+    constructor(public navCtrl: NavController, public dataProvider: DataProvider, private config: ConfigProvider, public popoverCtrl: PopoverController, private favoritesService:FavoritesProvider) { }
 
     ngOnInit() {
-        /*
-        console.log('ngOnInit....');
-        this.favoritesService.favorites.subscribe(favorites => {
-            console.log(favorites);
-            console.log('off!');
-            this.favorites = favorites;
-        });
-
-        this.favoritesService.load();
-        */
+        this.generateList();
     }
 
     public showPopup(event, type:string) {
@@ -41,6 +31,10 @@ export class NotesFavoritesPage {
         popover.present({
             ev: event
         });
+    }
+
+    public generateList() {
+        this.favorites = this.favoritesService.all('notes');
     }
 
     public showDetail(chord:Object): void {

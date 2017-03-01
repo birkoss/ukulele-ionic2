@@ -19,6 +19,8 @@ export class NoteCard {
 	@Input('note') set note(note:string) { this.noteName = note; }
     @Input('direction') set direction(direction:string) { this.noteDirection = direction; }
 
+    @Output('onItemChanged') onItemChanged:EventEmitter<Boolean> = new EventEmitter<Boolean>();
+
 	constructor(private dataProvider:DataProvider, private config:ConfigProvider) { }
 
     ngOnInit() {
@@ -28,5 +30,6 @@ export class NoteCard {
     public favorite():void {
         this._note.isFavorited = !this._note.isFavorited;
         this.dataProvider.save();
+        this.onItemChanged.emit(true);
     }
 }
