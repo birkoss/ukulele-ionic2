@@ -5,6 +5,7 @@
       </ion-buttons>
       <ion-title>Notes</ion-title>
       <ion-buttons end>
+          <button (click)="showPopup($event, 'filters')" ion-button icon-only><ion-icon name="options"></ion-icon></button>
           <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>

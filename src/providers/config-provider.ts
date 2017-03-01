@@ -20,6 +20,8 @@ export class ConfigProvider {
         this.configs['chords'] = {};
         this.configs['chords']['filters'] = {'list_chord_type':'Major', 'quiz_chord_types':{}, 'quiz_use_favorites':true, 'quiz_use_flat':false, 'quiz_use_sharp':false};
         this.configs['chords']['options'] = {'show_note_in_french': true, 'show_strings_name': false, 'show_notes': false, 'show_frets': false};
+        this.configs['notes'] = {};
+        this.configs['notes']['filters'] = {'list_use_flat':false, 'list_use_sharp':false};
 
         return this.storage.get('config').then(data => {
             if (data != null) {
@@ -46,6 +48,9 @@ export class ConfigProvider {
         return this.configs['chords']['options'];
     }
 
+    public get NotesFilters(): Object {
+        return this.configs['notes']['filters'];
+    }
 
     public merge(obj1, obj2) {
         for (var p in obj2) {

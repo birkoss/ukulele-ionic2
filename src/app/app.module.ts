@@ -18,6 +18,7 @@ import { NotesFavoritesPage } from '../pages/notes-favorites/notes-favorites';
 import { LoadingPage } from '../pages/loading/loading';
 
 import { ChordsFiltersPopover } from '../popovers/chords-filters/chords-filters';
+import { NotesFiltersPopover } from '../popovers/notes-filters/notes-filters';
 import { ChordsOptionsPopover } from '../popovers/chords-options/chords-options';
 import { DetailOptionsPopover } from '../popovers/detail-options/detail-options';
 
@@ -61,6 +62,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     NoteCard,
 
     ChordsFiltersPopover,
+    NotesFiltersPopover,
     ChordsOptionsPopover,
     DetailOptionsPopover,
 
@@ -94,6 +96,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     NoteCard,
 
     ChordsFiltersPopover,
+    NotesFiltersPopover,
     ChordsOptionsPopover,
     DetailOptionsPopover,
 
