@@ -55,7 +55,7 @@ export class MyApp {
                 this.data.load().then(result => {
                     this.config.load().then(result => {
                         console.log('data.loaded?');
-                        this.rootPage = NotesTabs;
+                        this.rootPage = ChordsTabs;
                     });
                 });
             });

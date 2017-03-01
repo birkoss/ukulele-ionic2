@@ -33,10 +33,17 @@ export class DataProvider {
 
     public save():void {
         console.log('dp.save');
-        let favorites:Object = {'notes':[]};
+        let favorites:Object = {'notes':[], 'chords':[]};
         for (let i=0; i<this.notes.length; i++) {
             if (this.notes[i].isFavorited) {
                 favorites['notes'].push(this.notes[i].toFavorite());
+            }
+        }
+        for (let i=0; i<this.chords.length; i++) {
+            for (let j=0; j<this.chords[i].positions.length; j++) {
+                if (this.chords[i].positions[j].isFavorited) {
+                    favorites['chords'].push({'note':this.chords[i].note.name, 'type':this.chords[i].type.name, 'position':j});
+                }
             }
         }
         console.log(favorites);
@@ -99,7 +106,7 @@ export class DataProvider {
     private parseJSON(json:Array<any>) : void {
         for (let i=0; i<json['notes'].length; i++) {
             let note:Note = new Note(json['notes'][i]);
-            note.isFavorited = this.favoritesProvider.exists({'note':note.name, 'direction':note.direction}, 'notes');
+            note.isFavorited = this.favoritesProvider.exists(note.toFavorite(), 'notes');
             this.notes.push(note); 
         }
 
@@ -136,9 +143,6 @@ export class DataProvider {
 
         /* Generate all the chords */
         for (var i=0; i<json['chords'].length; i++) {
-            console.log("I:" + i);
-            console.log(json['chords'][i]['note']);
-            console.log(this.getNote(json['chords'][i]['note']));
             let chord = new Chord(this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
 
             this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);
@@ -156,6 +160,8 @@ export class DataProvider {
             position.addString(this.getNote('C'));
             position.addString(this.getNote('E'));
             position.addString(this.getNote('A'));
+
+            position.isFavorited = this.favoritesProvider.exists({'note':chord.note.name, 'type':chord.type.name, 'position':i}, 'chords');
 
             for (let frets in positions[i]) {
                 var s:string = frets.substr(0, 1);

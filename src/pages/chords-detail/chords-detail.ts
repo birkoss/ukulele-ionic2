@@ -26,7 +26,7 @@ export class ChordsDetailPage {
     chord: Chord;
     hasScrolled:Boolean = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public config: ConfigProvider, public data: DataProvider, public popoverCtrl: PopoverController, public favorites:FavoritesProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public config: ConfigProvider, public dataProvider: DataProvider, public popoverCtrl: PopoverController, public favorites:FavoritesProvider) {
         this.note = navParams.get('note');
         this.type = navParams.get('type');
 
@@ -34,10 +34,10 @@ export class ChordsDetailPage {
             this.position = navParams.get('position');
         }
 
-        this.chord = data.getChord(this.note.name, this.type.name);
     }
 
     ionViewDidEnter() {
+        this.chord = this.dataProvider.getChord(this.note.name, this.type.name);
         if (this.position > 0 && !this.hasScrolled) {
             this.scrollToElement('position_' + this.position);
         }
@@ -50,16 +50,10 @@ export class ChordsDetailPage {
         });
     }
 
-    public addToFavorite(chord:Chord, index:Number): void {
-        this.favorites.add({'note':chord.note.name, 'type':chord.type.name, 'family':chord.type.family.name, 'position':index});
-    }
+    public favorite(index:number):void {
+        this.chord.positions[index].isFavorited = !this.chord.positions[index].isFavorited;
 
-    public isFavorite(chord:Chord, index:Number): Boolean {
-        return this.favorites.exists({'note':chord.note.name, 'type':chord.type.name, 'family':chord.type.family.name, 'position':index});
-    }
-    
-    public removeToFavorite(chord:Chord, index:Number): void {
-        this.favorites.remove(this.favorites.getIndex({'note':chord.note.name, 'type':chord.type.name, 'family':chord.type.family.name, 'position':index}));
+        this.dataProvider.save();
     }
 
     scrollToElement(id) { 

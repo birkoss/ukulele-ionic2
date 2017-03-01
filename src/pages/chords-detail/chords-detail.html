@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <div class="chords">
+    <div class="chords" *ngIf="chord">
 
         <ion-card *ngIf="config.ChordsOptions.show_strings_name">
             <ion-card-header>Nom des cordes</ion-card-header>
@@ -40,10 +40,10 @@
                 </ion-row>
             </div>
             <div class="buttons">
-                <button *ngIf="!isFavorite(chord, i)" ion-button icon-left (click)="addToFavorite(chord, i)">
+                <button *ngIf="!position.isFavorited" ion-button icon-left (click)="favorite(i)">
                     <ion-icon name="star" item-left></ion-icon> Ajouter
                 </button>
-                <button *ngIf="isFavorite(chord, i)" ion-button icon-left (click)="removeToFavorite(chord, i)">
+                <button *ngIf="position.isFavorited" ion-button icon-left (click)="favorite(i)">
                     <ion-icon name="star" item-left></ion-icon> Enlever
                 </button>
             </div>

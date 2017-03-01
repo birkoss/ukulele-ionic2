@@ -14,6 +14,8 @@ export class Position {
     start:number = 1;
     max:number = 1;
 
+    isFavorited:Boolean = false;
+
     constructor() {}
 
     public addString(note:Note):void {
@@ -33,7 +35,6 @@ export class Position {
     }
 
     public init():void {
-        console.log(this.min);
         this.min = 20;
         this.max = 0;
         for (let i:number=0; i<this.strings.length; i++) {
@@ -53,4 +54,5 @@ export class Position {
 
         /* @todo: Detect the range, if > 5, alert */
     }
+
 }

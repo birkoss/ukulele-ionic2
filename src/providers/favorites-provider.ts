@@ -35,7 +35,7 @@ export class FavoritesProvider {
     }
 
     public save(favorites:Object):void {
-        this.favorites['notes'] = favorites['notes'];
+        this.favorites = favorites;
         this.storage.set('favorites', JSON.stringify(this.favorites));
     }
 
