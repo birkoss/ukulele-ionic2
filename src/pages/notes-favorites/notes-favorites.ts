@@ -22,7 +22,7 @@ export class NotesFavoritesPage {
 
     constructor(public navCtrl: NavController, public dataProvider: DataProvider, private config: ConfigProvider, public popoverCtrl: PopoverController, private favoritesService:FavoritesProvider) { }
 
-    ngOnInit() {
+    ionViewDidEnter() {
         this.generateList();
     }
 
