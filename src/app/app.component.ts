@@ -53,8 +53,10 @@ export class MyApp {
             this.favorites.load().then(result => {
                 console.log('favorites.loaded?' + result);
                 this.data.load().then(result => {
-                    console.log('data.loaded?');
-                    this.rootPage = LoadingPage;
+                    this.config.load().then(result => {
+                        console.log('data.loaded?');
+                        this.rootPage = NotesTabs;
+                    });
                 });
             });
         });

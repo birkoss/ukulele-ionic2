@@ -6,16 +6,11 @@ import { Storage } from '@ionic/storage';
 export class ConfigProvider {
     configs: Object = {};
 
-    constructor(public storage: Storage) {
-        console.log('ConfigProvider()');
-        storage.ready().then(() => {
-            //this.init();
-        });
-    }
+    constructor(public storage: Storage) { }
 
     /* Private */
 
-    public init() {
+    public load() {
         console.log('ConfigProvider.init()');
         this.configs['chords'] = {};
         this.configs['chords']['filters'] = {'list_chord_type':'Major', 'quiz_chord_types':{}, 'quiz_use_favorites':true, 'quiz_use_flat':false, 'quiz_use_sharp':false};

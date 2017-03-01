@@ -15,8 +15,6 @@ import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
 import { NotesListPage } from '../pages/notes-list/notes-list';
 import { NotesFavoritesPage } from '../pages/notes-favorites/notes-favorites';
 
-import { LoadingPage } from '../pages/loading/loading';
-
 import { ChordsFiltersPopover } from '../popovers/chords-filters/chords-filters';
 import { NotesFiltersPopover } from '../popovers/notes-filters/notes-filters';
 import { ChordsOptionsPopover } from '../popovers/chords-options/chords-options';
@@ -32,9 +30,7 @@ import { MusicalNote } from '../components/musical-note/musical-note';
 import { NoteName } from '../components/note-name/note-name';
 
 import { ConfigProvider } from '../providers/config-provider';
-import { Data } from '../providers/data';
 import { DataProvider } from '../providers/data-provider';
-import { Favorites } from '../providers/favorites';
 import { FavoritesProvider } from '../providers/favorites-provider';
 
 @NgModule({
@@ -51,8 +47,6 @@ import { FavoritesProvider } from '../providers/favorites-provider';
 
     NotesListPage,
     NotesFavoritesPage,
-
-    LoadingPage,
 
     MusicalNote,
     ChordPosition,
@@ -86,8 +80,6 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     NotesListPage,
     NotesFavoritesPage,
 
-    LoadingPage,
-
     MusicalNote,
     ChordPosition,
     NoteName,
@@ -108,8 +100,6 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ConfigProvider,
     DataProvider,
     FavoritesProvider,
-    Favorites,
-    Data,
   ]
 })
 export class AppModule {}

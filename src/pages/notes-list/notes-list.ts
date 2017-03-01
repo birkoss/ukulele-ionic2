@@ -7,7 +7,6 @@ import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-optio
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
-import { Data } from '../../providers/data';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
 import { Note } from '../../classes/note';
@@ -19,7 +18,7 @@ import { Note } from '../../classes/note';
 export class NotesListPage {
     notes:Array<Note>;
 
-    constructor(public navCtrl:NavController, public popoverCtrl:PopoverController, private dataProvider:DataProvider, private config:ConfigProvider, private dataService:Data) {
+    constructor(public navCtrl:NavController, public popoverCtrl:PopoverController, private dataProvider:DataProvider, private config:ConfigProvider) {
     }
 
     ionViewDidEnter() {
