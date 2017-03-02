@@ -92,15 +92,16 @@ export class NotesQuizPage {
             while (this.answers.length < 5) {
                 let note:Note = this.data.pickNote();
                 if (this.answers.indexOf(note) == -1) {
+                    if (!this.config.NotesFilters['quiz_use_flat'] && note.name.substr(1) == '♭') { continue; }
+
+                    if (!this.config.NotesFilters['quiz_use_sharp'] && note.name.substr(1) == '♯') { continue; }
+
                     this.answers.push(note);
                 }
             }
             
             this.shuffle(this.answers);
         }
-
-        console.log(this.isWaiting);
-        console.log(this.isLastQuestion());
     }
 
     public isLastQuestion():Boolean {

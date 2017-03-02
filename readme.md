@@ -13,7 +13,3 @@ Chord in DataProvider
 * Quiz - Build a list to pick from, when at the end, shuffle the list
 
 * Quiz - Configuration: Add the possibility to include/exclude direction UP or DOWN
-
-* Quiz - DO not use flat if no flat is possible in the note
-
-* Quiz - DO not use sharp if no sharp is possible in the note
