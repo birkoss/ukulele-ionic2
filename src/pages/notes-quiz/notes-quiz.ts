@@ -108,8 +108,26 @@ export class NotesQuizPage {
     }
 
     public tryAnswer(index:number):void {
-        console.log('Index:' + index);
-        this.wrongAnswers.push(index);
+        if (this.current_note.name == this.answers[index].name) {
+            if (this.wrongAnswers.length == 0) {
+                this.goodAnswer++;
+            }
+
+            let alert = this.alertCtrl.create({
+                title: 'Bravo!',
+                subTitle: 'C\'est la bonne note!',
+                enableBackdropDismiss: false,
+                buttons: [{
+                    text: 'OK',
+                    handler: data => {
+                        this.pickNote();
+                    }
+                }]
+            });
+            alert.present();
+        } else {
+            this.wrongAnswers.push(index);
+        }
     }
 
     private shuffle(a) {

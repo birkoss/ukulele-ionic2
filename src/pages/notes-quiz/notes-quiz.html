@@ -27,7 +27,7 @@
     <div *ngIf="isPlaying && !isDone">
         <h1>Quelle est cette note ?</h1>
         <musical-note [note]="current_note"></musical-note>
-        <div class="buttons" *ngIf="isWaiting && !isLastQuestion()">
+        <div class="buttons" *ngIf="isWaiting">
             <button *ngFor="let answer of answers; let i = index" ion-button (click)="tryAnswer(i)" [disabled]="wrongAnswers.indexOf(i) >= 0"><note-name [note]="answer" [french]="config.ChordsOptions.show_note_in_french"></note-name></button>
         </div>
         <div *ngIf="!isWaiting && isLastQuestion()">
@@ -40,7 +40,7 @@
 
         <h2>{{goodAnswer}}</h2>
         <h2 class="divider">sur</h2>
-        <h2>{{chords.length}}</h2>
+        <h2>{{notes.length}}</h2>
 
         <div class="buttons">
             <button ion-button (click)="reset()">OK</button>
