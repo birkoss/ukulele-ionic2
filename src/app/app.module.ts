@@ -14,6 +14,7 @@ import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
 import { NotesListPage } from '../pages/notes-list/notes-list';
 import { NotesFavoritesPage } from '../pages/notes-favorites/notes-favorites';
+import { NotesQuizPage } from '../pages/notes-quiz/notes-quiz';
 
 import { ChordsFiltersPopover } from '../popovers/chords-filters/chords-filters';
 import { NotesFiltersPopover } from '../popovers/notes-filters/notes-filters';
@@ -21,6 +22,7 @@ import { ChordsOptionsPopover } from '../popovers/chords-options/chords-options
 import { DetailOptionsPopover } from '../popovers/detail-options/detail-options';
 
 import { ChordsQuizModal } from '../modals/chords-quiz/chords-quiz';
+import { NotesQuizModal } from '../modals/notes-quiz/notes-quiz';
 
 import { ChordCard } from '../components/chord-card/chord-card';
 import { NoteCard } from '../components/note-card/note-card';
@@ -47,6 +49,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
 
     NotesListPage,
     NotesFavoritesPage,
+    NotesQuizPage,
 
     MusicalNote,
     ChordPosition,
@@ -61,6 +64,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     DetailOptionsPopover,
 
     ChordsQuizModal,
+    NotesQuizModal,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -79,6 +83,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
 
     NotesListPage,
     NotesFavoritesPage,
+    NotesQuizPage,
 
     MusicalNote,
     ChordPosition,
@@ -93,6 +98,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     DetailOptionsPopover,
 
     ChordsQuizModal,
+    NotesQuizModal,
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

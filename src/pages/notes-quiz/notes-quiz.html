@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar color="primary">
+      <ion-buttons start>
+          <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>Quiz</ion-title>
+      <ion-buttons end *ngIf="isPlaying && !isDone">
+          <button ion-button icon-only (click)="showPopup($event, 'options')"><ion-icon name="settings"></ion-icon></button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div class="intro" *ngIf="!isPlaying">
+        <ion-row>
+            <button (click)="startQuiz()" [disabled]="getNotes().length == 0" ion-button>Commencer</button>
+        </ion-row>
+        <ion-row>
+            <button (click)="showConfiguration()" ion-button clear>Configuration</button>
+        </ion-row>
+        <ion-row>
+            {{getNotes().length}} notes
+        </ion-row>
+    </div>
+
+    <div *ngIf="isPlaying && !isDone">
+        <h1>Quelle est cette note ?</h1>
+        <musical-note [note]="current_note"></musical-note>
+        <div class="buttons">
+            <button *ngIf="isWaiting" ion-button [disabled]="start <= 1" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
+            <button *ngIf="!isWaiting && !isLastQuestion()" ion-button (click)="pickChord()">Prochaine question</button>
+            <button *ngIf="!isWaiting && isLastQuestion()" ion-button (click)="pickChord()">Voir le résultat</button>
+            <button *ngIf="isWaiting" ion-button (click)="showSolution()">Abandonner</button>
+
+            <button *ngIf="isWaiting" ion-button [disabled]="start >= 12" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
+        </div>
+    </div>
+
+    <div *ngIf="isDone" class="done">
+        <h1>Résultat</h1>
+
+        <h2>{{goodAnswer}}</h2>
+        <h2 class="divider">sur</h2>
+        <h2>{{chords.length}}</h2>
+
+        <div class="buttons">
+            <button ion-button (click)="reset()">OK</button>
+        </div>
+    </div>
+
+</ion-content>

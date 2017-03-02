@@ -8,6 +8,7 @@ import { ChordsTabs } from '../pages/chords-tabs/chords-tabs';
 import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 
 import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
+import { NotesQuizPage } from '../pages/notes-quiz/notes-quiz';
 
 import { ConfigProvider } from '../providers/config-provider';
 import { DataProvider } from '../providers/data-provider';
@@ -37,7 +38,7 @@ export class MyApp {
     notesPages: PageInterface[] = [
         {title: 'Liste', component: NotesTabs},
         {title: 'Favoris', component: NotesTabs, index: 1},
-        {title: 'Quiz', component: ChordsQuizPage}
+        {title: 'Quiz', component: NotesQuizPage}
     ];
 
     constructor(public platform: Platform, public menu: MenuController, public config:ConfigProvider, public favorites:FavoritesProvider, public data:DataProvider) {

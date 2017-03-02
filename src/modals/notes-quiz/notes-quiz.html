@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-title>
+            Configuration
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="close()">
+                <ion-icon name="close" showWhen="android,windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list radio-group>
+        <ion-item-divider>Favoris</ion-item-divider>
+        <ion-item>
+            <ion-label>Seulement utiliser ces notes</ion-label>
+            <ion-toggle value="exclude" [(ngModel)]="config.NotesFilters.quiz_use_favorites" [disabled]="this.favorites.all('notes').length == 0" (ionChange)="onFilterChanged($event)"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>Bémol</ion-item-divider>
+        <ion-item>
+            <ion-label>Inclure</ion-label>
+            <ion-toggle [(ngModel)]="config.NotesFilters.quiz_use_flat" (ionChange)="onFilterChanged()"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>Dièse</ion-item-divider>
+        <ion-item>
+            <ion-label>Inclure</ion-label>
+            <ion-toggle [(ngModel)]="config.NotesFilters.quiz_use_sharp" (ionChange)="onFilterChanged()"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
