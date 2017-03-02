@@ -29,6 +29,8 @@ export class NotesQuizPage {
 
     goodAnswer:number;
 
+    answers:Array<Note> = [];
+
     constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) { }
 
     public reset():void {
@@ -74,6 +76,8 @@ export class NotesQuizPage {
     }
 
     public pickNote():void {
+        this.answers = [];
+
         if (this.isLastQuestion()) {
             this.isDone = true;
         } else {
@@ -81,7 +85,20 @@ export class NotesQuizPage {
             this.isWaiting = true;
 
             this.noteIndex++;
+
+            this.answers.push(this.current_note);
+            while (this.answers.length < 5) {
+                let note:Note = this.data.pickNote();
+                if (this.answers.indexOf(note) == -1) {
+                    this.answers.push(note);
+                }
+            }
+            
+            this.shuffle(this.answers);
         }
+
+        console.log(this.isWaiting);
+        console.log(this.isLastQuestion());
     }
 
     public isLastQuestion():Boolean {

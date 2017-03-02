@@ -27,13 +27,11 @@
     <div *ngIf="isPlaying && !isDone">
         <h1>Quelle est cette note ?</h1>
         <musical-note [note]="current_note"></musical-note>
-        <div class="buttons">
-            <button *ngIf="isWaiting" ion-button [disabled]="start <= 1" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
-            <button *ngIf="!isWaiting && !isLastQuestion()" ion-button (click)="pickChord()">Prochaine question</button>
-            <button *ngIf="!isWaiting && isLastQuestion()" ion-button (click)="pickChord()">Voir le résultat</button>
-            <button *ngIf="isWaiting" ion-button (click)="showSolution()">Abandonner</button>
-
-            <button *ngIf="isWaiting" ion-button [disabled]="start >= 12" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
+        <div class="buttons" *ngIf="isWaiting && !isLastQuestion()">
+            <button *ngFor="let answer of answers" ion-button (click)="tryAnswer(answer)"><note-name [note]="answer" [french]="config.ChordsOptions.show_note_in_french"></note-name></button>
+        </div>
+        <div *ngIf="!isWaiting && isLastQuestion()">
+            <button ion-button (click)="pickChord()">Voir le résultat</button>
         </div>
     </div>
 

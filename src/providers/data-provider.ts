@@ -72,6 +72,10 @@ export class DataProvider {
         return null;
     }
 
+    public pickNote():Note {
+        return this.notes[this.random(0, this.notes.length)];
+    }
+
     public getType(type:string, family:string = "Triad") : Type {
         for (let i=0; i<this._types.length; i++) {
             if (this._types[i].name == type && this._types[i].family.name == family) {
@@ -186,6 +190,10 @@ export class DataProvider {
             }
         }
         return this.getNote(note);
+    }
+
+    private random(min:number, max:number):number {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 
