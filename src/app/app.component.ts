@@ -6,7 +6,6 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { ChordsTabs } from '../pages/chords-tabs/chords-tabs';
 import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
-import { LoadingPage } from '../pages/loading/loading';
 
 import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
 

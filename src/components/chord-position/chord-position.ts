@@ -1,7 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { Position } from '../../classes/position';
-import { Note } from '../../classes/note';
 
 import { DataProvider } from '../../providers/data-provider';
 
