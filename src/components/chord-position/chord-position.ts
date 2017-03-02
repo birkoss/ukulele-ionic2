@@ -36,7 +36,7 @@ export class ChordPosition {
         this.muted = [];
         this._position.strings.filter(s => {
             if (s.fret > 0) {
-                this.fingers.push({'string':s.name.name, 'fret':s.fret, 'finger':s.finger});
+                this.fingers.push({'string':s.name.name, 'fret':s.fret-this.start+1, 'finger':s.finger});
             }
 
             if (s.finger == -1) {
