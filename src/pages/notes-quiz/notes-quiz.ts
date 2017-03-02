@@ -89,15 +89,24 @@ export class NotesQuizPage {
             this.noteIndex++;
 
             this.answers.push(this.current_note);
+            /* @todo Better finding the answers without looping 10 times: Build a pre-generated array first */
             while (this.answers.length < 5) {
                 let note:Note = this.data.pickNote();
-                if (this.answers.indexOf(note) == -1) {
-                    if (!this.config.NotesFilters['quiz_use_flat'] && note.name.substr(1) == '♭') { continue; }
 
-                    if (!this.config.NotesFilters['quiz_use_sharp'] && note.name.substr(1) == '♯') { continue; }
-
-                    this.answers.push(note);
+                let unique:Boolean = false;
+                this.answers.forEach(answer => {
+                    if (note.name == answer.name) {
+                        unique = true;
+                    }
+                });
+                if (unique) {
+                    continue;
                 }
+
+                if (!this.config.NotesFilters['quiz_use_flat'] && note.name.substr(1) == '♭') { continue; }
+                if (!this.config.NotesFilters['quiz_use_sharp'] && note.name.substr(1) == '♯') { continue; }
+
+                this.answers.push(note);
             }
             
             this.shuffle(this.answers);

@@ -73,7 +73,8 @@ export class DataProvider {
     }
 
     public pickNote():Note {
-        return this.notes[this.random(0, this.notes.length)];
+        let index:number = this.random(0, this.notes.length - 1);
+        return this.notes[index];
     }
 
     public getType(type:string, family:string = "Triad") : Type {
