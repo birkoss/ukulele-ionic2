@@ -30,6 +30,7 @@ export class NotesQuizPage {
     goodAnswer:number;
 
     answers:Array<Note> = [];
+    wrongAnswers:Array<number> = [];
 
     constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) { }
 
@@ -77,6 +78,7 @@ export class NotesQuizPage {
 
     public pickNote():void {
         this.answers = [];
+        this.wrongAnswers = [];
 
         if (this.isLastQuestion()) {
             this.isDone = true;
@@ -105,9 +107,9 @@ export class NotesQuizPage {
         return (this.noteIndex >= this.notes.length);
     }
 
-    public showSolution(index:number = 0):void {
-        //this.position = this.current_chord.positions[index];
-        this.isWaiting = false;
+    public tryAnswer(index:number):void {
+        console.log('Index:' + index);
+        this.wrongAnswers.push(index);
     }
 
     private shuffle(a) {

@@ -28,7 +28,7 @@
         <h1>Quelle est cette note ?</h1>
         <musical-note [note]="current_note"></musical-note>
         <div class="buttons" *ngIf="isWaiting && !isLastQuestion()">
-            <button *ngFor="let answer of answers" ion-button (click)="tryAnswer(answer)"><note-name [note]="answer" [french]="config.ChordsOptions.show_note_in_french"></note-name></button>
+            <button *ngFor="let answer of answers; let i = index" ion-button (click)="tryAnswer(i)" [disabled]="wrongAnswers.indexOf(i) >= 0"><note-name [note]="answer" [french]="config.ChordsOptions.show_note_in_french"></note-name></button>
         </div>
         <div *ngIf="!isWaiting && isLastQuestion()">
             <button ion-button (click)="pickChord()">Voir le résultat</button>
