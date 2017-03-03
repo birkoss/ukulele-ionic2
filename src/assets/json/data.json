@@ -37,6 +37,9 @@
     },{
         "name": "Major Pentatonic",
         "steps": [1, 1, 1.5, 1, 1.5]
+    },{
+        "name": "Minor Pentatonic",
+        "steps": [1.5, 1, 1, 1.5, 1]
     }],
     "families": [{
         "name": "Triad"

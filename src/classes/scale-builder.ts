@@ -30,26 +30,16 @@ export class ScaleBuilder {
         for (let i:number=0; i<steps.length; i++) {
             let step:number = steps[i];
 
-            console.log("Total Scale:" + this.scale.length);
-            console.log("I:" + i);
-            console.log("Step:" + step);
-            console.log("Accidental:" + this.currentAccidental);
-            console.log("Index: " + this.currentIndex);
-
             /* If the step is HIGHER than 1, we should switch index */
             while (step > 1) {
-                console.log('Note step: ' + this.letters[this.currentIndex]['step']['up']);
-                step -= this.letters[this.currentIndex]['step']['up'];// + this.currentAccidental;
-                console.log("- Move Index!");
+                step -= this.letters[this.currentIndex]['step']['up'];
+                
                 this.moveIndex();
-                console.log('- New index:' + this.currentIndex);
-                console.log("= Step:" + step);
             }
 
             let accidental:number = step - this.letters[this.currentIndex]['step']['up'] + this.currentAccidental;
             this.moveIndex();
             this.select(this.letters[this.currentIndex]['name'], accidental);
-            console.log("-----------------------------___");
         }
     }
 
