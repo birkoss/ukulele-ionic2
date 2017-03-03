@@ -2,6 +2,7 @@ export class Note {
     name:string;
     french:string;
     direction:string;
+    step:Object;
 
     isFavorited:Boolean = false;
 
@@ -9,6 +10,7 @@ export class Note {
         this.name = note.name;
         this.french = note.french;
         this.direction = note.direction;
+        this.step = note.step;
         if (!this.direction) {
             this.direction = 'up';
         }

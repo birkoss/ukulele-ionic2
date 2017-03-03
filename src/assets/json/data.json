@@ -1,101 +1,42 @@
 [{
     "notes": [{
         "name": "C",
-        "french": "DO"
-    },{
-        "name": "C♯",
-        "french": "DO♯"
-    },{
-        "name": "D♭",
-        "french": "RÉ♭"
-    },{
-        "name": "D",
-        "french": "RÉ"
-    },{
-        "name": "D♯",
-        "french": "RÉ♯"
-    },{
-        "name": "E♭",
-        "french": "MI♭"
-    },{
-        "name": "E",
-        "french": "MI"
-    },{
-        "name": "F",
-        "french": "FA"
-    },{
-        "name": "F♯",
-        "french": "FA♯"
-    },{
-        "name": "G♭",
-        "french": "SOL♭"
-    },{
-        "name": "G",
-        "french": "SOL"
-    },{
-        "name": "G♯",
-        "french": "SOL♯"
-    },{
-        "name": "A♭",
-        "french": "LA♭"
-    },{
-        "name": "A",
-        "french": "LA"
-    },{
-        "name": "A♯",
-        "french": "LA♯"
-    },{
-        "name": "B♭",
-        "french": "SI♭",
-        "direction": "down"
-    },{
-        "name": "B",
-        "french": "SI",
-        "direction": "down"
-    },{
-        "name": "C",
         "french": "DO",
-        "direction": "down"
-    },{
-        "name": "C♯",
-        "french": "DO♯",
-        "direction": "down"
-    },{
-        "name": "D♭",
-        "french": "RÉ♭",
-        "direction": "down"
+        "step": {"up":1, "down":0.5}
     },{
         "name": "D",
         "french": "RÉ",
-        "direction": "down"
-    },{
-        "name": "D♯",
-        "french": "RÉ♯",
-        "direction": "down"
-    },{
-        "name": "E♭",
-        "french": "MI♭",
-        "direction": "down"
+        "step": {"up":1, "down":1}
     },{
         "name": "E",
         "french": "MI",
-        "direction": "down"
+        "step": {"up":0.5, "down":1}
     },{
         "name": "F",
         "french": "FA",
-        "direction": "down"
-    },{
-        "name": "F♯",
-        "french": "FA♯",
-        "direction": "down"
-    },{
-        "name": "G♭",
-        "french": "SOL♭",
-        "direction": "down"
+        "step": {"up":1, "down":0.5}
     },{
         "name": "G",
         "french": "SOL",
-        "direction": "down"
+        "step": {"up":1, "down":1}
+    },{
+        "name": "A",
+        "french": "LA",
+        "step": {"up":1, "down":1}
+    },{
+        "name": "B",
+        "french": "SI",
+        "step": {"up":0.5, "down":1}
+    }],
+    "scales": [{
+        "name": "Chromatic",
+        "steps": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+    },{
+        "name": "Major",
+        "steps": [1, 1, 0.5, 1, 1, 1, 0.5]
+    },{
+        "name": "Minor",
+        "steps": [1, 0.5, 1, 1, 0.5, 1, 1]
     }],
     "families": [{
         "name": "Triad"

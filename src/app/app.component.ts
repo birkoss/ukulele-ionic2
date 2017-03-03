@@ -10,6 +10,8 @@ import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 import { NotesTabs } from '../pages/notes-tabs/notes-tabs';
 import { NotesQuizPage } from '../pages/notes-quiz/notes-quiz';
 
+import { ScalesListPage } from '../pages/scales-list/scales-list';
+
 import { ConfigProvider } from '../providers/config-provider';
 import { DataProvider } from '../providers/data-provider';
 import { FavoritesProvider } from '../providers/favorites-provider';
@@ -55,7 +57,8 @@ export class MyApp {
                 this.data.load().then(result => {
                     this.config.load().then(result => {
                         console.log('data.loaded?');
-                        this.rootPage = ChordsTabs;
+                        this.rootPage = ScalesListPage;
+                        //this.rootPage = ChordsTabs;
                     });
                 });
             });

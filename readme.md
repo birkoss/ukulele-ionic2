@@ -1,7 +1,7 @@
 Chord in DataProvider
 =====================
 
-* Add remaining Notes (LA SI)
+* Add remaining Notes (LA SI) with direction down
 
 * See how to specify alternate name
 

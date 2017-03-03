@@ -16,6 +16,8 @@ import { NotesListPage } from '../pages/notes-list/notes-list';
 import { NotesFavoritesPage } from '../pages/notes-favorites/notes-favorites';
 import { NotesQuizPage } from '../pages/notes-quiz/notes-quiz';
 
+import { ScalesListPage } from '../pages/scales-list/scales-list';
+
 import { ChordsFiltersPopover } from '../popovers/chords-filters/chords-filters';
 import { NotesFiltersPopover } from '../popovers/notes-filters/notes-filters';
 import { ChordsOptionsPopover } from '../popovers/chords-options/chords-options';
@@ -51,6 +53,8 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     NotesFavoritesPage,
     NotesQuizPage,
 
+    ScalesListPage,
+
     MusicalNote,
     ChordPosition,
     NoteName,
@@ -84,6 +88,8 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     NotesListPage,
     NotesFavoritesPage,
     NotesQuizPage,
+
+    ScalesListPage,
 
     MusicalNote,
     ChordPosition,

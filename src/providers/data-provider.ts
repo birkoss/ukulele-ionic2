@@ -19,6 +19,7 @@ export class DataProvider {
     private families: Array<Family> = [];
     private _types: Array<Type> = [];
     private chords: Array<Chord> = [];
+    private scales:Array<Object> = [];
 
     constructor(public http:Http, public favoritesProvider:FavoritesProvider) { }
 
@@ -57,6 +58,10 @@ export class DataProvider {
             }
         }
         return null;
+    }
+
+    public getScales():Array<Object> {
+        return this.scales;
     }
 
     public getNotes():Array<Note> {
@@ -115,6 +120,10 @@ export class DataProvider {
             this.notes.push(note); 
         }
 
+        for (let i=0; i<json['scales'].length; i++) {
+            this.scales.push(json['scales'][i]); 
+        }
+
         for (let i=0; i<json['families'].length; i++) {
             this.families.push(new Family(json['families'][i])); 
         }
@@ -150,11 +159,12 @@ export class DataProvider {
         for (var i=0; i<json['chords'].length; i++) {
             let chord = new Chord(this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
 
-            this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);
+            console.log('MUST RE-ENABLE PARSEJSON....');
+            //this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);
 
-            chord.init();
+            //chord.init();
 
-            this.chords.push(chord);
+            //this.chords.push(chord);
         }
     }
 
