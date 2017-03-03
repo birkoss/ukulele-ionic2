@@ -60,33 +60,14 @@ export class ScalesListPage {
                 scale['scales'].push({'name':'Descendent', 'notes': notes});
                 */
             } else {
-                /*
-                    let browser:NotesBrowser = new NotesBrowser();
-                    browser.set(this.dataProvider.getNotes());
-                    browser.select("D");
-
-                    browser.apply(scale['steps']);
-                    */
 
                 this.dataProvider.getNotes().forEach(note => {
                     let builder:ScaleBuilder = new ScaleBuilder();
                     builder.set(this.dataProvider.getLetters());
-                    builder.select(note.name);
-
+                    builder.select(note.letter['name'], note.accidental);
                     builder.create(scale['steps']);
-                    /*
-                    let notes:Array<Object> = [];
-                    let ready:Boolean = false;
-                    this.scales[0]['scales'][0]['notes'].concat(this.scales[0]['scales'][0]['notes']).forEach(scale_note => {
-                        if (scale_note.name == note.name && !ready) {
-                            ready = true;
-                            notes.push(note.name);
-                            scale['steps'].forEach(step => {
-                            });
-                        }
-                    });
-                    */
-                    scale['scales'].push({'name':note.name, 'notes':builder.getScale()});
+
+                    scale['scales'].push({'name':note, 'notes':builder.getScale()});
                 });
             }
             this.scales.push(scale);

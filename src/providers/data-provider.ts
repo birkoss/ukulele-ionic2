@@ -123,6 +123,15 @@ export class DataProvider {
             this.letters.push(json['letters'][i]); 
         }
 
+        /* Generate notes */
+        this.letters.forEach(letter => {
+            if (letter['step']['down'] == 1) { this.notes.push(new Note(letter, -0.5)); }
+            this.notes.push(new Note(letter, 0));
+            if (letter['step']['up'] == 1) { this.notes.push(new Note(letter, 0.5)); }
+        });
+
+        //for (let i=0; i<this.getLe
+
         for (let i=0; i<json['scales'].length; i++) {
             this.scales.push(json['scales'][i]); 
         }

@@ -1,6 +1,8 @@
+import { Note } from './note';
+
 export class ScaleBuilder {
     letters:Array<Object> = [];
-    scale:Array<string> = [];
+    scale:Array<Note> = [];
 
     currentIndex:number = 0;
     currentAccidental:number = 0;
@@ -11,21 +13,12 @@ export class ScaleBuilder {
     }
 
     /* Add a letter in the scale and move the index */
-    /* @TODO Replace double sharp with the correct symbol */
     select(letterName:string, accidental:number = 0) {
         this.currentAccidental = accidental;
 
         for (let i:number=0; i<this.letters.length; i++) {
             if (this.letters[i]['name'] == letterName) {
-                while (accidental > 0) {
-                    letterName += "♯";
-                    accidental -= 0.5;
-                }
-                while (accidental < 0) {
-                    letterName += "♭";
-                    accidental += 0.5;
-                }
-                this.scale.push(letterName);
+                this.scale.push(new Note(this.letters[i], accidental));
                 this.currentIndex = i;
                 break;
             }
@@ -35,9 +28,28 @@ export class ScaleBuilder {
     /* Create a scale with a specific steps of tone */
     create(steps:Array<number>) {
         for (let i:number=0; i<steps.length; i++) {
-            let accidental:number = steps[i] - this.letters[this.currentIndex]['step']['up'] + this.currentAccidental;
+            let step:number = steps[i];
+
+            console.log("Total Scale:" + this.scale.length);
+            console.log("I:" + i);
+            console.log("Step:" + step);
+            console.log("Accidental:" + this.currentAccidental);
+            console.log("Index: " + this.currentIndex);
+
+            /* If the step is HIGHER than 1, we should switch index */
+            while (step > 1) {
+                console.log('Note step: ' + this.letters[this.currentIndex]['step']['up']);
+                step -= this.letters[this.currentIndex]['step']['up'];// + this.currentAccidental;
+                console.log("- Move Index!");
+                this.moveIndex();
+                console.log('- New index:' + this.currentIndex);
+                console.log("= Step:" + step);
+            }
+
+            let accidental:number = step - this.letters[this.currentIndex]['step']['up'] + this.currentAccidental;
             this.moveIndex();
             this.select(this.letters[this.currentIndex]['name'], accidental);
+            console.log("-----------------------------___");
         }
     }
 
@@ -48,7 +60,7 @@ export class ScaleBuilder {
         }
     }
 
-    getScale():Array<string> {
+    getScale():Array<Note> {
         return this.scale;
     }
 }

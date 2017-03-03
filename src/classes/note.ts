@@ -1,22 +1,31 @@
 export class Note {
-    name:string;
-    french:string;
-    direction:string;
-    step:Object;
+    name:string = "DEPRECATED";
+    french:string = "DEPRECATED";
+    direction:string = "DEPRECATED";
 
     isFavorited:Boolean = false;
 
-    constructor(note:any) {
-        this.name = note.name;
-        this.french = note.french;
-        this.direction = note.direction;
-        this.step = note.step;
-        if (!this.direction) {
-            this.direction = 'up';
-        }
+    constructor(public letter:Object, public accidental:number) { }
+
+    toFavorite() {
+        return "DEPRECATED";
     }
 
-    toFavorite():Object {
-        return {'note':this.name, 'direction':this.direction};
+    toString() {
+        let name:string = this.letter['name'];
+
+        let accidental:number = this.accidental;
+
+        /* @TODO Replace double sharp with the correct symbol */
+        while (accidental > 0) {
+            name += "♯";
+            accidental -= 0.5;
+        }
+        while (accidental < 0) {
+            name += "♭";
+            accidental += 0.5;
+        }
+
+        return name;
     }
 }
