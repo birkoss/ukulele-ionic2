@@ -15,6 +15,7 @@ import { Position } from '../classes/position';
 
 @Injectable()
 export class DataProvider {
+    private letters:Array<Object> = [];
     private notes: Array<Note> = [];
     private families: Array<Family> = [];
     private _types: Array<Type> = [];
@@ -62,6 +63,10 @@ export class DataProvider {
 
     public getScales():Array<Object> {
         return this.scales;
+    }
+
+    public getLetters():Array<Object> {
+        return this.letters;
     }
 
     public getNotes():Array<Note> {
@@ -114,10 +119,8 @@ export class DataProvider {
     /* Private */
 
     private parseJSON(json:Array<any>) : void {
-        for (let i=0; i<json['notes'].length; i++) {
-            let note:Note = new Note(json['notes'][i]);
-            note.isFavorited = this.favoritesProvider.exists(note.toFavorite(), 'notes');
-            this.notes.push(note); 
+        for (let i=0; i<json['letters'].length; i++) {
+            this.letters.push(json['letters'][i]); 
         }
 
         for (let i=0; i<json['scales'].length; i++) {

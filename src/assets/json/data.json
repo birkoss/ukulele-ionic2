@@ -1,5 +1,5 @@
 [{
-    "notes": [{
+    "letters": [{
         "name": "C",
         "french": "DO",
         "step": {"up":1, "down":0.5}

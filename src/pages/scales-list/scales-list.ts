@@ -12,7 +12,7 @@ import { ConfigProvider } from '../../providers/config-provider';
 
 import { Chord } from '../../classes/chord';
 import { Position } from '../../classes/Position';
-import { NotesBrowser } from '../../classes/notes';
+import { ScaleBuilder } from '../../classes/scale-builder';
 
 @Component({
   selector: 'scales-list',
@@ -29,6 +29,16 @@ export class ScalesListPage {
             scale['scales'] = [];
             if (scale['name'] == "Chromatic") {
 
+
+                    let builder:ScaleBuilder = new ScaleBuilder();
+                    builder.set(this.dataProvider.getLetters());
+                    builder.select("C");
+
+                    builder.create(scale['steps']);
+                    console.log(scale['steps']);
+
+                    scale['scales'].push({'name':'Ascendent', 'notes': builder.getScale()});
+                    console.log(builder.getScale());
 
                 let notes:Array<string> = [];
                 /*
@@ -59,11 +69,11 @@ export class ScalesListPage {
                     */
 
                 this.dataProvider.getNotes().forEach(note => {
-                    let browser:NotesBrowser = new NotesBrowser();
-                    browser.set(this.dataProvider.getNotes());
-                    browser.select(note.name);
+                    let builder:ScaleBuilder = new ScaleBuilder();
+                    builder.set(this.dataProvider.getLetters());
+                    builder.select(note.name);
 
-                    browser.apply(scale['steps']);
+                    builder.create(scale['steps']);
                     /*
                     let notes:Array<Object> = [];
                     let ready:Boolean = false;
@@ -76,7 +86,7 @@ export class ScalesListPage {
                         }
                     });
                     */
-                    scale['scales'].push({'name':note.name, 'notes':browser.getScale()});
+                    scale['scales'].push({'name':note.name, 'notes':builder.getScale()});
                 });
             }
             this.scales.push(scale);
