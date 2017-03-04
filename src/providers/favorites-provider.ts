@@ -22,7 +22,7 @@ export class FavoritesProvider {
             if (data != null) {
                 console.log('FP.loaded...');
                 console.log(data);
-                this.favorites = this.config.merge(this.favorites, JSON.parse(data));
+                this.favorites = Object.assign(this.favorites, JSON.parse(data));
             }
             Promise.resolve(true);
         });

@@ -7,6 +7,17 @@ scales-list {
 
         ion-list {
             width: 100%;
+            border: 1px solid #ccc;
+
+            ion-item-divider {
+                border: 0 !important;
+            }
+
+            ion-item {
+                div.item-inner {
+                    border: 0 !important;
+                }
+            }
 
             ion-col {
                 text-align: center;

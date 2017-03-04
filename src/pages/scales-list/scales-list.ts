@@ -38,7 +38,7 @@ export class ScalesListPage {
                         builder.select(note.letter['name'], note.accidental);
                         builder.create(scale['steps']);
 
-                        scale['scales'].push({'name':note, 'notes':builder.getScale()});
+                        scale['scales'].push({'note':note, 'notes':builder.getScale()});
                     }
                 });
 

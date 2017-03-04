@@ -13,12 +13,12 @@
 
 <ion-content>
     <div class="scales">
-        <ion-list>
-            <div *ngFor="let scale of scales">
-                <ion-item-divider color="secondary">{{scale.name}}</ion-item-divider>
-                <ion-item *ngFor="let single_scale of scale.scales">
-                    <h2 *ngIf="single_scale.name">{{single_scale.name}}</h2>
-                    <ion-row><ion-col *ngFor="let n of single_scale.notes">{{n}}</ion-col></ion-row>
+        <ion-list *ngFor="let scale of scales">
+            <ion-item-divider color="primary">{{scale.name}}</ion-item-divider>
+            <div *ngFor="let s of scale.scales">
+                <ion-item-divider *ngIf="s.note" color="secondary"><note-name [note]="s.note" [french]="config.general.letter_in_french"></note-name></ion-item-divider>
+                <ion-item>
+                    <ion-row><ion-col *ngFor="let note of s.notes"><note-name [note]="note" [french]="config.general.letter_in_french"></note-name></ion-col></ion-row>
                 </ion-item>
             </div>
         </ion-list>

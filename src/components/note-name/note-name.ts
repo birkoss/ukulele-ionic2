@@ -4,12 +4,12 @@ import { Note } from '../../classes/note';
 
 @Component({
     selector: 'note-name',
-    template: '{{_name}}'
+    template: '{{name}}'
 })
 export class NoteName {
-    private _name:string;
+    private name:string;
     private _note:Note;
-    private _french:Boolean;
+    private inFrench:Boolean;
 
     @Input()
     set note(note: Note) {
@@ -18,14 +18,14 @@ export class NoteName {
     }
 
     @Input()
-    set french(french: Boolean) {
-        this._french = french;
+    set french(inFrench: Boolean) {
+        this.inFrench = inFrench;
         this.updateName();
     }
 
     constructor() { }
 
-    private updateName():void {
-        this._name = (this._french ? this._note.french : this._note.name);
+    private updateName() {
+        this.name = this._note.toString(this.inFrench);
     }
 }

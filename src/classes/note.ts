@@ -11,8 +11,8 @@ export class Note {
         return "DEPRECATED";
     }
 
-    toString() {
-        let name:string = this.letter['name'];
+    toString(inFrench:Boolean = false) {
+        let name:string = (inFrench ? this.letter['french'] : this.letter['name']);
 
         let accidental:number = this.accidental;
 
