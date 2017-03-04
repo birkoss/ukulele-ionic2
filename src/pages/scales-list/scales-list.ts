@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import { NavController, PopoverController } from 'ionic-angular';
+import { ModalController, NavController, PopoverController } from 'ionic-angular';
 
 import { ChordsDetailPage } from '../chords-detail/chords-detail';
 
-import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
-import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
+import { GeneralPopover } from '../../popovers/general/general';
+
+import { ScalesFiltersModal } from '../../modals/scales-filters/scales-filters';
 
 import { DataProvider } from '../../providers/data-provider';
 import { ConfigProvider } from '../../providers/config-provider';
@@ -21,7 +22,7 @@ import { ScaleBuilder } from '../../classes/scale-builder';
 export class ScalesListPage {
     scales:Array<Object> = [];
 
-    constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private dataProvider: DataProvider, private config: ConfigProvider) { }
+    constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private dataProvider: DataProvider, private config: ConfigProvider, public modalCtrl:ModalController) { }
 
     ionViewDidEnter() {
 
@@ -71,6 +72,18 @@ export class ScalesListPage {
                 });
             }
             this.scales.push(scale);
+        });
+    }
+
+    showModal(event) {
+        let modal = this.modalCtrl.create(ScalesFiltersModal);
+        modal.present();
+    }
+
+    showPopup(event) {
+        let popover = this.popoverCtrl.create(GeneralPopover);
+        popover.present({
+            ev: event
         });
     }
 }

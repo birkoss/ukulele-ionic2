@@ -5,8 +5,8 @@
       </ion-buttons>
       <ion-title>Gammes</ion-title>
       <ion-buttons end>
-        <button ion-button outline="true">Notes</button>
-        <button ion-button outline="true" color="dark">Gammes</button>
+        <button ion-button outline (click)="showModal($event)">Filtres</button>
+        <button ion-button icon-only (click)="showPopup($event)"><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
