@@ -27,6 +27,7 @@ import { GeneralPopover } from '../popovers/general/general';
 import { ChordsQuizModal } from '../modals/chords-quiz/chords-quiz';
 import { NotesQuizModal } from '../modals/notes-quiz/notes-quiz';
 import { ScalesFiltersModal } from '../modals/scales-filters/scales-filters';
+import { NotesFiltersModal } from '../modals/notes-filters/notes-filters';
 
 import { ChordCard } from '../components/chord-card/chord-card';
 import { NoteCard } from '../components/note-card/note-card';
@@ -73,6 +74,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordsQuizModal,
     NotesQuizModal,
     ScalesFiltersModal,
+    NotesFiltersModal,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -111,6 +113,7 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordsQuizModal,
     NotesQuizModal,
     ScalesFiltersModal,
+    NotesFiltersModal,
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -39,7 +39,6 @@ export class MusicalNote {
             }
         }
 
-
         let differenceIndex:number = clefIndex - noteIndex;
         
         this.line = this.clefPosition - differenceIndex;
@@ -49,11 +48,6 @@ export class MusicalNote {
         } else if (this._note.accidental > 0) {
             this.accidental = 'sharp';
         }
-
-        console.log(this._note.letter);
-        console.log(noteIndex + "/" + clefIndex + "=" + differenceIndex);
-        console.log('Line:' + this.line);
-        console.log("--------------------------------");
     }
 
     getClasses() {

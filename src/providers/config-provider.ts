@@ -17,13 +17,14 @@ export class ConfigProvider {
         this.configs['chords'] = {};
         this.configs['chords']['filters'] = {'list_chord_type':'Major', 'quiz_chord_types':{}, 'quiz_use_favorites':true, 'quiz_use_flat':false, 'quiz_use_sharp':false};
         this.configs['chords']['options'] = {'show_note_in_french': true, 'show_strings_name': false, 'show_notes': false, 'show_frets': false};
-        this.configs['notes'] = {};
-        this.configs['notes']['filters'] = {'list_use_flat':false, 'list_use_sharp':false, 'quiz_use_favorites':true, 'quiz_use_flat':false, 'quiz_use_sharp':false};
+        this.configs['notes'] = {'list_flat':false, 'list_sharp':false};
 
         this.configs['scales'] = {'list_notes':{}, 'list_scales':{}};
 
         return this.storage.get('config').then(data => {
             if (data != null) {
+                console.log(this.configs);
+                console.log(data);
                 this.configs = Object.assign(this.configs, JSON.parse(data));
             }
         });
@@ -45,6 +46,22 @@ export class ConfigProvider {
     public get scales():Object {
         return this.configs['scales'];
     }
+
+    public get notes():Object {
+        return this.configs['notes'];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     public get ChordsFilters(): Object {
         return this.configs['chords']['filters'];
