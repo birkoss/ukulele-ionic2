@@ -1,104 +1,95 @@
 musical-note {
-	svg {
-		width: 100%;
-		height: auto;
+    svg {
+        width: 100%;
+        height: auto;
 
-		g#G-Key {
-			transform: translate(6px, 0);
-		}
+        g#G-Key { transform: translate(6px, 0); }
 
-		g#Stroke, g#Sharp, g#Flat {
-			display: none;
-		}
+        g#Stroke,
+        g#Sharp,
+        g#Flat {
+            display: none;
+        }
 
-		&.note-sharp {
-			g#Sharp {
-				display: inline;
-				transform: translate(16px, 0);
-			}
-		}
+        &.sharp {
+            g#Sharp {
+                display: inline;
+                transform: translate(16px, 0);
+            }
+        }
 
-		&.note-flat {
-			g#Flat {
-				display: inline;
-				transform: translate(16px, 0);
-			}
-		}
+        &.flat {
+            g#Flat {
+                display: inline;
+                transform: translate(16px, 0);
+            }
+        }
 
-		&.direction-up {
-			g#Down {
-				display: none;
-			}
+        &.line-1 {
+            g#Stroke { display: inline; }
+            g#Down { display: none; }
+            g#Note { transform: translate(0px, 40px); }
+        }
 
-			&.note-C {
-				g#Stroke {
-					display: inline;
-				}
+        &.line-2 {
+            g#Down { display: none; }
+            g#Note { transform: translate(0px, 30px); }
+        }
 
-				g#Note {
-					transform: translate(0px, 40px);
-				}
-			}
+        &.line-3 {
+            g#Down { display: none; }
+            g#Note { transform: translate(0px, 13px); }
+        }
 
-			&.note-D {
-				g#Note {
-					transform: translate(0px, 30px);
-				}
-			}
-			&.note-E {
-				g#Note {
-					transform: translate(0px, 13px);
-				}
-			}
-			&.note-G {
-				g#Note {
-					transform: translate(0px, -13px);
-				}
-			}
-			&.note-A {
-				g#Note {
-					transform: translate(0px, -28px);
-				}
-			}
-		}
-		
-		&.direction-down {
-			g#Up {
-				display: none;
-			}
+        &.line-4 {
+            g#Down { display: none; }
+            g#Note { transform: translate(0px, 0px); }
+        }
 
-			&.note-B {
-				g#Note {
-					transform: translate(0px, -42px);
-				}
-			}
-			&.note-C {
-				g#Note {
-					transform: translate(0px, -57px);
-				}
-			}
-			&.note-D {
-				g#Note {
-					transform: translate(0px, -70px);
-				}
-			}
-			&.note-E {
-				g#Note {
-					transform: translate(0px, -86px);
-				}
-			}
-			&.note-F {
-				g#Note {
-					transform: translate(0px, -100px);
-				}
-			}
-			&.note-G {
-				g#Note {
-					transform: translate(0px, -114px);
-				}
-			}
-		}
-	}
+        &.line-5 {
+            g#Down { display: none; }
+            g#Note { transform: translate(0px, -13px); }
+        }
+
+        &.line-6 {
+            g#Down { display: none; }
+            g#Note { transform: translate(0px, -28px); }
+        }
+
+        &.line-7 {
+            g#Up { display: none; }
+            g#Note { transform: translate(0px, -42px); }
+        }
+
+
+        &.line-8 {
+            g#Up { display: none; }
+            g#Note { transform: translate(0px, -57px); }
+        }
+
+        &.line-9 {
+            g#Up { display: none; }
+            g#Note { transform: translate(0px, -57px); }
+        }
+        
+        &.line-10 {
+            g#Up { display: none; }
+            g#Note { transform: translate(0px, -70px); }
+        }
+
+        &.line-11 {
+            g#Up { display: none; }
+            g#Note { transform: translate(0px, -86px); }
+        }
+
+        &.line-12 {
+            g#Up { display: none; }
+            g#Note { transform: translate(0px, -100px); }
+        }
+        
+        &.line-13 {
+            g#Up { display: none; }
+            g#Note { transform: translate(0px, -114px); }
+        }
+    }
 }
-
-
