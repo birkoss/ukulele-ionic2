@@ -28,7 +28,6 @@ export interface PageInterface {
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    //rootPage = LoadingPage;
     rootPage:Component;
 
     chordsPages: PageInterface[] = [
@@ -52,17 +51,13 @@ export class MyApp {
     }
 
     init() {
-        console.log('App.init...');
         this.platform.ready().then(() => {
             StatusBar.styleDefault();
             Splashscreen.hide();
             this.favorites.load().then(result => {
-                console.log('favorites.loaded?' + result);
                 this.data.load().then(result => {
                     this.config.load().then(result => {
-                        console.log('data.loaded?');
-                        this.rootPage = ScalesListPage;
-                        //this.rootPage = ChordsTabs;
+                        this.rootPage = NotesTabs;
                     });
                 });
             });

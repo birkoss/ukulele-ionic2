@@ -1,13 +1,12 @@
 <ion-card class="note-card" *ngIf="_note">
     <ion-card-header>
-        <note-name [note]="_note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
+        <note-name [note]="_note" [french]="config.general.letter_in_french"></note-name>
     </ion-card-header>
 
     <musical-note [note]="_note"></musical-note>
 
     <div class="buttons">
-        <button *ngIf="!_note.isFavorited" ion-button icon-left (click)="favorite()"><ion-icon name="star"></ion-icon>Ajouter</button>
-        <button *ngIf="_note.isFavorited" ion-button icon-left (click)="favorite()"><ion-icon name="star"></ion-icon>Enlever</button>
+        <button ion-button icon-left (click)="favorite()"><ion-icon name="musical-note"></ion-icon>Détail</button>
     </div>
 
 </ion-card>
