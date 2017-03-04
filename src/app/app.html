@@ -16,6 +16,11 @@
             <ion-item-divider color="secondary">Notes</ion-item-divider>
             <button ion-item *ngFor="let p of notesPages" (click)="openPage(p)">{{p.title}}</button>
         </ion-list>
+
+        <ion-list>
+            <ion-item-divider color="secondary">Gammes</ion-item-divider>
+            <button ion-item *ngFor="let p of scalesPages" (click)="openPage(p)">{{p.title}}</button>
+        </ion-list>
     </ion-content>
 
 </ion-menu>

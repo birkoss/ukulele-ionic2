@@ -43,6 +43,10 @@ export class MyApp {
         {title: 'Quiz', component: NotesQuizPage}
     ];
 
+    scalesPages:PageInterface[] = [
+        {title:'Liste', component:ScalesListPage}
+    ];
+
     constructor(public platform: Platform, public menu: MenuController, public config:ConfigProvider, public favorites:FavoritesProvider, public data:DataProvider) {
         this.init();
     }
