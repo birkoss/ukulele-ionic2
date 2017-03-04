@@ -24,10 +24,7 @@ export class ConfigProvider {
 
         return this.storage.get('config').then(data => {
             if (data != null) {
-                console.log('ConfigProvider.init() - loaded...');
-                console.log(data);
-                this.configs = this.merge(this.configs, JSON.parse(data));
-                console.log(this.configs);
+                this.configs = Object.assign(this.configs, JSON.parse(data));
             }
         });
     }
@@ -36,7 +33,6 @@ export class ConfigProvider {
 
     public save(): void {
         console.log('ConfigProvider.save()');
-        console.log(this.configs);
         this.storage.set('config', JSON.stringify(this.configs));
     }
 
@@ -62,26 +58,16 @@ export class ConfigProvider {
         return this.configs['notes']['filters'];
     }
 
-    public merge(obj1, obj2) {
-        for (var p in obj2) {
-            try {
-                // Property in destination object set; update its value.
-                if ( obj2[p].constructor==Object ) {
-                    obj1[p] = this.merge(obj1[p], obj2[p]);
+    public isEmpty(options:Object):Boolean {
+        let isEmpty:Boolean = true;
 
-                } else {
-                    obj1[p] = obj2[p];
-
-                }
-
-            } catch(e) {
-                // Property in destination object not set; create it and set its value.
-                obj1[p] = obj2[p];
-
+        Object.keys(options).forEach(key => {
+            if (options[key]) {
+                isEmpty = false;
             }
-        }
+        });
 
-        return obj1;
+        return isEmpty;
     }
 }
 

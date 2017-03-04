@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
@@ -22,7 +22,10 @@ export class ScalesFiltersModal {
     ];
     notesFilter:string = "all";
 
-    constructor(public viewCtrl:ViewController, private data:DataProvider, private config:ConfigProvider) {
+    parent:any;
+
+    constructor(public viewCtrl:ViewController, private data:DataProvider, private config:ConfigProvider, params:NavParams) {
+        this.parent = params.get('parent');
     }
 
     ionViewDidEnter() {
@@ -52,6 +55,8 @@ export class ScalesFiltersModal {
 
     onChanged(element) {
         this.config.save();
+        console.log(this.parent);
+        this.parent.generateList();
     }
 
     onFilterChanged(element) {
