@@ -3,93 +3,117 @@ musical-note {
         width: 100%;
         height: auto;
 
-        g#G-Key { transform: translate(6px, 0); }
+        g#treble-clef { transform: translate(6px, 0); }
 
-        g#Stroke,
-        g#Sharp,
-        g#Flat {
+        g.stroke,
+        g.sharp,
+        g.flat,
+        g.under {
             display: none;
         }
 
         &.sharp {
-            g#Sharp {
+            g.sharp {
                 display: inline;
                 transform: translate(16px, 0);
             }
         }
 
         &.flat {
-            g#Flat {
+            g.flat {
                 display: inline;
                 transform: translate(16px, 0);
             }
         }
 
-        &.line-1 {
-            g#Stroke { display: inline; }
-            g#Down { display: none; }
-            g#Note { transform: translate(0px, 40px); }
-        }
+        g.note {
+            &.line-1 {
+                transform: translate(0px, 40px);
 
-        &.line-2 {
-            g#Down { display: none; }
-            g#Note { transform: translate(0px, 30px); }
-        }
+                g.stroke { display: inline; }
+                g.down { display: none; }
+            }
 
-        &.line-3 {
-            g#Down { display: none; }
-            g#Note { transform: translate(0px, 13px); }
-        }
+            &.line-2 {
+                transform: translate(0px, 30px);
 
-        &.line-4 {
-            g#Down { display: none; }
-            g#Note { transform: translate(0px, 0px); }
-        }
+                g.down { display: none; }
+            }
 
-        &.line-5 {
-            g#Down { display: none; }
-            g#Note { transform: translate(0px, -13px); }
-        }
+            &.line-3 {
+                transform: translate(0px, 13px);
 
-        &.line-6 {
-            g#Down { display: none; }
-            g#Note { transform: translate(0px, -28px); }
-        }
+                g.down { display: none; }
+            }
 
-        &.line-7 {
-            g#Up { display: none; }
-            g#Note { transform: translate(0px, -42px); }
-        }
+            &.line-4 {
+                transform: translate(0px, 0px);
+
+                g.down { display: none; }
+            }
+
+            &.line-5 {
+                transform: translate(0px, -13px);
+
+                g.down { display: none; }
+            }
+
+            &.line-6 {
+                transform: translate(0px, -28px);
+
+                g.down { display: none; }
+            }
+
+            &.line-7 {
+                transform: translate(0px, -42px);
+
+                g.up { display: none; }
+            }
 
 
-        &.line-8 {
-            g#Up { display: none; }
-            g#Note { transform: translate(0px, -57px); }
-        }
+            &.line-8 {
+                transform: translate(0px, -57px);
 
-        &.line-9 {
-            g#Up { display: none; }
-            g#Note { transform: translate(0px, -57px); }
-        }
-        
-        &.line-10 {
-            g#Up { display: none; }
-            g#Note { transform: translate(0px, -70px); }
-        }
+                g.up { display: none; }
+            }
 
-        &.line-11 {
-            g#Up { display: none; }
-            g#Note { transform: translate(0px, -86px); }
-        }
+            &.line-9 {
+                transform: translate(0px, -70px);
 
-        &.line-12 {
-            g#Up { display: none; }
-            g#Note { transform: translate(0px, -100px); }
-        }
-        
-        &.line-13 {
-            g#Up { display: none; }
-            g#Note { transform: translate(0px, -114px); }
+                g.up { display: none; }
+            }
+
+            &.line-10 {
+                transform: translate(0px, -86px);
+
+                g.up { display: none; }
+            }
+
+            &.line-11 {
+                transform: translate(0px, -100px);
+
+                g.up { display: none; }
+            }
+
+            &.line-12 {
+                transform: translate(0px, -114px);
+
+                g.up { display: none; }
+            }
+
+            &.line-13 {
+                transform: translate(0px, -128px);
+
+                g.up { display: none; }
+                g.stroke { display: inline; }
+            }
+
+            &.line-14 {
+                transform: translate(0px, -142px);
+
+                g.up { display: none; }
+                g.under { display: inline; }
+            }
         }
     }
 }

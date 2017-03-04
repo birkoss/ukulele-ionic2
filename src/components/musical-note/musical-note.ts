@@ -18,6 +18,8 @@ export class MusicalNote {
     line:number = 0;
     accidental:string = "";
 
+    notes:Array<number> = [];
+
     @Input('note')
     set note(note:Note) {
         this._note = note;
@@ -41,30 +43,13 @@ export class MusicalNote {
 
         let differenceIndex:number = clefIndex - noteIndex;
         
-        this.line = this.clefPosition - differenceIndex;
+        this.notes.push(this.clefPosition - differenceIndex);
+        this.notes.push(this.notes[0] + this.data.getLetters().length);
 
         if (this._note.accidental < 0) {
             this.accidental = 'flat';
         } else if (this._note.accidental > 0) {
             this.accidental = 'sharp';
         }
-    }
-
-    getClasses() {
-        let classes: Array<string> = [];
-
-        classes.push('direction-' + this._note.direction);
-
-        if (this._note != undefined) {
-            classes.push('note-' + this._note.name[0]);
-
-            if (this._note.name[1] == '♭') {
-                classes.push('note-flat');
-            } else if (this._note.name[1] == '♯') {
-                classes.push('note-sharp');
-            }
-        }
-
-        return classes.join(" ");
     }
 }
