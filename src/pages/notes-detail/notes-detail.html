@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+      <ion-title><note-name [note]="note" [french]="config.general.letter_in_french"></note-name></ion-title>
+      <ion-buttons end>
+          <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-segment [ngModel]="currentClef">
+        <ion-segment-button *ngFor="let clef of clefs" [value]="clef.letter.name" (ionSelect)="onFilterChanged($event)">Clef de <note-name [note]="clef" [french]="config.general.letter_in_french"></note-name></ion-segment-button>
+    </ion-segment>
+
+    <ion-card id="position_{{i}}" *ngFor="let p of positions; let i = index;">
+        <ion-card-content>
+            <musical-note [note]="note"></musical-note>
+        </ion-card-content>
+        <div class="buttons">
+            <button ion-button icon-left (click)="favorite(i)">
+                <ion-icon name="star" item-left></ion-icon> Ajouter
+            </button>
+        </div>
+    </ion-card>
+
+</ion-content>

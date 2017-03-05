@@ -5,7 +5,7 @@
       </ion-buttons>
       <ion-title>Favoris</ion-title>
       <ion-buttons end>
-          <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
+          <button (click)="showPopup($event)" ion-button icon-only><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -16,6 +16,6 @@
     </div>
 
     <div class="label-container" *ngIf="favorites.length == 0">
-        <p>Aucun favori!</p> 
+        <p>Aucune note n'est pas les favoris!</p> 
     </div>
 </ion-content>

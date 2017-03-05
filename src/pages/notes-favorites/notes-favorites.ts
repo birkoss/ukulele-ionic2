@@ -4,7 +4,7 @@ import { NavController, PopoverController } from 'ionic-angular';
 
 import { ChordsDetailPage } from '../chords-detail/chords-detail';
 
-import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
+import { GeneralPopover } from '../../popovers/general/general';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
@@ -26,15 +26,15 @@ export class NotesFavoritesPage {
         this.generateList();
     }
 
-    public showPopup(event, type:string) {
-        let popover = this.popoverCtrl.create(ChordsOptionsPopover);
+    public showPopup(event) {
+        let popover = this.popoverCtrl.create(GeneralPopover);
         popover.present({
             ev: event
         });
     }
 
     public generateList() {
-        this.favorites = this.favoritesService.all('notes');
+        //this.favorites = this.favoritesService.all('notes');
     }
 
     public showDetail(chord:Object): void {

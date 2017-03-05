@@ -6,6 +6,8 @@ import { GeneralPopover } from '../../popovers/general/general';
 
 import { NotesFiltersModal } from '../../modals/notes-filters/notes-filters';
 
+import { NotesDetailPage } from '../../pages/notes-detail/notes-detail';
+
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 
@@ -33,6 +35,11 @@ export class NotesListPage {
 
             return true;
         });
+    }
+
+    onCardClicked(element) {
+        this.navCtrl.push(NotesDetailPage, {note:element});
+        console.log(element);
     }
 
     showModal(event) {

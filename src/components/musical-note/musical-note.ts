@@ -18,9 +18,10 @@ export class MusicalNote {
     line:number = 0;
     accidental:string = "";
 
-    notes:Array<number> = [];
-
     _showHighNote:Boolean = false;
+    position:number = 0;
+
+    positions:Array<number> = [];
 
     @Input('note')
     set note(note:Note) {
@@ -29,6 +30,10 @@ export class MusicalNote {
     @Input('showHighNote')
     set showHighNote(show:Boolean) {
         this._showHighNote = show;
+    }
+    @Input('forcePosition')
+    set forcePosition(position:number) {
+        this.position = position;
     }
 
     constructor(public data:DataProvider) { }
@@ -49,12 +54,12 @@ export class MusicalNote {
 
         let differenceIndex:number = clefIndex - noteIndex;
         
-        this.notes = [];
-        this.notes.push(this.clefPosition - differenceIndex);
+        this.positions = [];
+        this.positions.push(this.clefPosition - differenceIndex);
 
         console.log('H:' + this._showHighNote);
         if (this._showHighNote) {
-            this.notes.push(this.notes[0] + this.data.getLetters().length);
+            this.positions.push(this.positions[0] + this.data.getLetters().length);
         }
 
         if (this._note.accidental < 0) {

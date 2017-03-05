@@ -27,16 +27,11 @@ export class NoteCard {
         this._showHighNote = show;
     }
 
-    @Output('onItemChanged') onItemChanged:EventEmitter<Boolean> = new EventEmitter<Boolean>();
+    @Output('onButtonClicked') onButtonClicked:EventEmitter<Note> = new EventEmitter<Note>();
 
 	constructor(private dataProvider:DataProvider, private config:ConfigProvider) { }
 
-    ngOnInit() {
-    }
-
-    public favorite():void {
-        this._note.isFavorited = !this._note.isFavorited;
-        this.dataProvider.save();
-        this.onItemChanged.emit(true);
+    public showDetail():void {
+        this.onButtonClicked.emit(this._note);
     }
 }
