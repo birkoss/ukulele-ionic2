@@ -31,8 +31,8 @@ export class MusicalNote {
     set showHighNote(show:Boolean) {
         this._showHighNote = show;
     }
-    @Input('forcePosition')
-    set forcePosition(position:number) {
+    @Input('singlePosition')
+    set singlePosition(position:number) {
         this.position = position;
     }
 
@@ -53,13 +53,18 @@ export class MusicalNote {
         }
 
         let differenceIndex:number = clefIndex - noteIndex;
+        let firstPosition:number = this.clefPosition - differenceIndex;
         
         this.positions = [];
-        this.positions.push(this.clefPosition - differenceIndex);
 
-        console.log('H:' + this._showHighNote);
-        if (this._showHighNote) {
-            this.positions.push(this.positions[0] + this.data.getLetters().length);
+        console.log(this.position);
+
+        if (this.position == 1 || this.position == 0) {
+            this.positions.push(firstPosition);
+        }
+
+        if (this.position == 2 || this.position == 0) {
+            this.positions.push(firstPosition + this.data.getLetters().length);
         }
 
         if (this._note.accidental < 0) {
