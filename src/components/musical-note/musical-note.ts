@@ -20,14 +20,20 @@ export class MusicalNote {
 
     notes:Array<number> = [];
 
+    _showHighNote:Boolean = false;
+
     @Input('note')
     set note(note:Note) {
         this._note = note;
     }
+    @Input('showHighNote')
+    set showHighNote(show:Boolean) {
+        this._showHighNote = show;
+    }
 
     constructor(public data:DataProvider) { }
 
-    ngOnInit() {
+    ngDoCheck() {
         let clefIndex:number = 0;
         let noteIndex:number = 0;
 
@@ -43,8 +49,13 @@ export class MusicalNote {
 
         let differenceIndex:number = clefIndex - noteIndex;
         
+        this.notes = [];
         this.notes.push(this.clefPosition - differenceIndex);
-        this.notes.push(this.notes[0] + this.data.getLetters().length);
+
+        console.log('H:' + this._showHighNote);
+        if (this._showHighNote) {
+            this.notes.push(this.notes[0] + this.data.getLetters().length);
+        }
 
         if (this._note.accidental < 0) {
             this.accidental = 'flat';

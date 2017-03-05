@@ -13,6 +13,6 @@
 
 <ion-content>
     <div class="notes">
-        <note-card *ngFor="let note of notes" [note]="note"></note-card>
+        <note-card *ngFor="let note of notes" [note]="note" [showHighNote]="config.notes.list_high_note"></note-card>
     </div>
 </ion-content>

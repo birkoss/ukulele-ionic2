@@ -26,6 +26,7 @@ export class NotesListPage {
 
     generateList() {
         console.log(this.config.notes);
+        this.notes = [];
         this.notes = this.data.getNotes().filter(note => {
             if (!this.config.notes['list_flat'] && note.accidental < 0) { return false; }
             if (!this.config.notes['list_sharp'] && note.accidental > 0) { return false; }

@@ -1,9 +1,7 @@
 Chord in DataProvider
 =====================
 
-* Add remaining Notes (LA SI) with direction down
-
-* See how to specify alternate name
+* Chords - See how to specify alternate name
 
 * Remove the method in the Component and generate variable (to optimise)
 
@@ -12,3 +10,5 @@ Chord in DataProvider
 * See if String is an existing ionic/angular classes (and rename it if it is)
 
 * Quiz - Configuration: Add the possibility to include/exclude direction UP or DOWN
+
+* Notes - Add other clef (and options to change it)

@@ -28,9 +28,9 @@ musical-note {
 
         g.note {
 
-            $lines: -40px 25px;
+            $lines: 0px -40px 25px;
             @each $line in $lines {
-                $l: index($lines, $line);
+                $l: index($lines, $line) - 1;
 
                 $positions: 40px 30px 13px 0px -13px -28px -42px -57px -70px -86px -100px -114px -128px -142px;
                 @each $position in $positions {

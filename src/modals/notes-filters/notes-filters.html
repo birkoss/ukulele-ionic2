@@ -12,6 +12,14 @@
 <ion-content padding>
 
     <ion-list>
+        <ion-item-divider>Afficher la note plus haute dans la portée</ion-item-divider>
+        <ion-item>
+            <ion-label>Afficher</ion-label>
+            <ion-checkbox [(ngModel)]="config.notes.list_high_note" (click)="onChanged()"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
         <ion-item-divider>Inclure</ion-item-divider>
         <ion-item>
             <ion-label>Bémol</ion-label>

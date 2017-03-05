@@ -15,12 +15,17 @@ export class NoteCard {
     private noteDirection:string;
 
     private _note:Note;
+    private _showHighNote;
 
 	@Input('note')
     set note(note:Note) {
         this._note = note;
     }
     @Input('direction') set direction(direction:string) { this.noteDirection = direction; }
+    @Input('showHighNote')
+    set showHighNote(show:Boolean) {
+        this._showHighNote = show;
+    }
 
     @Output('onItemChanged') onItemChanged:EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
