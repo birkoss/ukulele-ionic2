@@ -3,7 +3,16 @@ musical-note {
         width: 100%;
         height: auto;
 
-        g#treble-clef { transform: translate(6px, 0); }
+        g#g-clef,
+        g#c-clef,
+        g#f-clef {
+            display: none;
+
+            &.active {
+                display: inline;
+            }
+        }
+        g#g-clef { transform: translate(6px, 0); }
 
         g.ledger,
         g.sharp,

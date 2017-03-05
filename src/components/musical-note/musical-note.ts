@@ -12,8 +12,8 @@ export class MusicalNote {
     _note:Note;
     _direction:string;
 
-    clef:string = "G";
-    clefPosition:number = 5;
+    clef:string = "C";
+    clefPositions:Object = {"G": 5, "F":6, "C":7};
 
     line:number = 0;
     accidental:string = "";
@@ -48,18 +48,20 @@ export class MusicalNote {
         }
 
         let differenceIndex:number = clefIndex - noteIndex;
-        let firstPosition:number = this.clefPosition - differenceIndex;
-        
-        this.positions = [];
+        let firstPosition:number = this.clefPositions[this.clef] - differenceIndex;
+        let secondPosition:number = firstPosition + this.data.getLetters().length;
+        if (secondPosition > (this.data.getLetters().length * 2)) {
+            secondPosition -= (this.data.getLetters().length * 2);
+        }
 
-        console.log(this.position);
+        this.positions = [];
 
         if (this.position == 1 || this.position == 0) {
             this.positions.push(firstPosition);
         }
 
         if (this.position == 2 || this.position == 0) {
-            this.positions.push(firstPosition + this.data.getLetters().length);
+            this.positions.push(secondPosition);
         }
 
         if (this._note.accidental < 0) {
