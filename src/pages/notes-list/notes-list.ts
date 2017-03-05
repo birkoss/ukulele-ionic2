@@ -40,7 +40,7 @@ export class NotesListPage {
     }
 
     showPopup(event) {
-        let popover = this.popoverCtrl.create(GeneralPopover);
+        let popover = this.popoverCtrl.create(GeneralPopover, {parent:this});
         popover.present({
             ev: event
         });
