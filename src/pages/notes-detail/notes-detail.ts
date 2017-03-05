@@ -24,7 +24,7 @@ export class NotesDetailPage {
     hasScrolled:Boolean = false;
 
     clefs:Array<Note> = [];
-    currentClef:string = "G";
+    currentClef:string = "F";
 
     positions:Array<number> = [1, 2];
 
@@ -33,10 +33,11 @@ export class NotesDetailPage {
     }
 
     ionViewDidEnter() {
-        this.clefs = this.data.getNotes().filter(note => {
-                return (note.letter['name'] == 'G' && note.accidental == 0);
-        });
-
+        this.clefs = [];
+        this.clefs.push(this.data.getNote("G"));
+        this.clefs.push(this.data.getNote("C"));
+        this.clefs.push(this.data.getNote("F"));
+        this.currentClef = "G";
     }
 
     public showPopup(event, type:string) {
@@ -61,6 +62,7 @@ export class NotesDetailPage {
     }
 
     onFilterChanged(element) {
+        console.log('OnFilerChanged...');
         this.currentClef = element.value;
     }
 }

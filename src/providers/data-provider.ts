@@ -73,9 +73,10 @@ export class DataProvider {
         return this.notes;
     }
 
-    public getNote(name:string, direction:string = ""):Note {
+    /* @TODO: Type the accidental variable */
+    public getNote(name:string, accidental = 0):Note {
         for (let i=0; i<this.notes.length; i++) {
-            if (this.notes[i].name == name && (direction == "" || this.notes[i].direction == direction)) {
+            if (this.notes[i].letter['name'] == name && this.notes[i].accidental == accidental) {
                 return this.notes[i];
             }
         }

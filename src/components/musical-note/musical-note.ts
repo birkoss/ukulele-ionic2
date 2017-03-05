@@ -12,7 +12,7 @@ export class MusicalNote {
     _note:Note;
     _direction:string;
 
-    clef:string = "C";
+    _clef:string = "G";
     clefPositions:Object = {"G": 5, "F":6, "C":7};
 
     line:number = 0;
@@ -30,6 +30,10 @@ export class MusicalNote {
     set singlePosition(position:number) {
         this.position = position;
     }
+    @Input("clef")
+    set clef(clef:string) {
+        this._clef = clef;
+    }
 
     constructor(public data:DataProvider) { }
 
@@ -39,7 +43,7 @@ export class MusicalNote {
 
         let letters:Array<Object> = this.data.getLetters();
         for (let i:number=0; i<letters.length; i++) {
-            if (letters[i]['name'] == this.clef) {
+            if (letters[i]['name'] == this._clef) {
                 clefIndex = i;
             }
             if (letters[i]['name'] == this._note.letter['name']) {
@@ -48,7 +52,7 @@ export class MusicalNote {
         }
 
         let differenceIndex:number = clefIndex - noteIndex;
-        let firstPosition:number = this.clefPositions[this.clef] - differenceIndex;
+        let firstPosition:number = this.clefPositions[this._clef] - differenceIndex;
         let secondPosition:number = firstPosition + this.data.getLetters().length;
         if (secondPosition > (this.data.getLetters().length * 2)) {
             secondPosition -= (this.data.getLetters().length * 2);

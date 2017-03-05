@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content>
-
+    
     <ion-segment [ngModel]="currentClef">
         <ion-segment-button *ngFor="let clef of clefs" [value]="clef.letter.name" (ionSelect)="onFilterChanged($event)">Clef de <note-name [note]="clef" [french]="config.general.letter_in_french"></note-name></ion-segment-button>
     </ion-segment>
 
     <ion-card id="position_{{i}}" *ngFor="let p of positions; let i = index;">
         <ion-card-content>
-            <musical-note [note]="note" [singlePosition]="p"></musical-note>
+            <musical-note [note]="note" [singlePosition]="p" [clef]="currentClef"></musical-note>
         </ion-card-content>
         <div class="buttons">
             <button ion-button icon-left (click)="favorite(i)">
