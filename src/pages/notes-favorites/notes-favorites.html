@@ -11,11 +11,11 @@
 </ion-header>
 
 <ion-content>
-    <div class="notes" *ngIf="favorites.length > 0">
-        <note-card *ngFor="let favorite of favorites" [note]="favorite.note" [direction]="favorite.direction" (onItemChanged)="generateList()"></note-card>
+    <div class="notes" *ngIf="notes.length > 0">
+        <note-card *ngFor="let favorite of notes" [note]="favorite.note" [singlePosition]="favorite.position" [clef]="favorite.clef" (onItemChanged)="generateList()"></note-card>
     </div>
 
-    <div class="label-container" *ngIf="favorites.length == 0">
+    <div class="label-container" *ngIf="notes.length == 0">
         <p>Aucune note n'est pas les favoris!</p> 
     </div>
 </ion-content>

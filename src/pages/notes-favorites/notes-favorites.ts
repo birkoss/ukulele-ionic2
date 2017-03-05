@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, PopoverController } from 'ionic-angular';
 
-import { ChordsDetailPage } from '../chords-detail/chords-detail';
+import { NotesDetailPage } from '../notes-detail/notes-detail';
 
 import { GeneralPopover } from '../../popovers/general/general';
 
@@ -10,17 +10,14 @@ import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
-import { Chord } from '../../classes/chord';
-import { Position } from '../../classes/Position';
-
 @Component({
     selector: 'notes-favorites',
     templateUrl: 'notes-favorites.html'
 })
 export class NotesFavoritesPage {
-    favorites:Array<Object> = [];
+    notes:Array<Object> = [];
 
-    constructor(public navCtrl: NavController, public dataProvider: DataProvider, private config: ConfigProvider, public popoverCtrl: PopoverController, private favoritesService:FavoritesProvider) { }
+    constructor(public navCtrl:NavController, public data:DataProvider, private config:ConfigProvider, public popoverCtrl:PopoverController, private favorites:FavoritesProvider) { }
 
     ionViewDidEnter() {
         this.generateList();
@@ -34,10 +31,18 @@ export class NotesFavoritesPage {
     }
 
     public generateList() {
-        //this.favorites = this.favoritesService.all('notes');
+        this.notes = [];
+
+        this.favorites.all('notes').forEach(favorite => {
+            this.notes.push({
+                'note':this.data.getNote(favorite['letter'], favorite['accidental']),
+                'position':favorite['position'],
+                'clef':favorite['clef']
+            });
+        });
     }
 
     public showDetail(chord:Object): void {
-        this.navCtrl.push(ChordsDetailPage, {note: chord['note'], type:chord['type'], 'position':chord['position']});
+        this.navCtrl.push(NotesDetailPage, {note: chord['note'], type:chord['type'], 'position':chord['position']});
     }
 }
