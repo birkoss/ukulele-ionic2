@@ -11,6 +11,14 @@
 
 <ion-content padding>
 
+    <ion-list radio-group [(ngModel)]="config.notes.list_clef">
+        <ion-item-divider>Afficher les notes sur la clef suivante</ion-item-divider>
+        <ion-item *ngFor="let clef of clefs">
+            <ion-label>Clef de <note-name [note]="clef" [french]="config.general.letter_in_french"></note-name></ion-label>
+            <ion-radio [value]="clef.letter.name" (click)="onChanged()"></ion-radio>
+        </ion-item>
+    </ion-list>
+
     <ion-list>
         <ion-item-divider>Afficher la note plus haute dans la portée</ion-item-divider>
         <ion-item>

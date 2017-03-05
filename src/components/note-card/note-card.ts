@@ -17,6 +17,8 @@ export class NoteCard {
     private _note:Note;
     private _singlePosition;
 
+    private _clef:string = "G";
+
 	@Input('note')
     set note(note:Note) {
         this._note = note;
@@ -25,6 +27,10 @@ export class NoteCard {
     @Input('singlePosition')
     set singlePosition(show:Boolean) {
         this._singlePosition = show;
+    }
+    @Input('clef')
+    set clef(clef:string) {
+        this._clef = clef;
     }
 
     @Output('onButtonClicked') onButtonClicked:EventEmitter<Note> = new EventEmitter<Note>();
