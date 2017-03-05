@@ -5,7 +5,7 @@ musical-note {
 
         g#treble-clef { transform: translate(6px, 0); }
 
-        g.stroke,
+        g.ledger,
         g.sharp,
         g.flat,
         g.under {
@@ -45,7 +45,7 @@ musical-note {
             }
 
             &.line-1 {
-                g.stroke { display: inline; }
+                g.ledger { display: inline; }
                 g.down { display: none; }
             }
 
@@ -95,7 +95,7 @@ musical-note {
 
             &.line-13 {
                 g.up { display: none; }
-                g.stroke { display: inline; }
+                g.ledger { display: inline; }
             }
 
             &.line-14 {
