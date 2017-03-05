@@ -26,7 +26,7 @@ export class NotesDetailPage {
     clefs:Array<Note> = [];
     currentClef:string = "F";
 
-    positions:Array<number> = [1, 2];
+    positions:Array<Object>;
 
     constructor(public navCtrl:NavController, public navParams:NavParams, public config:ConfigProvider, public data:DataProvider, public popoverCtrl:PopoverController, public favorites:FavoritesProvider) {
         this.note = navParams.get('note');
@@ -38,6 +38,17 @@ export class NotesDetailPage {
         this.clefs.push(this.data.getNote("C"));
         this.clefs.push(this.data.getNote("F"));
         this.currentClef = "G";
+        this.generateList();
+    }
+
+    generateList() {
+        this.positions = [];
+        for (let i=1; i<=2; i++) {
+            this.positions.push({
+                'position':i,
+                'isFavorited':this.favorites.exists(this.toFavorite(i), 'notes')
+            });
+        }
     }
 
     public showPopup(event, type:string) {
@@ -47,10 +58,24 @@ export class NotesDetailPage {
         });
     }
 
-    public favorite(index:number):void {
-        //this.chord.positions[index].isFavorited = !this.chord.positions[index].isFavorited;
+    favorite(position:number) {
+        if (this.favorites.exists(this.toFavorite(position), 'notes')) {
+            this.favorites.remove(this.toFavorite(position), 'notes');
+        } else {
+            this.favorites.add(this.toFavorite(position), 'notes');
+        }
 
-        //this.dataProvider.save();
+        this.generateList();
+    }
+
+    toFavorite(position:number):Object {
+        let favorite:Object = {
+            'letter':this.note.letter['name'],
+            'accidental':this.note.accidental,
+            'clef':this.currentClef,
+            'position':position
+        };
+        return favorite;
     }
 
     scrollToElement(id) { 
@@ -62,7 +87,7 @@ export class NotesDetailPage {
     }
 
     onFilterChanged(element) {
-        console.log('OnFilerChanged...');
         this.currentClef = element.value;
+        this.generateList();
     }
 }

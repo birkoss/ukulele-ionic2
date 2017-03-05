@@ -15,12 +15,11 @@
 
     <ion-card id="position_{{i}}" *ngFor="let p of positions; let i = index;">
         <ion-card-content>
-            <musical-note [note]="note" [singlePosition]="p" [clef]="currentClef"></musical-note>
+            <musical-note [note]="note" [singlePosition]="p.position" [clef]="currentClef"></musical-note>
         </ion-card-content>
         <div class="buttons">
-            <button ion-button icon-left (click)="favorite(i)">
-                <ion-icon name="star" item-left></ion-icon> Ajouter
-            </button>
+            <button *ngIf="!p.isFavorited" ion-button icon-left (click)="favorite(p.position)"><ion-icon name="star" item-left></ion-icon> Ajouter</button>
+            <button *ngIf="p.isFavorited" ion-button icon-left (click)="favorite(p.position)"><ion-icon name="star" item-left></ion-icon> Remove</button>
         </div>
     </ion-card>
 

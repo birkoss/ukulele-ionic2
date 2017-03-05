@@ -21,8 +21,8 @@ export class FavoritesProvider {
             this.favorites = {'chords':[], 'notes':[]};
             if (data != null) {
                 console.log('FP.loaded...');
-                console.log(data);
                 this.favorites = Object.assign(this.favorites, JSON.parse(data));
+                console.log(this.favorites);
             }
             Promise.resolve(true);
         });
@@ -34,19 +34,20 @@ export class FavoritesProvider {
         return this.favorites[type];
     }
 
-    public save(favorites:Object):void {
-        this.favorites = favorites;
+    /* @TODO remove the unused param */
+    public save(favorites:Object = null) {
         this.storage.set('favorites', JSON.stringify(this.favorites));
     }
 
-    public add(favorite:Object, type:string = "chords"): void {
+    public add(favorite:Object, type:string = "chords") {
         if (!this.exists(favorite, type)) {
             this.favorites[type].push(favorite);
-            //this.save();
+            console.log(this.favorites);
+            this.save();
         }
     }
 
-    public getIndex(favorite:Object, type:string = "chords"): number {
+    public getIndex(favorite:Object, type:string = "chords"):number {
         for (let i:number=0; i<this.favorites[type].length; i++) {
             // @todo: Better object comparaison
             if (JSON.stringify(this.favorites[type][i]) == JSON.stringify(favorite)) {
@@ -56,13 +57,20 @@ export class FavoritesProvider {
         return -1;
     }
 
-    public exists(favorite:Object, type:string = "chords"): Boolean {
+    public exists(favorite:Object, type:string = "chords"):Boolean {
         return (this.getIndex(favorite, type) >= 0);
     }
 
-    public remove(index:number, type:string = "chords"): void {
+    public remove(favorite:Object, type:string = "chords") {
+        let index:number = this.getIndex(favorite, type);
+        if (index >= 0) {
+            this.removeAt(index, type);
+        }
+    }
+
+    public removeAt(index:number, type:string = "chords") {
         this.favorites[type].splice(index, 1);
-        //this.save();
+        this.save();
     }
 
 }
