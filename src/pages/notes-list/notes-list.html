@@ -13,6 +13,6 @@
 
 <ion-content>
     <div class="notes">
-        <note-card *ngFor="let note of notes" [note]="note" [showHighNote]="config.notes.list_high_note" (onButtonClicked)="onCardClicked($event)"></note-card>
+        <note-card *ngFor="let note of notes" [note]="note" [singlePosition]="config.notes.list_high_note ? '0' : '1'" (onButtonClicked)="onCardClicked($event)"></note-card>
     </div>
 </ion-content>

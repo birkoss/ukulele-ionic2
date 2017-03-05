@@ -28,7 +28,7 @@ musical-note {
 
         g.note {
 
-            $lines: 0px -40px 25px;
+            $lines: -20px -40px 25px;
             @each $line in $lines {
                 $l: index($lines, $line) - 1;
 

@@ -18,7 +18,6 @@ export class MusicalNote {
     line:number = 0;
     accidental:string = "";
 
-    _showHighNote:Boolean = false;
     position:number = 0;
 
     positions:Array<number> = [];
@@ -26,10 +25,6 @@ export class MusicalNote {
     @Input('note')
     set note(note:Note) {
         this._note = note;
-    }
-    @Input('showHighNote')
-    set showHighNote(show:Boolean) {
-        this._showHighNote = show;
     }
     @Input('singlePosition')
     set singlePosition(position:number) {

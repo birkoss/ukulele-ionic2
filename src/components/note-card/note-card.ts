@@ -15,16 +15,16 @@ export class NoteCard {
     private noteDirection:string;
 
     private _note:Note;
-    private _showHighNote;
+    private _singlePosition;
 
 	@Input('note')
     set note(note:Note) {
         this._note = note;
     }
     @Input('direction') set direction(direction:string) { this.noteDirection = direction; }
-    @Input('showHighNote')
-    set showHighNote(show:Boolean) {
-        this._showHighNote = show;
+    @Input('singlePosition')
+    set singlePosition(show:Boolean) {
+        this._singlePosition = show;
     }
 
     @Output('onButtonClicked') onButtonClicked:EventEmitter<Note> = new EventEmitter<Note>();
