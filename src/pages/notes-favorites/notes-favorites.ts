@@ -42,7 +42,8 @@ export class NotesFavoritesPage {
         });
     }
 
-    public showDetail(chord:Object): void {
-        this.navCtrl.push(NotesDetailPage, {note: chord['note'], type:chord['type'], 'position':chord['position']});
+    public onCardClicked(element) {
+        console.log(element);
+        this.navCtrl.push(NotesDetailPage, {note:element['note'], clef:element['clef'], position:element['position']});
     }
 }

@@ -11,11 +11,9 @@ import { Note } from '../../classes/note';
 })
 
 export class NoteCard {
-    private noteName:string;
-    private noteDirection:string;
 
     private _note:Note;
-    private _singlePosition;
+    private _singlePosition:number;
 
     private _clef:string = "G";
 
@@ -23,9 +21,8 @@ export class NoteCard {
     set note(note:Note) {
         this._note = note;
     }
-    @Input('direction') set direction(direction:string) { this.noteDirection = direction; }
     @Input('singlePosition')
-    set singlePosition(show:Boolean) {
+    set singlePosition(show:number) {
         this._singlePosition = show;
     }
     @Input('clef')
@@ -33,11 +30,11 @@ export class NoteCard {
         this._clef = clef;
     }
 
-    @Output('onButtonClicked') onButtonClicked:EventEmitter<Note> = new EventEmitter<Note>();
+    @Output('onButtonClicked') onButtonClicked:EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(private dataProvider:DataProvider, private config:ConfigProvider) { }
 
     public showDetail():void {
-        this.onButtonClicked.emit(this._note);
+        this.onButtonClicked.emit({'note':this._note, 'clef':this._clef, 'position':this._singlePosition});
     }
 }

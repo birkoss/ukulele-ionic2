@@ -38,8 +38,7 @@ export class NotesListPage {
     }
 
     onCardClicked(element) {
-        this.navCtrl.push(NotesDetailPage, {note:element});
-        console.log(element);
+        this.navCtrl.push(NotesDetailPage, {note:element['note']});
     }
 
     showModal(event) {
