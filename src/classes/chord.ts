@@ -1,16 +1,16 @@
 import { Note } from './note';
-import { Position, String } from './position';
+import { Position } from './position';
 
 export class Chord {
     positions: Array<Position> = [];
 
-    constructor(public note:Note, public family:Object, public type:Object) { }
+    constructor(public note:Note, public form:Object) { }
 
-    public addPosition(position:Position):void {
+    addPosition(position:Position) {
         this.positions.push(position);
     }
 
-    public init():void {
+    init() {
         for (let i:number=0; i<this.positions.length; i++) {
             this.positions[i].init();
         }

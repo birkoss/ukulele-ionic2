@@ -29,7 +29,7 @@ export class ChordCard {
 	@Input('type')
     set type(type: string) {
         console.log('set type...');
-        this._type = this.dataProvider.getType(type, this.familyName);
+        //this._type = this.dataProvider.getType(type, this.familyName);
     }
 	@Input('position')
     set position(position: number) {

@@ -9,10 +9,6 @@ import { FavoritesProvider } from './favorites-provider';
 import { Chord } from '../classes/chord';
 import { String } from '../classes/string';
 import { Note } from '../classes/note';
-/* DEPRECATED */
-import { Family } from '../classes/family';
-/* DEPRECATED */
-import { Type } from '../classes/type';
 import { Position } from '../classes/position';
 
 @Injectable()
@@ -20,8 +16,7 @@ export class DataProvider {
     private letters:Array<Object> = [];
     private notes: Array<Note> = [];
     private clefs:Array<Note> = [];
-    private families: Array<Object> = [];
-    private _types: Array<Object> = [];
+    private forms:Array<Object> = [];
     private chords: Array<Chord> = [];
     private scales:Array<Object> = [];
 
@@ -55,15 +50,6 @@ export class DataProvider {
         */
     }
 
-    getFamily(name:string):Object {
-        for (let i=0; i<this.families.length; i++) {
-            if (this.families[i]['name'] == name) {
-                return this.families[i];
-            }
-        }
-        return null;
-    }
-
     getScales():Array<Object> {
         return this.scales;
     }
@@ -80,8 +66,7 @@ export class DataProvider {
         return this.clefs;
     }
 
-    /* @TODO: Type the accidental variable */
-    getNote(name:string, accidental = 0):Note {
+    getNote(name:string, accidental:number = 0):Note {
         for (let i=0; i<this.notes.length; i++) {
             if (this.notes[i].letter['name'] == name && this.notes[i].accidental == accidental) {
                 return this.notes[i];
@@ -95,19 +80,10 @@ export class DataProvider {
         return this.notes[index];
     }
 
-    getType(type:string, family:string = "Triad"):Object {
-        for (let i=0; i<this._types.length; i++) {
-            if (this._types[i]['name'] == type && this._types[i]['family']['name'] == family) {
-                return this._types[i];
-            }
-        }
-        return null;
-    }
-
     getChords(type:string = "", note:string = ""):Array<Chord> {
         return this.chords.filter((chord) => {
-            if (type != "" && chord.type['name'] != type) { return false; }
-            if (note != "" && chord.note.name != note) { return false; }
+            //if (type != "" && chord.type['name'] != type) { return false; }
+            //if (note != "" && chord.note.name != note) { return false; }
             return true;
         });
     }
@@ -120,8 +96,14 @@ export class DataProvider {
         return this.getChord(note, type).positions[position]; 
     }
 
-    get types():Array<Object> {
-        return this._types;
+    getForms():Array<Object> {
+        return this.forms;
+    }
+
+    getForm(type:string, quality:string):Object {
+        return this.getForms().filter(form => {
+            return (form['type'] == type && form['quality'] == quality);
+        });
     }
 
     /* Private */
@@ -150,42 +132,21 @@ export class DataProvider {
             this.scales.push(json['scales'][i]); 
         }
 
-        /* Save families */
-        for (let i=0; i<json['families'].length; i++) {
-            this.families.push(json['families'][i]); 
+        /* Save forms */
+        for (let i=0; i<json['forms'].length; i++) {
+            this.forms.push(json['forms'][i]); 
         }
-
-        for (let i=0; i<json['types'].length; i++) {
-            let single_type:Object = json['types'][i];
-            single_type['family'] = this.getFamily(single_type['family']);
-            this._types.push(single_type);
-        }
-
-        /* Build the notes array used to build the scale */
-        let scale_notes:Array<string> = [];
-        let last_note:string = "";
-        for (let i=0; i<this.notes.length; i++) {
-            let note:string = this.notes[i].name;
-            if (note[1] == "♯") {
-                last_note = note;
-            } else if (note[1] == "♭") {
-                if (last_note == "") {
-                    continue;
-                }
-                note = last_note + "/" + note;
-                last_note = "";
-            }
-            /* Stop after the first duplicate */
-            if (scale_notes.length > 1 && note == scale_notes[0]) { break; }
-            /* Add the note if it's not a sharp note */
-            if (last_note == "") { scale_notes.push(note); }
-        }
-
-        /* Double the notes array to make sure we can build our scale correctly */
-        scale_notes = scale_notes.concat(scale_notes);
 
         /* Generate all the chords */
         for (var i=0; i<json['chords'].length; i++) {
+            let accidental:number = 0;
+            if (json['chords'][i]['note'].substr(1) == '♭') {
+                accidental = -0.5;
+            } else if (json['chords'][i]['note'].substr(1) == '♯') {
+                accidental = 0.5;
+            }
+            let letterName:string = json['chords'][i]['note'].substr(0, 1);
+            let chord:Chord = new Chord(this.getNote(letterName, accidental), this.getForm(json['chords'][i]['type'], json['chords'][i]['quality']));
             //let chord = new Chord(this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
 
             console.log('MUST RE-ENABLE PARSEJSON....');
@@ -205,7 +166,7 @@ export class DataProvider {
             position.addString(this.getNote('E'));
             position.addString(this.getNote('A'));
 
-            position.isFavorited = this.favoritesProvider.exists({'note':chord.note.name, 'type':chord.type['name'], 'position':i}, 'chords');
+            //position.isFavorited = this.favoritesProvider.exists({'note':chord.note.name, 'type':chord.type['name'], 'position':i}, 'chords');
 
             for (let frets in positions[i]) {
                 var s:string = frets.substr(0, 1);
