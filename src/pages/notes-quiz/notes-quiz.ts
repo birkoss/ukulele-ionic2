@@ -44,7 +44,6 @@ export class NotesQuizPage {
         this.goodAnswer = 0;
         this.generateList();
         this.questionIndex = 0;
-        this.shuffle(this.questions);
 
         this.isPlaying = true;
         this.pickNote();
@@ -84,7 +83,7 @@ export class NotesQuizPage {
             }
         });
 
-        console.log(this.questions);
+        this.shuffle(this.questions);
     }
 
     private hasFavorited(clef:Note, note:Note, position:number):Boolean {
