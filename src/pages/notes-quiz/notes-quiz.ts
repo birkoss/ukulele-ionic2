@@ -17,18 +17,16 @@ import { Note } from '../../classes/note';
     templateUrl: 'notes-quiz.html'
 })
 export class NotesQuizPage {
-    noteIndex:number = 0;
+    questionIndex:number = 0;
     questions:Array<Object> = [];
+    current_question:Object;
 
     isPlaying:Boolean = false;
     isDone:Boolean = false;
     isWaiting:Boolean = true;
 
-    current_question:Object;
-
-    goodAnswer:number;
-
     answers:Array<Note> = [];
+    goodAnswer:number;
     wrongAnswers:Array<number> = [];
 
     constructor(public navCtrl:NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) { }
@@ -45,7 +43,7 @@ export class NotesQuizPage {
     private startQuiz():void {
         this.goodAnswer = 0;
         this.generateList();
-        this.noteIndex = 0;
+        this.questionIndex = 0;
         this.shuffle(this.questions);
 
         this.isPlaying = true;
@@ -100,10 +98,10 @@ export class NotesQuizPage {
         if (this.isLastQuestion()) {
             this.isDone = true;
         } else {
-            this.current_question = this.questions[this.noteIndex];
+            this.current_question = this.questions[this.questionIndex];
             this.isWaiting = true;
 
-            this.noteIndex++;
+            this.questionIndex++;
 
             this.answers.push(this.current_question['note']);
             /* @todo Better finding the answers without looping 10 times: Build a pre-generated array first */
@@ -131,7 +129,7 @@ export class NotesQuizPage {
     }
 
     public isLastQuestion():Boolean {
-        return (this.noteIndex >= this.questions.length);
+        return (this.questionIndex >= this.questions.length);
     }
 
     public tryAnswer(index:number):void {

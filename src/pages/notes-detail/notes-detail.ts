@@ -37,7 +37,7 @@ export class NotesDetailPage {
         this.clefs.push(this.data.getNote("G"));
         this.clefs.push(this.data.getNote("C"));
         this.clefs.push(this.data.getNote("F"));
-        this.currentClef = "G";
+        this.currentClef = this.config.notes['list_clef'];
         if (this.params.get('clef')) {
             this.currentClef = this.params.get('clef');
         }
