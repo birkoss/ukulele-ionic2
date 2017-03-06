@@ -5,7 +5,7 @@
       </ion-buttons>
       <ion-title>Quiz</ion-title>
       <ion-buttons end *ngIf="isPlaying && !isDone">
-          <button ion-button icon-only (click)="showPopup($event, 'options')"><ion-icon name="settings"></ion-icon></button>
+          <button ion-button icon-only (click)="showPopup($event)"><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -14,19 +14,19 @@
 
     <div class="intro" *ngIf="!isPlaying">
         <ion-row>
-            <button (click)="startQuiz()" [disabled]="getNotes().length == 0" ion-button>Commencer</button>
+            <button (click)="startQuiz()" [disabled]="notes.length == 0" ion-button>Commencer</button>
         </ion-row>
         <ion-row>
             <button (click)="showConfiguration()" ion-button clear>Configuration</button>
         </ion-row>
         <ion-row>
-            {{getNotes().length}} notes
+            {{notes.length}} notes
         </ion-row>
     </div>
 
     <div *ngIf="isPlaying && !isDone">
         <h1>Quelle est cette note ?</h1>
-        <musical-note [note]="current_note"></musical-note>
+        <musical-note [note]="current_note.note"></musical-note>
         <div class="buttons" *ngIf="isWaiting">
             <button *ngFor="let answer of answers; let i = index" ion-button (click)="tryAnswer(i)" [disabled]="wrongAnswers.indexOf(i) >= 0"><note-name [note]="answer" [french]="config.ChordsOptions.show_note_in_french"></note-name></button>
         </div>

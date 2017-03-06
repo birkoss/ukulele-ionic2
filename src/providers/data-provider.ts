@@ -17,6 +17,7 @@ import { Position } from '../classes/position';
 export class DataProvider {
     private letters:Array<Object> = [];
     private notes: Array<Note> = [];
+    private clefs:Array<Note> = [];
     private families: Array<Family> = [];
     private _types: Array<Type> = [];
     private chords: Array<Chord> = [];
@@ -71,6 +72,10 @@ export class DataProvider {
 
     public getNotes():Array<Note> {
         return this.notes;
+    }
+
+    public getClefs():Array<Note> {
+        return this.clefs;
     }
 
     /* @TODO: Type the accidental variable */
@@ -131,7 +136,11 @@ export class DataProvider {
             if (letter['step']['up'] == 1) { this.notes.push(new Note(letter, 0.5)); }
         });
 
-        //for (let i=0; i<this.getLe
+        /* Generate clefs */
+        this.clefs = [];
+        this.clefs.push(this.getNote('G'));
+        this.clefs.push(this.getNote('C'));
+        this.clefs.push(this.getNote('F'));
 
         for (let i=0; i<json['scales'].length; i++) {
             this.scales.push(json['scales'][i]); 

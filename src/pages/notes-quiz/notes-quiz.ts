@@ -6,8 +6,7 @@ import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
-import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
-import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
+import { GeneralPopover } from '../../popovers/general/general';
 
 import { NotesQuizModal } from '../../modals/notes-quiz/notes-quiz'
 
@@ -19,20 +18,24 @@ import { Note } from '../../classes/note';
 })
 export class NotesQuizPage {
     noteIndex:number = 0;
-    notes:Array<Note> = [];
+    notes:Array<Object> = [];
 
     isPlaying:Boolean = false;
     isDone:Boolean = false;
     isWaiting:Boolean = true;
 
-    current_note:Note;
+    current_note:Object;
 
     goodAnswer:number;
 
     answers:Array<Note> = [];
     wrongAnswers:Array<number> = [];
 
-    constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) { }
+    constructor(public navCtrl:NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) { }
+
+    ionViewWillEnter() {
+        this.generateList();
+    }
 
     public reset():void {
         this.isDone = false;
@@ -41,7 +44,7 @@ export class NotesQuizPage {
 
     private startQuiz():void {
         this.goodAnswer = 0;
-        this.notes = this.getNotes();
+        this.generateList();
         this.noteIndex = 0;
         this.shuffle(this.notes);
 
@@ -49,27 +52,41 @@ export class NotesQuizPage {
         this.pickNote();
     }
 
-    private getNotes():Array<Note> {
-        return this.data.getNotes().filter(item => {
+    private generateList() {
+        this.notes = [];
 
-            if (!this.config.NotesFilters['quiz_use_flat'] && item.name.substr(1) == '♭') { return false; }
+        this.data.getClefs().forEach(clef => {
+            if (this.config.isEmpty(this.config.notes['quiz_clefs']) || this.config.notes['quiz_clefs'][clef.letter['name']]) {
+                this.data.getNotes().forEach(note => {
+                    let n:Object = {
+                        clef:clef,
+                        note:note
+                    };
 
-            if (!this.config.NotesFilters['quiz_use_sharp'] && item.name.substr(1) == '♯') { return false; }
+                    if (!this.config.notes['quiz_flat'] && note.accidental < 0) { n = null; }
 
-            if (this.favorites.all().length > 0) {
-                if (this.config.NotesFilters['quiz_use_favorites']) {
-                    return this.hasFavorited(item.name, item.direction);
-                }
+                    if (!this.config.notes['quiz_sharp'] && note.accidental > 0) { n = null; }
+
+                    if (this.favorites.all('notes').length > 0) {
+                        if (this.config.notes['quiz_favorites']) {
+                            if (!this.hasFavorited(clef, note)) {
+                                n = null;
+                            }
+                        }
+                    }
+
+                    if (n != null) {
+                        this.notes.push(n);
+                    }
+                });
             }
-            
-            return true;
         });
     }
 
-    private hasFavorited(noteName:string, direction:string):Boolean {
+    private hasFavorited(clef:Note, note:Note):Boolean {
         let favorited:Boolean = false;
-        this.favorites.all('notes').filter(item => {
-            if (item['note'] == noteName && item['direction'] == direction) {
+        this.favorites.all('notes').filter(favorite => {
+            if (favorite['letter'] == note.letter['name'] && favorite['accidental'] == note.accidental && favorite['clef'] == clef.letter['name']) {
                 favorited = true;
             }
         });
@@ -88,23 +105,23 @@ export class NotesQuizPage {
 
             this.noteIndex++;
 
-            this.answers.push(this.current_note);
+            this.answers.push(this.current_note['note']);
             /* @todo Better finding the answers without looping 10 times: Build a pre-generated array first */
             while (this.answers.length < 5) {
                 let note:Note = this.data.pickNote();
 
-                let unique:Boolean = false;
+                let exists:Boolean = false;
                 this.answers.forEach(answer => {
-                    if (note.name == answer.name) {
-                        unique = true;
+                    if (note.letter['name'] == answer.letter['name'] && note.accidental == answer.accidental) {
+                        exists = true;
                     }
                 });
-                if (unique) {
+                if (exists) {
                     continue;
                 }
 
-                if (!this.config.NotesFilters['quiz_use_flat'] && note.name.substr(1) == '♭') { continue; }
-                if (!this.config.NotesFilters['quiz_use_sharp'] && note.name.substr(1) == '♯') { continue; }
+                if (!this.config.notes['quiz_flat'] && note.accidental < 0) { continue; }
+                if (!this.config.notes['quiz_sharp'] && note.accidental > 0) { continue; }
 
                 this.answers.push(note);
             }
@@ -118,7 +135,7 @@ export class NotesQuizPage {
     }
 
     public tryAnswer(index:number):void {
-        if (this.current_note.name == this.answers[index].name) {
+        if (this.current_note['note'].letter['name'] == this.answers[index].letter['name'] && this.current_note['note'].accidental == this.answers[index].accidental) {
             if (this.wrongAnswers.length == 0) {
                 this.goodAnswer++;
             }
@@ -147,15 +164,15 @@ export class NotesQuizPage {
         }
     }
 
-    public showPopup(event, type:string) {
-        let popover = this.popoverCtrl.create((type == 'filters' ? ChordsFiltersPopover : ChordsOptionsPopover));
+    public showPopup(event) {
+        let popover = this.popoverCtrl.create(GeneralPopover);
         popover.present({
             ev: event
         });
     }
 
     public showConfiguration() {
-        let modal = this.modalCtrl.create(NotesQuizModal);
+        let modal = this.modalCtrl.create(NotesQuizModal, {parent:this});
         modal.present();
     }
 

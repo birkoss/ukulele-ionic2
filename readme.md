@@ -9,6 +9,10 @@ Chord in DataProvider
 
 * See if String is an existing ionic/angular classes (and rename it if it is)
 
-* Quiz - Configuration: Add the possibility to include/exclude direction UP or DOWN
+* Remove all clefs generation and use data.getClefs
 
-* Notes - Add other clef (and options to change it)
+* Quiz - When in favorites, only use the correct position (like the favorited)
+
+* Quiz - Use the position
+
+* Quiz - Allow to choose which position to use

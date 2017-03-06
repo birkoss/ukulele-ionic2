@@ -24,21 +24,33 @@ export class NotesDetailPage {
     hasScrolled:Boolean = false;
 
     clefs:Array<Note> = [];
-    currentClef:string = "F";
+    currentClef:string = "";
 
     positions:Array<Object>;
 
-    constructor(public navCtrl:NavController, public navParams:NavParams, public config:ConfigProvider, public data:DataProvider, public popoverCtrl:PopoverController, public favorites:FavoritesProvider) {
-        this.note = navParams.get('note');
+    constructor(public navCtrl:NavController, public params:NavParams, public config:ConfigProvider, public data:DataProvider, public popoverCtrl:PopoverController, public favorites:FavoritesProvider) {
+        this.note = params.get('note');
     }
 
-    ionViewDidEnter() {
+    ionViewWillEnter() {
         this.clefs = [];
         this.clefs.push(this.data.getNote("G"));
         this.clefs.push(this.data.getNote("C"));
         this.clefs.push(this.data.getNote("F"));
         this.currentClef = "G";
+        if (this.params.get('clef')) {
+            this.currentClef = this.params.get('clef');
+        }
         this.generateList();
+    }
+    ionViewDidEnter() {
+        if (this.params.get('position') && this.params.get('position') > 1) {
+            this.scrollToElement('position_' + this.params.get('position'));
+        }
+    }
+
+    onPageDidEnter() {
+        console.log('onPageDidEnter()');
     }
 
     generateList() {
@@ -79,8 +91,11 @@ export class NotesDetailPage {
     }
 
     scrollToElement(id) { 
+        console.log('SCROLL!!!' + id);
         let el = document.getElementById(id);
+            console.log(el);
         if (el != undefined) {
+            console.log(el);
             var rect = el.getBoundingClientRect();
             this.content.scrollTo(0, rect.top);
         }

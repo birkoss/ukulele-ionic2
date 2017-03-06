@@ -57,7 +57,8 @@ export class MyApp {
             this.favorites.load().then(result => {
                 this.data.load().then(result => {
                     this.config.load().then(result => {
-                        this.rootPage = NotesTabs;
+                        //this.rootPage = NotesTabs;
+                        this.rootPage = NotesQuizPage;
                     });
                 });
             });
