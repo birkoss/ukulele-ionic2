@@ -18,3 +18,5 @@ Chord in DataProvider
 * Quiz - Allow to choose which position to use
 
 * Quiz - When not using positions, no NOT repeat the question (if 1 AND 2 are favorited)
+
+* Notes list - When changing clef, use that clef as the default segment in the notes detail
