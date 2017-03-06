@@ -27,15 +27,14 @@ export class DataProvider {
 
     /* Public */
 
-    public load():Promise<Boolean> {
+    load():Promise<Boolean> {
         return this.http.get('assets/json/data.json').toPromise().then(res => {
             this.parseJSON(res.json()[0]);
             return Promise.resolve(true);
         });
     }
 
-    public save():void {
-        console.log('dp.save');
+    save() {
         let favorites:Object = {'notes':[], 'chords':[]};
         for (let i=0; i<this.notes.length; i++) {
             if (this.notes[i].isFavorited) {
@@ -49,11 +48,10 @@ export class DataProvider {
                 }
             }
         }
-        console.log(favorites);
         this.favoritesProvider.save(favorites);
     }
 
-    public getFamily(name:string) : Family {
+    getFamily(name:string):Family {
         for (let i=0; i<this.families.length; i++) {
             if (this.families[i].name == name) {
                 return this.families[i];
@@ -62,24 +60,24 @@ export class DataProvider {
         return null;
     }
 
-    public getScales():Array<Object> {
+    getScales():Array<Object> {
         return this.scales;
     }
 
-    public getLetters():Array<Object> {
+    getLetters():Array<Object> {
         return this.letters;
     }
 
-    public getNotes():Array<Note> {
+    getNotes():Array<Note> {
         return this.notes;
     }
 
-    public getClefs():Array<Note> {
+    getClefs():Array<Note> {
         return this.clefs;
     }
 
     /* @TODO: Type the accidental variable */
-    public getNote(name:string, accidental = 0):Note {
+    getNote(name:string, accidental = 0):Note {
         for (let i=0; i<this.notes.length; i++) {
             if (this.notes[i].letter['name'] == name && this.notes[i].accidental == accidental) {
                 return this.notes[i];
@@ -88,12 +86,12 @@ export class DataProvider {
         return null;
     }
 
-    public pickNote():Note {
+    pickNote():Note {
         let index:number = this.random(0, this.notes.length - 1);
         return this.notes[index];
     }
 
-    public getType(type:string, family:string = "Triad") : Type {
+    getType(type:string, family:string = "Triad"):Type {
         for (let i=0; i<this._types.length; i++) {
             if (this._types[i].name == type && this._types[i].family.name == family) {
                 return this._types[i];
@@ -102,7 +100,7 @@ export class DataProvider {
         return null;
     }
 
-    public getChords(type:string = "", note:string = "") : Array<Chord> {
+    getChords(type:string = "", note:string = ""):Array<Chord> {
         return this.chords.filter((chord) => {
             if (type != "" && chord.type.name != type) { return false; }
             if (note != "" && chord.note.name != note) { return false; }
@@ -110,21 +108,21 @@ export class DataProvider {
         });
     }
 
-    public getChord(note:string, type:string): Chord {
+    getChord(note:string, type:string):Chord {
         return this.getChords(type, note)[0];
     }
 
-    public getPosition(note:string, type:string, position:number): Position {
+    getPosition(note:string, type:string, position:number):Position {
         return this.getChord(note, type).positions[position]; 
     }
 
-    public get types(): Array<Type> {
+    get types():Array<Type> {
         return this._types;
     }
 
     /* Private */
 
-    private parseJSON(json:Array<any>) : void {
+    private parseJSON(json:Array<any>) {
         for (let i=0; i<json['letters'].length; i++) {
             this.letters.push(json['letters'][i]); 
         }
@@ -190,7 +188,7 @@ export class DataProvider {
         }
     }
 
-    private buildPositions(chord:Chord, positions:any, notes:Array<string>):void {
+    private buildPositions(chord:Chord, positions:any, notes:Array<string>) {
         for (let i:number=0; i<positions.length; i++) {
             let position:Position = new Position();
             position.addString(this.getNote('G'));

@@ -4,14 +4,11 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ConfigProvider {
-    configs: Object = {};
+    private configs: Object = {};
 
     constructor(public storage: Storage) { }
 
-    /* Private */
-
-    public load() {
-        console.log('ConfigProvider.init()');
+    load() {
         this.configs['general'] = {'letter_in_french':false};
 
         this.configs['chords'] = {};
@@ -23,58 +20,16 @@ export class ConfigProvider {
 
         return this.storage.get('config').then(data => {
             if (data != null) {
-                console.log(data);
                 this.configs = Object.assign(this.configs, JSON.parse(data));
             }
         });
     }
 
-    /* Public */
-
-    public save(): void {
-        console.log('ConfigProvider.save()');
+    save() {
         this.storage.set('config', JSON.stringify(this.configs));
     }
 
-    /* Getter/Setter */
-
-    public get general():Object {
-        return this.configs['general'];
-    }
-
-    public get scales():Object {
-        return this.configs['scales'];
-    }
-
-    public get notes():Object {
-        return this.configs['notes'];
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public get ChordsFilters(): Object {
-        return this.configs['chords']['filters'];
-    }
-
-    public get ChordsOptions(): Object {
-        return this.configs['chords']['options'];
-    }
-
-    public get NotesFilters(): Object {
-        return this.configs['notes']['filters'];
-    }
-
-    public isEmpty(options:Object):Boolean {
+    isEmpty(options:Object):Boolean {
         let isEmpty:Boolean = true;
 
         Object.keys(options).forEach(key => {
@@ -85,5 +40,22 @@ export class ConfigProvider {
 
         return isEmpty;
     }
-}
 
+    /* Getter/Setter */
+
+    get general():Object { return this.configs['general']; }
+
+    get scales():Object { return this.configs['scales']; }
+
+    get notes():Object { return this.configs['notes']; }
+
+    /* DEPRECATED */
+
+    get ChordsFilters():Object {
+        return this.configs['chords']['filters'];
+    }
+
+    get ChordsOptions():Object {
+        return this.configs['chords']['options'];
+    }
+}
