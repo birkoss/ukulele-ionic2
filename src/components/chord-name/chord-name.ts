@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { Note } from '../../classes/note';
-import { Type } from '../../classes/type';
 
 @Component({
     selector: 'chord-name',
@@ -14,10 +13,10 @@ export class ChordName {
     @Input() french: Boolean;
 
     @Input()
-    set type(type:Type) {
+    set type(type:Object) {
         this._name = "";
-        if (type.suffix != undefined) {
-            this._name = " " + type.suffix;
+        if (type['suffix'] != undefined) {
+            this._name = " " + type['suffix'];
         }
     }
 

@@ -10,7 +10,6 @@ import { DetailOptionsPopover } from '../../popovers/detail-options/detail-optio
 
 import { Chord } from '../../classes/chord';
 import { Note } from '../../classes/note';
-import { Type } from '../../classes/type';
 
 @Component({
     selector: "chords-detail",
@@ -21,7 +20,7 @@ export class ChordsDetailPage {
     @ViewChild(Content) content: Content;
 
     note: Note;
-    type: Type;
+    type:Object;
     position: number = 0;
     chord: Chord;
     hasScrolled:Boolean = false;
@@ -37,7 +36,7 @@ export class ChordsDetailPage {
     }
 
     ionViewDidEnter() {
-        this.chord = this.dataProvider.getChord(this.note.name, this.type.name);
+        this.chord = this.dataProvider.getChord(this.note.name, this.type['name']);
         if (this.position > 0 && !this.hasScrolled) {
             this.scrollToElement('position_' + this.position);
         }

@@ -21,6 +21,7 @@ import { Position } from '../../classes/position';
     templateUrl: 'chords-quiz.html'
 })
 export class ChordsQuizPage {
+    /*
     chordIndex:number = 0;
     chords:Array<Chord> = [];
 
@@ -40,10 +41,12 @@ export class ChordsQuizPage {
     constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) {
         console.log('ChordsQuizPage()');
     }
+*/
 
     ionViewWillEnter() {
         console.log('ionViewDidEnter()');
         /* Pick all chord type if no quiz options exists */
+        /*
         if (Object.keys(this.config.ChordsFilters['quiz_chord_types']).length == 0) {
             console.log("Not options...");
             console.log(this.config.ChordsFilters['quiz_chord_types']);
@@ -52,7 +55,9 @@ export class ChordsQuizPage {
             }
             this.config.save();
         }
+        */
     }
+    /*
 
     public reset():void {
         this.isDone = false;
@@ -183,5 +188,7 @@ export class ChordsQuizPage {
         let modal = this.modalCtrl.create(ChordsQuizModal);
         modal.present();
     }
+    */
+    
 
 }
