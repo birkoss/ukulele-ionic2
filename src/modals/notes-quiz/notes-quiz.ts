@@ -22,10 +22,7 @@ export class NotesQuizModal {
     }
 
     ionViewWillEnter() {
-        this.clefs = [];
-        this.clefs.push(this.data.getNote('G'));
-        this.clefs.push(this.data.getNote('C'));
-        this.clefs.push(this.data.getNote('F'));
+        this.clefs = this.data.getClefs();
     }
 
     close() {

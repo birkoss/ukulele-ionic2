@@ -9,8 +9,6 @@ Chord in DataProvider
 
 * See if String is an existing ionic/angular classes (and rename it if it is)
 
-* Remove all clefs generation and use data.getClefs
-
-* Quiz - Allow to choose which position to use
+* Quiz -Allow to choose which position to use
 
 * See why Object.assign is overwritting the main attributes (config['aaa']['bbb'] with config['aaa']['ccc'] will be ['aaa']['ccc'] instead of ['aaa']['ccc'] AND ['aaa']['bbb'])
