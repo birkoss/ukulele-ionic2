@@ -58,7 +58,8 @@ export class NotesQuizPage {
                 this.data.getNotes().forEach(note => {
                     let n:Object = {
                         clef:clef,
-                        note:note
+                        note:note,
+                        position:0
                     };
 
                     if (!this.config.notes['quiz_flat'] && note.accidental < 0) { n = null; }
@@ -66,15 +67,19 @@ export class NotesQuizPage {
                     if (!this.config.notes['quiz_sharp'] && note.accidental > 0) { n = null; }
 
                     if (this.favorites.all('notes').length > 0) {
-                        if (this.config.notes['quiz_favorites']) {
-                            if (!this.hasFavorited(clef, note)) {
-                                n = null;
+                        for (let position:number=1; position<=2; position++) {
+                            if (this.config.notes['quiz_favorites']) {
+                                if (this.hasFavorited(clef, note, position)) {
+                                    let f:Object = Object.assign({}, n);
+                                    f['position'] = position;
+                                    this.questions.push(f);
+                                }
                             }
                         }
-                    }
-
-                    if (n != null) {
-                        this.questions.push(n);
+                    } else {
+                        if (n != null) {
+                            this.questions.push(n);
+                        }
                     }
                 });
             }
@@ -83,10 +88,10 @@ export class NotesQuizPage {
         console.log(this.questions);
     }
 
-    private hasFavorited(clef:Note, note:Note):Boolean {
+    private hasFavorited(clef:Note, note:Note, position:number):Boolean {
         let favorited:Boolean = false;
         this.favorites.all('notes').filter(favorite => {
-            if (favorite['letter'] == note.letter['name'] && favorite['accidental'] == note.accidental && favorite['clef'] == clef.letter['name']) {
+            if (favorite['letter'] == note.letter['name'] && favorite['accidental'] == note.accidental && favorite['clef'] == clef.letter['name'] && favorite['position'] == position) {
                 favorited = true;
             }
         });
