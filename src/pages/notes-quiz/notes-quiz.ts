@@ -79,6 +79,8 @@ export class NotesQuizPage {
                 });
             }
         });
+
+        console.log(this.questions);
     }
 
     private hasFavorited(clef:Note, note:Note):Boolean {
