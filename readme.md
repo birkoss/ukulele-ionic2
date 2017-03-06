@@ -16,3 +16,5 @@ Chord in DataProvider
 * Quiz - Use the position
 
 * Quiz - Allow to choose which position to use
+
+* Quiz - When not using positions, no NOT repeat the question (if 1 AND 2 are favorited)

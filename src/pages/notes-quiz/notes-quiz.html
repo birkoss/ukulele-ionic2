@@ -14,19 +14,19 @@
 
     <div class="intro" *ngIf="!isPlaying">
         <ion-row>
-            <button (click)="startQuiz()" [disabled]="notes.length == 0" ion-button>Commencer</button>
+            <button (click)="startQuiz()" [disabled]="questions.length == 0" ion-button>Commencer</button>
         </ion-row>
         <ion-row>
             <button (click)="showConfiguration()" ion-button clear>Configuration</button>
         </ion-row>
         <ion-row>
-            {{notes.length}} notes
+            {{questions.length}} notes
         </ion-row>
     </div>
 
     <div *ngIf="isPlaying && !isDone">
         <h1>Quelle est cette note ?</h1>
-        <musical-note [note]="current_note.note"></musical-note>
+        <musical-note [note]="current_question.note"></musical-note>
         <div class="buttons" *ngIf="isWaiting">
             <button *ngFor="let answer of answers; let i = index" ion-button (click)="tryAnswer(i)" [disabled]="wrongAnswers.indexOf(i) >= 0"><note-name [note]="answer" [french]="config.ChordsOptions.show_note_in_french"></note-name></button>
         </div>
@@ -40,7 +40,7 @@
 
         <h2>{{goodAnswer}}</h2>
         <h2 class="divider">sur</h2>
-        <h2>{{notes.length}}</h2>
+        <h2>{{questions.length}}</h2>
 
         <div class="buttons">
             <button ion-button (click)="reset()">OK</button>

@@ -18,13 +18,13 @@ import { Note } from '../../classes/note';
 })
 export class NotesQuizPage {
     noteIndex:number = 0;
-    notes:Array<Object> = [];
+    questions:Array<Object> = [];
 
     isPlaying:Boolean = false;
     isDone:Boolean = false;
     isWaiting:Boolean = true;
 
-    current_note:Object;
+    current_question:Object;
 
     goodAnswer:number;
 
@@ -46,14 +46,14 @@ export class NotesQuizPage {
         this.goodAnswer = 0;
         this.generateList();
         this.noteIndex = 0;
-        this.shuffle(this.notes);
+        this.shuffle(this.questions);
 
         this.isPlaying = true;
         this.pickNote();
     }
 
     private generateList() {
-        this.notes = [];
+        this.questions = [];
 
         this.data.getClefs().forEach(clef => {
             if (this.config.isEmpty(this.config.notes['quiz_clefs']) || this.config.notes['quiz_clefs'][clef.letter['name']]) {
@@ -76,7 +76,7 @@ export class NotesQuizPage {
                     }
 
                     if (n != null) {
-                        this.notes.push(n);
+                        this.questions.push(n);
                     }
                 });
             }
@@ -100,12 +100,12 @@ export class NotesQuizPage {
         if (this.isLastQuestion()) {
             this.isDone = true;
         } else {
-            this.current_note = this.notes[this.noteIndex];
+            this.current_question = this.questions[this.noteIndex];
             this.isWaiting = true;
 
             this.noteIndex++;
 
-            this.answers.push(this.current_note['note']);
+            this.answers.push(this.current_question['note']);
             /* @todo Better finding the answers without looping 10 times: Build a pre-generated array first */
             while (this.answers.length < 5) {
                 let note:Note = this.data.pickNote();
@@ -131,11 +131,11 @@ export class NotesQuizPage {
     }
 
     public isLastQuestion():Boolean {
-        return (this.noteIndex >= this.notes.length);
+        return (this.noteIndex >= this.questions.length);
     }
 
     public tryAnswer(index:number):void {
-        if (this.current_note['note'].letter['name'] == this.answers[index].letter['name'] && this.current_note['note'].accidental == this.answers[index].accidental) {
+        if (this.current_question['note'].letter['name'] == this.answers[index].letter['name'] && this.current_question['note'].accidental == this.answers[index].accidental) {
             if (this.wrongAnswers.length == 0) {
                 this.goodAnswer++;
             }
