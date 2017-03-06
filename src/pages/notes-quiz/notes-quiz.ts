@@ -66,17 +66,16 @@ export class NotesQuizPage {
 
                     if (!this.config.notes['quiz_sharp'] && note.accidental > 0) { n = null; }
 
-                    if (this.favorites.all('notes').length > 0) {
+                    if (this.favorites.all('notes').length > 0 && this.config.notes['quiz_favorites']) {
                         for (let position:number=1; position<=2; position++) {
-                            if (this.config.notes['quiz_favorites']) {
-                                if (this.hasFavorited(clef, note, position)) {
-                                    let f:Object = Object.assign({}, n);
-                                    f['position'] = position;
-                                    this.questions.push(f);
-                                }
+                            if (this.hasFavorited(clef, note, position)) {
+                                let f:Object = Object.assign({}, n);
+                                f['position'] = position;
+                                this.questions.push(f);
                             }
                         }
-                    } else {
+                    }
+                    else {
                         if (n != null) {
                             this.questions.push(n);
                         }
