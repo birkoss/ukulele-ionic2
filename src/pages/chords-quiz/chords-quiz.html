@@ -14,13 +14,13 @@
 
     <div class="intro" *ngIf="!isPlaying">
         <ion-row>
-            <button (click)="startQuiz()" [disabled]="getChords().length == 0" ion-button>Commencer</button>
+            <button (click)="startQuiz()" [disabled]="questions.length == 0" ion-button>Commencer</button>
         </ion-row>
         <ion-row>
             <button (click)="showConfiguration()" ion-button clear>Configuration</button>
         </ion-row>
         <ion-row>
-            {{getChords().length}} accords
+            {{questions.length}} accords
         </ion-row>
     </div>
 

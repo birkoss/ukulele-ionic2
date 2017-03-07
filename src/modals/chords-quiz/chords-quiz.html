@@ -5,7 +5,7 @@
         </ion-title>
         <ion-buttons start>
             <button ion-button (click)="close()">
-                <ion-icon name="close" showWhen="android,windows"></ion-icon>
+                <ion-icon name="arrow-back" showWhen="android,windows"></ion-icon>
             </button>
         </ion-buttons>
     </ion-toolbar>
@@ -15,10 +15,9 @@
 
     <ion-list>
         <ion-item-divider>Choisir les types disponibles</ion-item-divider>
-        <ion-item *ngFor="let type of data.types">
-            {{type.name}}
-            <ion-label>{{type.name}}</ion-label>
-            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_chord_types[type.name]" (ionChange)="onFilterChanged($event, type.name)"></ion-toggle>
+        <ion-item *ngFor="let type of forms">
+            <ion-label>{{type.type}} {{type.quality}}</ion-label>
+            <ion-checkbox [(ngModel)]="config.chords.quiz_forms[type.type+'-'+type.quality]" (ionChange)="onFilterChanged($event)"></ion-checkbox>
         </ion-item>
     </ion-list>
 
@@ -26,7 +25,7 @@
         <ion-item-divider>Favoris</ion-item-divider>
         <ion-item>
             <ion-label>Seulement utiliser ces accords</ion-label>
-            <ion-toggle value="exclude" [(ngModel)]="config.ChordsFilters.quiz_use_favorites" [disabled]="this.favorites.all().length == 0" (ionChange)="onFilterChanged($event)"></ion-toggle>
+            <ion-toggle value="exclude" [(ngModel)]="config.chords.quiz_favorites" [disabled]="this.favorites.all('chords').length == 0" (ionChange)="onFilterChanged($event)"></ion-toggle>
         </ion-item>
     </ion-list>
 
@@ -34,7 +33,7 @@
         <ion-item-divider>Bémol</ion-item-divider>
         <ion-item>
             <ion-label>Inclure</ion-label>
-            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_use_flat" (ionChange)="onFilterChanged()"></ion-toggle>
+            <ion-toggle [(ngModel)]="config.chords.quiz_flat" (ionChange)="onFilterChanged()"></ion-toggle>
         </ion-item>
     </ion-list>
 
@@ -42,7 +41,7 @@
         <ion-item-divider>Dièse</ion-item-divider>
         <ion-item>
             <ion-label>Inclure</ion-label>
-            <ion-toggle [(ngModel)]="config.ChordsFilters.quiz_use_sharp" (ionChange)="onFilterChanged()"></ion-toggle>
+            <ion-toggle [(ngModel)]="config.chords.quiz_sharp" (ionChange)="onFilterChanged()"></ion-toggle>
         </ion-item>
     </ion-list>
 

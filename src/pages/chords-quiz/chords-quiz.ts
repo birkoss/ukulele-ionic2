@@ -21,30 +21,40 @@ import { Position } from '../../classes/position';
     templateUrl: 'chords-quiz.html'
 })
 export class ChordsQuizPage {
-    /*
-    chordIndex:number = 0;
-    chords:Array<Chord> = [];
+    questions:Array<Object> = [];
+    questionIndex:number = 0;
+    current_question:Object;
 
     isPlaying:Boolean = false;
     isDone:Boolean = false;
     isWaiting:Boolean = true;
 
-    current_chord:Chord;
-    current_note:Note;
-    current_type:Type;
     start:number = 1;
     labels:Array<number> = [];
     position:Position;
 
     goodAnswer:number;
 
-    constructor(public navCtrl: NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) {
-        console.log('ChordsQuizPage()');
+    constructor(public navCtrl:NavController, public config:ConfigProvider, public data:DataProvider, public alertCtrl:AlertController, public popoverCtrl:PopoverController, public modalCtrl:ModalController, public favorites:FavoritesProvider) {
     }
-*/
 
     ionViewWillEnter() {
-        console.log('ionViewDidEnter()');
+        this.generateList();
+    }
+
+
+    generateList() {
+        this.questions = [];
+
+        this.data.getChords().forEach(chord => {
+
+        });
+    }
+
+    public showConfiguration() {
+        let modal = this.modalCtrl.create(ChordsQuizModal, {parent:this});
+        modal.present();
+    }
         /* Pick all chord type if no quiz options exists */
         /*
         if (Object.keys(this.config.ChordsFilters['quiz_chord_types']).length == 0) {
@@ -56,7 +66,6 @@ export class ChordsQuizPage {
             this.config.save();
         }
         */
-    }
     /*
 
     public reset():void {
@@ -184,10 +193,6 @@ export class ChordsQuizPage {
         });
     }
 
-    public showConfiguration() {
-        let modal = this.modalCtrl.create(ChordsQuizModal);
-        modal.present();
-    }
     */
     
 
