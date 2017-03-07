@@ -10,27 +10,27 @@
 <ion-content>
     <div class="chords">
 
-        <ion-card id="position_{{i}}" *ngFor="let position of chord.positions; let i = index;">
+        <ion-card id="position_{{i}}" *ngFor="let p of positions; let i = index;">
             <ion-card-content>
-                <chord-position [position]="position"></chord-position>
+                <chord-position [position]="p.position"></chord-position>
             </ion-card-content>
                 <ion-card-header>Position</ion-card-header>
                 <ion-row class="strings-container">
-                    <ion-col *ngFor="let s of position.strings">
+                    <ion-col *ngFor="let s of p.position.strings">
                         {{s.fret}}
                     </ion-col>
                 </ion-row>
                 <ion-card-header>Notes</ion-card-header>
                 <ion-row class="strings-container">
-                    <ion-col *ngFor="let s of position.strings">
+                    <ion-col *ngFor="let s of p.position.strings">
                         <note-name *ngIf="s.finger >= 0" [note]="s.note" [french]="config.general.letter_in_french"></note-name>
                     </ion-col>
                 </ion-row>
             <div class="buttons">
-                <button *ngIf="!position.isFavorited" ion-button icon-left (click)="favorite(i)">
+                <button *ngIf="!p.isFavorited" ion-button icon-left (click)="favorite(i)">
                     <ion-icon name="star" item-left></ion-icon> Ajouter
                 </button>
-                <button *ngIf="position.isFavorited" ion-button icon-left (click)="favorite(i)">
+                <button *ngIf="p.isFavorited" ion-button icon-left (click)="favorite(i)">
                     <ion-icon name="star" item-left></ion-icon> Enlever
                 </button>
             </div>

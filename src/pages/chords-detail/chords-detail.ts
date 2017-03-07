@@ -21,7 +21,7 @@ export class ChordsDetailPage {
     @ViewChild(Content) content: Content;
 
     chord:Chord;
-    positions:Array<Position> = [];
+    positions:Array<Object> = [];
     hasScrolled:Boolean = false;
 
     constructor(public navCtrl:NavController, public params:NavParams, public config:ConfigProvider, public data:DataProvider, public popoverCtrl:PopoverController, public favorites:FavoritesProvider) {
@@ -31,12 +31,18 @@ export class ChordsDetailPage {
     }
 
     ionViewDidEnter() {
-        /*
-        this.chord = this.data.getChord(this.note.name, this.type['name']);
-        if (this.position > 0 && !this.hasScrolled) {
-            this.scrollToElement('position_' + this.position);
-        }
-        */
+        this.generateList();
+    }
+
+    generateList() {
+        this.positions = [];
+
+        this.chord.positions.forEach((position,index) => {
+            this.positions.push({
+                position:position,
+                isFavorited:this.favorites.exists(this.toFavorite(index), 'chords')
+            });
+        });
     }
 
     public showPopup(event, type:string) {
@@ -46,10 +52,27 @@ export class ChordsDetailPage {
         });
     }
 
-    public favorite(index:number):void {
-        //this.chord.positions[index].isFavorited = !this.chord.positions[index].isFavorited;
+    favorite(index:number) {
+        let favorite:Object = this.toFavorite(index);
 
-        //this.dataProvider.save();
+        if (this.favorites.exists(favorite, 'chords')) {
+            this.favorites.remove(favorite, 'chords');
+        } else {
+            this.favorites.add(favorite, 'chords');
+        }
+
+        this.generateList();
+    }
+
+    toFavorite(position:number):Object {
+        let favorite:Object = {
+            'letter':this.chord.note.letter['name'],
+            'accidental':this.chord.note.accidental,
+            'type':this.chord.form['type'],
+            'quality':this.chord.form['quality'],
+            'position':position
+        };
+        return favorite;
     }
 
     scrollToElement(id) { 
@@ -58,10 +81,5 @@ export class ChordsDetailPage {
             var rect = el.getBoundingClientRect();
             this.content.scrollTo(0, rect.top);
         }
-    }
-
-    public getStrings():Array<any> {
-        return [];
-        //return this.chord.positions[0].strings;
     }
 }
