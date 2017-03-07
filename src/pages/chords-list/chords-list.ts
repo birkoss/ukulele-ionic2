@@ -26,10 +26,6 @@ export class ChordsListPage {
         this.generateList();
     }
 
-    getFirstPosition(chord:Chord) {
-        return chord.positions[0];
-    }
-
     showPopup(event) {
         let popover = this.popoverCtrl.create(GeneralPopover);
         popover.present({
@@ -42,12 +38,18 @@ export class ChordsListPage {
     }
 
     generateList() {
+        this.chords = [];
+
         this.data.getChords().forEach(chord => {
-            this.chords.push({
-                note: chord.note,
-                form: chord.form,
-                position: chord.positions[0]
-            });
+            if (this.config.isEmpty(this.config.chords['list_forms']) || this.config.chords['list_forms'][chord.form['type']+'-'+chord.form['quality']]) {
+                if (this.config.isEmpty(this.config.chords['list_notes']) || this.config.chords['list_notes'][chord.note.toString()]) {
+                    this.chords.push({
+                        note: chord.note,
+                        form: chord.form,
+                        position: chord.positions[0]
+                    });
+                }
+            }
         });
     }
 
