@@ -13,6 +13,6 @@
 
 <ion-content>
     <div class="chords">
-        <chord-card *ngFor="let chord of getChords()" [note]="chord.note.name" [type]="chord.type.name" [family]="chord.family.name" position="0" (onDetailClicked)="showDetail($event)"></chord-card>
+        <chord-card *ngFor="let chord of chords" [chord]="chord" position="0" (onDetailClicked)="showDetail($event)"></chord-card>
     </div>
 </ion-content>

@@ -5,6 +5,7 @@ import { DataProvider } from '../../providers/data-provider';
 
 import { Note } from '../../classes/note';
 import { Position } from '../../classes/position';
+import { Chord } from '../../classes/chord';
 
 @Component({
     selector: 'chord-card',
@@ -12,12 +13,17 @@ import { Position } from '../../classes/position';
 })
 
 export class ChordCard {
+    private _chord:Chord;
     private _note: Note;
     private _type:Object;
     private familyName:string;
     private _position: Position;
     private _positionIndex: number;
 
+    @Input('chord')
+    set chord(chord:Chord) {
+        this._chord = chord;
+    }
 	@Input('note')
     set note(note: string) {
         this._note = this.dataProvider.getNote(note); 
@@ -34,7 +40,7 @@ export class ChordCard {
 	@Input('position')
     set position(position: number) {
         this._positionIndex = position;
-        this._position = this.dataProvider.getPosition(this._note.name, this._type['name'], position);
+        //this._position = this.dataProvider.getPosition(this._note.name, this._type['name'], position);
     }
 
     @Output() onDetailClicked: EventEmitter<Object> = new EventEmitter<Object>();

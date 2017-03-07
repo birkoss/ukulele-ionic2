@@ -79,18 +79,14 @@ export class DataProvider {
         return this.notes[index];
     }
 
-    getChords(type:string = "", note:string = ""):Array<Chord> {
-        return this.chords.filter((chord) => {
-            //if (type != "" && chord.type['name'] != type) { return false; }
-            //if (note != "" && chord.note.name != note) { return false; }
-            return true;
-        });
+    getChords():Array<Chord> {
+        return this.chords;
     }
 
-    getChord(note:string, type:string):Chord {
-        return this.getChords(type, note)[0];
+    getChord(a, b, c = null):Chord
+    {
+        return this.chords[0];
     }
-
     getPosition(note:string, type:string, position:number):Position {
         return this.getChord(note, type).positions[position]; 
     }
@@ -183,8 +179,6 @@ export class DataProvider {
             for (let frets in positions[i]) {
                 var s:string = frets.substr(0, 1);
                 var fret:number = parseInt(frets.substr(1));
-
-                console.log(s + " -> " + fret + " = " + positions[i][frets]);
 
                 let started:Boolean = false;
                 let currentNote:Note = null;

@@ -5,7 +5,7 @@ import { NavController, PopoverController } from 'ionic-angular';
 import { ChordsDetailPage } from '../chords-detail/chords-detail';
 
 import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
-import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
+import { GeneralPopover } from '../../popovers/general/general';
 
 import { DataProvider } from '../../providers/data-provider';
 import { ConfigProvider } from '../../providers/config-provider';
@@ -18,19 +18,21 @@ import { Position } from '../../classes/Position';
   templateUrl: 'chords-list.html',
 })
 export class ChordsListPage {
+    chords:Array<Chord> = [];
 
-    constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private dataProvider: DataProvider, private config: ConfigProvider) { }
+    constructor(public navCtrl:NavController, public popoverCtrl:PopoverController, public data:DataProvider, public config:ConfigProvider) { }
 
-    public getChords() : Array<Chord> {
-        return this.dataProvider.getChords(this.config.ChordsFilters['list_chord_type']);
+    ionViewWillEnter() {
+        this.generateList();
+        console.log(this.chords);
     }
 
     public getFirstPosition(chord:Chord) {
         return chord.positions[0];
     }
 
-    public showPopup(event, type:string) {
-        let popover = this.popoverCtrl.create((type == 'filters' ? ChordsFiltersPopover : ChordsOptionsPopover));
+    showPopup(event) {
+        let popover = this.popoverCtrl.create(GeneralPopover);
         popover.present({
             ev: event
         });
@@ -38,5 +40,9 @@ export class ChordsListPage {
 
     public showDetail(chord:Object): void {
         this.navCtrl.push(ChordsDetailPage, {note: chord['note'], type:chord['type']});
+    }
+
+    generateList() {
+        this.chords = this.data.getChords();
     }
 }
