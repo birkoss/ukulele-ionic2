@@ -9,10 +9,4 @@ export class Chord {
     addPosition(position:Position) {
         this.positions.push(position);
     }
-
-    init() {
-        for (let i:number=0; i<this.positions.length; i++) {
-            this.positions[i].init();
-        }
-    }
 }

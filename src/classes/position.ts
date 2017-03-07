@@ -22,6 +22,8 @@ export class Position {
                 s['finger'] = finger;
             }
         });
+
+        this.init();
     }
 
     init() {
