@@ -5,10 +5,16 @@ export class Note {
 
     isFavorited:Boolean = false;
 
+    alternate:Note;
+
     constructor(public letter:Object, public accidental:number) { }
 
     toFavorite() {
         return "DEPRECATED";
+    }
+
+    setAlternate(note:Note) {
+        this.alternate = note;
     }
 
     toString(inFrench:Boolean = false) {

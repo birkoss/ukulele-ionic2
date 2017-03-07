@@ -1,8 +1,6 @@
 Chord in DataProvider
 =====================
 
-* Chords - See how to specify alternate name
-
 * Remove the method in the Component and generate variable (to optimise)
 
 * Fix the chord-name when they are in English, to remove the space "A m" to "Am"

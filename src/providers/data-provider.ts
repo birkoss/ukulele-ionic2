@@ -7,7 +7,6 @@ import 'rxjs/add/operator/toPromise';
 import { FavoritesProvider } from './favorites-provider';
 
 import { Chord } from '../classes/chord';
-import { String } from '../classes/string';
 import { Note } from '../classes/note';
 import { Position } from '../classes/position';
 
@@ -116,9 +115,28 @@ export class DataProvider {
 
         /* Generate notes from the letters */
         this.letters.forEach(letter => {
-            if (letter['step']['down'] == 1) { this.notes.push(new Note(letter, -0.5)); }
+            if (letter['step']['down'] == 1) {
+                this.notes.push(new Note(letter, -0.5));
+            }
             this.notes.push(new Note(letter, 0));
             if (letter['step']['up'] == 1) { this.notes.push(new Note(letter, 0.5)); }
+        });
+
+        /* Generate alternate name for the notes */
+        this.notes.forEach(note => {
+            if (note.accidental < 0) {
+                let letterName:string = String.fromCharCode(note.letter['name'].charCodeAt(0) - 1);
+                if (letterName == '@') {
+                    letterName = 'G';
+                }
+                note.setAlternate(this.getNote(letterName, 0.5));
+            } else if (note.accidental > 0) {
+                let letterName:string = String.fromCharCode(note.letter['name'].charCodeAt(0) + 1);
+                if (letterName == 'H') {
+                    letterName = 'A';
+                }
+                note.setAlternate(this.getNote(letterName, -0.5));
+            }
         });
 
         /* Generate clefs */
@@ -154,7 +172,7 @@ export class DataProvider {
 
             //chord.init();
 
-            //this.chords.push(chord);
+            this.chords.push(chord);
         }
     }
 
