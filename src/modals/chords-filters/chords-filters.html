@@ -11,31 +11,25 @@
 
 <ion-content padding>
 
-    <ion-list radio-group [(ngModel)]="config.notes.list_clef">
-        <ion-item-divider>Afficher les notes sur la clef suivante</ion-item-divider>
-        <ion-item *ngFor="let clef of clefs">
-            <ion-label>Clef de <note-name [note]="clef" [french]="config.general.letter_in_french"></note-name></ion-label>
-            <ion-radio [value]="clef.letter.name" (click)="onChanged()"></ion-radio>
+    <ion-list radio-group>
+        <ion-item-divider>Liste des accords</ion-item-divider>
+        <ion-item *ngFor="let form of forms">
+            <ion-label>{{form.type}} {{form.quality}}</ion-label>
+            <ion-checkbox value="exclude" [(ngModel)]="config.chords.list_forms[form.type+'-'+form.quality]" (click)="onChanged($event)"></ion-checkbox>
         </ion-item>
     </ion-list>
 
-    <ion-list>
-        <ion-item-divider>Afficher la note plus haute dans la portée</ion-item-divider>
-        <ion-item>
-            <ion-label>Afficher</ion-label>
-            <ion-checkbox [(ngModel)]="config.notes.list_high_note" (click)="onChanged()"></ion-checkbox>
-        </ion-item>
-    </ion-list>
+    <div class="notes-filters">
+        <ion-segment [ngModel]="notesFilter">
+            <ion-segment-button *ngFor="let filter of notesFilters" [ngClass]="filter.value" [value]="filter.value" (ionSelect)="onFilterChanged($event)">{{filter.name}}</ion-segment-button>
+        </ion-segment>
+    </div>
 
     <ion-list>
-        <ion-item-divider>Inclure</ion-item-divider>
-        <ion-item>
-            <ion-label>Bémol</ion-label>
-            <ion-checkbox [(ngModel)]="config.notes.list_flat" (click)="onChanged()"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Dièse</ion-label>
-            <ion-checkbox [(ngModel)]="config.notes.list_sharp" (click)="onChanged()"></ion-checkbox>
+        <ion-item-divider>Liste des notes</ion-item-divider>
+        <ion-item *ngFor="let note of notes">
+            <ion-label>{{note}}</ion-label>
+            <ion-checkbox [(ngModel)]="config.chords.list_notes[note]" (click)="onChanged($event)"></ion-checkbox>
         </ion-item>
     </ion-list>
 

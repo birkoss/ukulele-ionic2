@@ -1,2 +1,14 @@
 chords-filters-modal {
+    div.notes-filters {
+        ion-segment {
+            ion-segment-button {
+                &.natural,
+                &.flat,
+                &.sharp {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
 }

@@ -21,6 +21,7 @@ export class ChordsQuizModal {
     }
 
     public onFilterChanged(element, element_value):void {
+        /*
         let atLeastOne:Boolean = false;
         for (let key in this.config.ChordsFilters['quiz_chord_types']) {
             if (this.config.ChordsFilters['quiz_chord_types'][key]) {
@@ -45,5 +46,6 @@ export class ChordsQuizModal {
         }
 
         this.config.save();
+        */
     }
 }
