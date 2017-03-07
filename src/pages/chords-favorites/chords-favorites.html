@@ -12,7 +12,7 @@
 
 <ion-content>
     <div class="chords" *ngIf="favorites.all().length > 0">
-        <chord-card *ngFor="let favorite of favorites.all()" [note]="favorite.note" [type]="favorite.type" [family]="favorite.family" [position]="favorite.position" (onDetailClicked)="showDetail($event)"></chord-card>
+        <chord-card *ngFor="let favorite of favorites.all()" [chord]="favorite.note" (onDetailClicked)="showDetail($event)"></chord-card>
     </div>
 
     <div class="label-container" *ngIf="favorites.all().length == 0">

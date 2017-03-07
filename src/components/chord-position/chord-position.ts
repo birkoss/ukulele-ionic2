@@ -25,7 +25,6 @@ export class ChordPosition {
             return;
         }
 
-        /*
         this._position = position;
 
         this.start = this._position.start;
@@ -35,19 +34,18 @@ export class ChordPosition {
         this.fingers = [];
         this.muted = [];
         this._position.strings.filter(s => {
-            if (s.fret > 0) {
-                this.fingers.push({'string':s.name.name, 'fret':s.fret-this.start+1, 'finger':s.finger});
+            if (s['fret'] > 0) {
+                this.fingers.push({'string':s['string'].letter['name'], 'fret':s['fret']-this.start+1, 'finger':s['finger']});
             }
 
-            if (s.finger == -1) {
-                this.muted[s.note.name] = true;
+            if (s['finger'] == -1) {
+                this.muted[s['note'].letter.name] = true;
             }
         });
 
         for (let i:number=0; i<4; i++) {
             this.labels.push(this.start + i);
         }
-        */
     }
 
     @Input('interactive')

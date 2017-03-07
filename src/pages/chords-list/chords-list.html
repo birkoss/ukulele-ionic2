@@ -5,14 +5,14 @@
       </ion-buttons>
       <ion-title>Accords</ion-title>
       <ion-buttons end>
-          <button (click)="showPopup($event, 'filters')" ion-button outline="true">{{config.ChordsFilters.list_chord_type}}</button>
-          <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
+          <button (click)="showPopup($event)" ion-button outline="true">{{config.ChordsFilters.list_chord_type}}</button>
+          <button (click)="showPopup($event)" ion-button icon-only><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
     <div class="chords">
-        <chord-card *ngFor="let chord of chords" [chord]="chord" position="0" (onDetailClicked)="showDetail($event)"></chord-card>
+        <chord-card *ngFor="let chord of chords" [chord]="chord" (onDetailClicked)="showDetail($event)"></chord-card>
     </div>
 </ion-content>

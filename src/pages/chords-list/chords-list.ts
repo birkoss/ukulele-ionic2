@@ -18,7 +18,7 @@ import { Position } from '../../classes/Position';
   templateUrl: 'chords-list.html',
 })
 export class ChordsListPage {
-    chords:Array<Chord> = [];
+    chords:Array<Object> = [];
 
     constructor(public navCtrl:NavController, public popoverCtrl:PopoverController, public data:DataProvider, public config:ConfigProvider) { }
 
@@ -43,6 +43,12 @@ export class ChordsListPage {
     }
 
     generateList() {
-        this.chords = this.data.getChords();
+        this.data.getChords().forEach(chord => {
+            this.chords.push({
+                note: chord.note,
+                form: chord.form,
+                position: chord.positions[0]
+            });
+        });
     }
 }

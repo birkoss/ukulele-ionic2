@@ -98,7 +98,7 @@ export class DataProvider {
     getForm(type:string, quality:string):Object {
         return this.getForms().filter(form => {
             return (form['type'] == type && form['quality'] == quality);
-        });
+        })[0];
     }
 
     /* Private */

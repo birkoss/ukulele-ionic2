@@ -3,7 +3,7 @@
         <chord-name [note]="_chord.note" [french]="config.general.letter_in_french" [form]="_chord.form"></chord-name>
     </ion-card-header>
 
-    <chord-position *ngIf="_position" [position]="_position"></chord-position>
+    <chord-position *ngIf="_chord.position" [position]="_chord.position"></chord-position>
 
     <div class="buttons">
         <button (click)="showDetail()" ion-button icon-left>
