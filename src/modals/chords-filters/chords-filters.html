@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-title>Filtres</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="close()">
+                <ion-icon name="arrow-back" showWhen="android,windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list radio-group [(ngModel)]="config.notes.list_clef">
+        <ion-item-divider>Afficher les notes sur la clef suivante</ion-item-divider>
+        <ion-item *ngFor="let clef of clefs">
+            <ion-label>Clef de <note-name [note]="clef" [french]="config.general.letter_in_french"></note-name></ion-label>
+            <ion-radio [value]="clef.letter.name" (click)="onChanged()"></ion-radio>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>Afficher la note plus haute dans la portée</ion-item-divider>
+        <ion-item>
+            <ion-label>Afficher</ion-label>
+            <ion-checkbox [(ngModel)]="config.notes.list_high_note" (click)="onChanged()"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>Inclure</ion-item-divider>
+        <ion-item>
+            <ion-label>Bémol</ion-label>
+            <ion-checkbox [(ngModel)]="config.notes.list_flat" (click)="onChanged()"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dièse</ion-label>
+            <ion-checkbox [(ngModel)]="config.notes.list_sharp" (click)="onChanged()"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

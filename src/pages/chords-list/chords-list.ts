@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { NavController, PopoverController } from 'ionic-angular';
+import { ModalController, NavController, PopoverController } from 'ionic-angular';
 
 import { ChordsDetailPage } from '../chords-detail/chords-detail';
 
-import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
+import { ChordsFiltersModal } from '../../modals/chords-filters/chords-filters';
 import { GeneralPopover } from '../../popovers/general/general';
 
 import { DataProvider } from '../../providers/data-provider';
@@ -20,11 +20,10 @@ import { Position } from '../../classes/Position';
 export class ChordsListPage {
     chords:Array<Object> = [];
 
-    constructor(public navCtrl:NavController, public popoverCtrl:PopoverController, public data:DataProvider, public config:ConfigProvider) { }
+    constructor(public navCtrl:NavController, public popoverCtrl:PopoverController, public data:DataProvider, public config:ConfigProvider, public modalCtrl:ModalController) { }
 
     ionViewWillEnter() {
         this.generateList();
-        console.log(this.chords);
     }
 
     getFirstPosition(chord:Chord) {
@@ -50,5 +49,10 @@ export class ChordsListPage {
                 position: chord.positions[0]
             });
         });
+    }
+
+    showModal(event) {
+        let modal = this.modalCtrl.create(ChordsFiltersModal, {'parent':this});
+        modal.present();
     }
 }
