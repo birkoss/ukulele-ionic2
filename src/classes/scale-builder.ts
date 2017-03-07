@@ -26,21 +26,37 @@ export class ScaleBuilder {
     }
 
     /* Create a scale with a specific steps of tone */
-    create(steps:Array<number>) {
+    create(steps:Array<number>, uniqueLetter:Boolean = true) {
         for (let i:number=0; i<steps.length; i++) {
             let step:number = steps[i];
+            let accidental:number = 0;
 
-            /* If the step is HIGHER than 1, we should switch index */
-            while (step > 1) {
-                step -= this.letters[this.currentIndex]['step']['up'];
-                
+            if (uniqueLetter) {
+                /* If the step is HIGHER than 1, we should switch index */
+                while (step > 1) {
+                    step -= this.letters[this.currentIndex]['step']['up'];
+                    this.moveIndex();
+                }
+
+                accidental = step - this.letters[this.currentIndex]['step']['up'] + this.currentAccidental;
                 this.moveIndex();
+            } else {
+               if (this.currentAccidental > 0 || this.letters[this.currentIndex]['step']['up'] == 0.5) {
+                   this.moveIndex();
+                   this.currentAccidental = 0;
+               } else {
+                   this.currentAccidental += step;
+               }
+               accidental = this.currentAccidental;
             }
-
-            let accidental:number = step - this.letters[this.currentIndex]['step']['up'] + this.currentAccidental;
-            this.moveIndex();
             this.select(this.letters[this.currentIndex]['name'], accidental);
         }
+
+        console.log("START");
+        this.getScale().forEach(scale => {
+            console.log(scale.letter['name'] + "/" + scale.accidental);
+        });
+        console.log("END");
     }
 
     private moveIndex() {
