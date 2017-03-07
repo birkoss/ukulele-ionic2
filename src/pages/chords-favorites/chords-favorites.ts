@@ -46,13 +46,13 @@ export class ChordsFavoritesPage {
             this.chords.push({
                 note:note,
                 form:form,
-                position:chord.positions[favorite['position']]
+                position:chord.positions[favorite['position']],
+                positionIndex:favorite['position']
             });
         });
     }
 
     showDetail(chord:Object) {
-        console.log(chord);
-        this.navCtrl.push(ChordsDetailPage, {chord: chord['chord']});
+        this.navCtrl.push(ChordsDetailPage, {chord: chord['chord'], position:chord['chord']['positionIndex']});
     }
 }

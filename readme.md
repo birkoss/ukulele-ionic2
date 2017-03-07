@@ -9,6 +9,4 @@ Chord in DataProvider
 
 * See why Object.assign is overwritting the main attributes (config['aaa']['bbb'] with config['aaa']['ccc'] will be ['aaa']['ccc'] instead of ['aaa']['ccc'] AND ['aaa']['bbb'])
 
-* Chords Detail : Scroll to the correct position
-
 * Scale Builder : See if a flat should be reversed or not

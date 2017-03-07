@@ -46,7 +46,8 @@ export class ChordsListPage {
                     this.chords.push({
                         note: chord.note,
                         form: chord.form,
-                        position: chord.positions[0]
+                        position: chord.positions[0],
+                        positionIndex: 0
                     });
                 }
             }
