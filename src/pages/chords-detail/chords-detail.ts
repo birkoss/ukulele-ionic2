@@ -9,6 +9,7 @@ import { FavoritesProvider } from '../../providers/favorites-provider';
 import { DetailOptionsPopover } from '../../popovers/detail-options/detail-options';
 
 import { Chord } from '../../classes/chord';
+import { Position } from '../../classes/position';
 import { Note } from '../../classes/note';
 
 @Component({
@@ -19,27 +20,23 @@ import { Note } from '../../classes/note';
 export class ChordsDetailPage {
     @ViewChild(Content) content: Content;
 
-    note: Note;
-    type:Object;
-    position: number = 0;
-    chord: Chord;
+    chord:Chord;
+    positions:Array<Position> = [];
     hasScrolled:Boolean = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public config: ConfigProvider, public dataProvider: DataProvider, public popoverCtrl: PopoverController, public favorites:FavoritesProvider) {
-        this.note = navParams.get('note');
-        this.type = navParams.get('type');
+    constructor(public navCtrl:NavController, public params:NavParams, public config:ConfigProvider, public data:DataProvider, public popoverCtrl:PopoverController, public favorites:FavoritesProvider) {
+        let chord:Object = params.get('chord');
 
-        if (navParams.get('position') != undefined) {
-            this.position = navParams.get('position');
-        }
-
+        this.chord = this.data.getChord(chord['note'], chord['form']);
     }
 
     ionViewDidEnter() {
-        this.chord = this.dataProvider.getChord(this.note.name, this.type['name']);
+        /*
+        this.chord = this.data.getChord(this.note.name, this.type['name']);
         if (this.position > 0 && !this.hasScrolled) {
             this.scrollToElement('position_' + this.position);
         }
+        */
     }
 
     public showPopup(event, type:string) {
@@ -52,7 +49,7 @@ export class ChordsDetailPage {
     public favorite(index:number):void {
         //this.chord.positions[index].isFavorited = !this.chord.positions[index].isFavorited;
 
-        this.dataProvider.save();
+        //this.dataProvider.save();
     }
 
     scrollToElement(id) { 
@@ -64,6 +61,7 @@ export class ChordsDetailPage {
     }
 
     public getStrings():Array<any> {
-        return this.chord.positions[0].strings;
+        return [];
+        //return this.chord.positions[0].strings;
     }
 }

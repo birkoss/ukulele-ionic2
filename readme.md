@@ -8,3 +8,7 @@ Chord in DataProvider
 * See if String is an existing ionic/angular classes (and rename it if it is)
 
 * See why Object.assign is overwritting the main attributes (config['aaa']['bbb'] with config['aaa']['ccc'] will be ['aaa']['ccc'] instead of ['aaa']['ccc'] AND ['aaa']['bbb'])
+
+* Chords Detail : Scroll to the correct position
+
+* Scale Builder : When chromatic on a flat, use the flat

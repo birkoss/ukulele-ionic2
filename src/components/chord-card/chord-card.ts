@@ -22,6 +22,6 @@ export class ChordCard {
 
     public showDetail(): void {
         console.log('ChordCard...showDetail');
-        //this.onDetailClicked.emit({'note':this._note, 'type':this._type, 'position':this._positionIndex});
+        this.onDetailClicked.emit({'chord':this._chord});
     }
 }

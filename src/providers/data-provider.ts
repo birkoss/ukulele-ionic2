@@ -10,6 +10,8 @@ import { Chord } from '../classes/chord';
 import { Note } from '../classes/note';
 import { Position } from '../classes/position';
 
+import { ScaleBuilder } from '../classes/scale-builder';
+
 @Injectable()
 export class DataProvider {
     private letters:Array<Object> = [];
@@ -53,6 +55,12 @@ export class DataProvider {
         return this.scales;
     }
 
+    getScale(name:string):Object {
+        return this.getScales().filter(scale => {
+            return scale['name'] == name;
+        })[0];
+    }
+
     getLetters():Array<Object> {
         return this.letters;
     }
@@ -83,13 +91,19 @@ export class DataProvider {
         return this.chords;
     }
 
-    getChord(a, b, c = null):Chord
-    {
-        return this.chords[0];
+    getChord(note:Note, form:Object):Chord {
+        return this.getChords().filter(chord => {
+            if (chord.note.letter['name'] == note.letter['name'] && chord.note.accidental == note.accidental && chord.form['type'] == form['type'] && chord.form['quality'] == form['quality']) {
+                return chord;
+            }
+        })[0];
     }
+
+    /*
     getPosition(note:string, type:string, position:number):Position {
         return this.getChord(note, type).positions[position]; 
     }
+    */
 
     getForms():Array<Object> {
         return this.forms;
@@ -183,7 +197,13 @@ export class DataProvider {
                 let started:Boolean = false;
                 let currentNote:Note = null;
                 let currentFret = 0;
-                this.getNotes().concat(this.getNotes()).forEach(note => {
+                //console.log("START");
+
+                let builder:ScaleBuilder = new ScaleBuilder();
+                builder.set(this.getLetters());
+                builder.select(s, 0);
+                builder.create(this.getScale('Chromatic')['steps'], false);
+                builder.getScale().forEach(note => {
                     if (note.letter['name'] == s && note.accidental == 0 && currentNote == null) {
                         started = true;
                     } else if (started) {

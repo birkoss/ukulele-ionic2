@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-      <ion-title><chord-name *ngIf="1 == 2" [note]="note" [french]="config.ChordsOptions.show_note_in_french" ></chord-name></ion-title>
+      <ion-title><chord-name *ngIf="chord" [note]="chord.note" [form]="chord.form" [french]="config.general.letter_in_french" ></chord-name></ion-title>
       <ion-buttons end>
           <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
       </ion-buttons>
@@ -8,37 +8,24 @@
 </ion-header>
 
 <ion-content>
-    <div class="chords" *ngIf="chord">
-
-        <ion-card *ngIf="config.ChordsOptions.show_strings_name">
-            <ion-card-header>Nom des cordes</ion-card-header>
-            <ion-row class="strings-container">
-                <ion-col *ngFor="let s of getStrings()">
-                    <note-name [note]="s.name" [french]="config.ChordsOptions.show_note_in_french"></note-name>
-                </ion-col>
-            </ion-row>
-        </ion-card>
+    <div class="chords">
 
         <ion-card id="position_{{i}}" *ngFor="let position of chord.positions; let i = index;">
             <ion-card-content>
                 <chord-position [position]="position"></chord-position>
             </ion-card-content>
-            <div *ngIf="config.ChordsOptions.show_frets">
                 <ion-card-header>Position</ion-card-header>
                 <ion-row class="strings-container">
                     <ion-col *ngFor="let s of position.strings">
                         {{s.fret}}
                     </ion-col>
                 </ion-row>
-            </div>
-            <div *ngIf="config.ChordsOptions.show_notes">
                 <ion-card-header>Notes</ion-card-header>
                 <ion-row class="strings-container">
                     <ion-col *ngFor="let s of position.strings">
-                        <note-name *ngIf="s.finger >= 0" [note]="s.note" [french]="config.ChordsOptions.show_note_in_french"></note-name>
+                        <note-name *ngIf="s.finger >= 0" [note]="s.note" [french]="config.general.letter_in_french"></note-name>
                     </ion-col>
                 </ion-row>
-            </div>
             <div class="buttons">
                 <button *ngIf="!position.isFavorited" ion-button icon-left (click)="favorite(i)">
                     <ion-icon name="star" item-left></ion-icon> Ajouter

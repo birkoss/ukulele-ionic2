@@ -27,7 +27,7 @@ export class ChordsListPage {
         console.log(this.chords);
     }
 
-    public getFirstPosition(chord:Chord) {
+    getFirstPosition(chord:Chord) {
         return chord.positions[0];
     }
 
@@ -38,8 +38,8 @@ export class ChordsListPage {
         });
     }
 
-    public showDetail(chord:Object): void {
-        this.navCtrl.push(ChordsDetailPage, {note: chord['note'], type:chord['type']});
+    showDetail(chord:Object): void {
+        this.navCtrl.push(ChordsDetailPage, {chord: chord['chord']});
     }
 
     generateList() {

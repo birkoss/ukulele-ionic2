@@ -51,15 +51,9 @@ export class ScaleBuilder {
             }
             this.select(this.letters[this.currentIndex]['name'], accidental);
         }
-
-        console.log("START");
-        this.getScale().forEach(scale => {
-            console.log(scale.letter['name'] + "/" + scale.accidental);
-        });
-        console.log("END");
     }
 
-    private moveIndex() {
+    moveIndex() {
         this.currentIndex++;
         if (this.currentIndex >= this.letters.length) {
             this.currentIndex = 0;
