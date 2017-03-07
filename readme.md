@@ -11,4 +11,4 @@ Chord in DataProvider
 
 * Chords Detail : Scroll to the correct position
 
-* Scale Builder : When chromatic on a flat, use the flat
+* Scale Builder : See if a flat should be reversed or not

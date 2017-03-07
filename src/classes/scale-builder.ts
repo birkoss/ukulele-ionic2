@@ -7,6 +7,8 @@ export class ScaleBuilder {
     currentIndex:number = 0;
     currentAccidental:number = 0;
 
+    direction:string = "";
+
     /* Set the letters to use */
     set(letters:Array<Object>) {
         this.letters = letters;
@@ -26,7 +28,9 @@ export class ScaleBuilder {
     }
 
     /* Create a scale with a specific steps of tone */
-    create(steps:Array<number>, uniqueLetter:Boolean = true) {
+    create(steps:Array<number>, uniqueLetter:Boolean = true, direction:string = "up") {
+        this.direction = direction;
+
         for (let i:number=0; i<steps.length; i++) {
             let step:number = steps[i];
             let accidental:number = 0;
@@ -41,11 +45,14 @@ export class ScaleBuilder {
                 accidental = step - this.letters[this.currentIndex]['step']['up'] + this.currentAccidental;
                 this.moveIndex();
             } else {
-               if (this.currentAccidental > 0 || this.letters[this.currentIndex]['step']['up'] == 0.5) {
+               if (this.direction == "up" && (this.currentAccidental > 0 || this.letters[this.currentIndex]['step']['up'] == 0.5)) {
                    this.moveIndex();
                    this.currentAccidental = 0;
+               } else if(this.direction == "down" && (this.currentAccidental < 0 || this.letters[this.currentIndex]['step']['down'] == 0.5)) {
+                   this.moveIndex(-1);
+                   this.currentAccidental = 0;
                } else {
-                   this.currentAccidental += step;
+                   this.currentAccidental += step * (this.direction == 'down' ? -1 : 1);
                }
                accidental = this.currentAccidental;
             }
@@ -53,10 +60,13 @@ export class ScaleBuilder {
         }
     }
 
-    moveIndex() {
-        this.currentIndex++;
+    moveIndex(mod:number = 1) {
+        this.currentIndex += mod;
         if (this.currentIndex >= this.letters.length) {
             this.currentIndex = 0;
+        }
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.letters.length - 1;
         }
     }
 

@@ -36,7 +36,7 @@ export class ScalesListPage {
                         let builder:ScaleBuilder = new ScaleBuilder();
                         builder.set(this.data.getLetters());
                         builder.select(note.letter['name'], note.accidental);
-                        builder.create(scale['steps'], scale['unique']);
+                        builder.create(scale['steps'], scale['unique'], (note.accidental < 0 ? "down" : "up"));
 
                         scale['scales'].push({'note':note, 'notes':builder.getScale()});
                     }
