@@ -50,7 +50,7 @@ export class ChordsDetailPage {
     }
 
     public favorite(index:number):void {
-        this.chord.positions[index].isFavorited = !this.chord.positions[index].isFavorited;
+        //this.chord.positions[index].isFavorited = !this.chord.positions[index].isFavorited;
 
         this.dataProvider.save();
     }

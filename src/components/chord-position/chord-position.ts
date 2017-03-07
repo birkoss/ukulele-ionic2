@@ -25,6 +25,7 @@ export class ChordPosition {
             return;
         }
 
+        /*
         this._position = position;
 
         this.start = this._position.start;
@@ -46,6 +47,7 @@ export class ChordPosition {
         for (let i:number=0; i<4; i++) {
             this.labels.push(this.start + i);
         }
+        */
     }
 
     @Input('interactive')

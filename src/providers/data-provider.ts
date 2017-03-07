@@ -165,18 +165,14 @@ export class DataProvider {
             }
             let letterName:string = json['chords'][i]['note'].substr(0, 1);
             let chord:Chord = new Chord(this.getNote(letterName, accidental), this.getForm(json['chords'][i]['type'], json['chords'][i]['quality']));
-            //let chord = new Chord(this.getNote(json['chords'][i]['note']), this.getFamily(json['chords'][i]['family']), this.getType(json['chords'][i]['type'], json['chords'][i]['family']));
-
-            console.log('MUST RE-ENABLE PARSEJSON....');
-            //this.buildPositions(chord, json['chords'][i]['positions'], scale_notes);
-
-            //chord.init();
-
+            chord.positions = this.buildPositions(json['chords'][i]['positions']);
             this.chords.push(chord);
         }
     }
 
-    private buildPositions(chord:Chord, positions:any, notes:Array<string>) {
+    private buildPositions(positions:any):Array<Position> {
+        let chordPositions:Array<Position> = [];
+
         for (let i:number=0; i<positions.length; i++) {
             let position:Position = new Position();
             position.addString(this.getNote('G'));
@@ -184,31 +180,36 @@ export class DataProvider {
             position.addString(this.getNote('E'));
             position.addString(this.getNote('A'));
 
-            //position.isFavorited = this.favoritesProvider.exists({'note':chord.note.name, 'type':chord.type['name'], 'position':i}, 'chords');
-
             for (let frets in positions[i]) {
                 var s:string = frets.substr(0, 1);
                 var fret:number = parseInt(frets.substr(1));
 
-                position.update(s, fret, this.getNoteFromFretPosition(chord, s, fret, notes), parseInt(positions[i][frets]));
-            }
-            chord.addPosition(position);
-        }
-    }
+                console.log(s + " -> " + fret + " = " + positions[i][frets]);
 
-    private getNoteFromFretPosition(chord:Chord, stringName:string, direction:number, notes:Array<string>):Note {
-        let note:string = "";
-        for (let i:number=0; i<notes.length; i++) {
-            if (notes[i] == stringName) {
-                note = notes[i + direction];
-                if (note.indexOf('/') >= 0) {
-                    let parts = note.split('/');
-                    note = parts[0]; /* @todo: Maybe use parts[1] */
+                let started:Boolean = false;
+                let currentNote:Note = null;
+                let currentFret = 0;
+                this.getNotes().concat(this.getNotes()).forEach(note => {
+                    if (note.letter['name'] == s && note.accidental == 0 && currentNote == null) {
+                        started = true;
+                    } else if (started) {
+                        currentFret++;
+                        if (currentFret >= fret) {
+                            started = false;
+                            currentNote = note;
+                        }
+                    }
+                });
+
+                if (currentNote != null) {
+                    position.update(s, fret, currentNote, parseInt(positions[i][frets]));
                 }
-                break;
             }
+
+            chordPositions.push(position);
         }
-        return this.getNote(note);
+
+        return chordPositions;
     }
 
     private random(min:number, max:number):number {
