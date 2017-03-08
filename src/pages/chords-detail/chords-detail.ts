@@ -33,9 +33,7 @@ export class ChordsDetailPage {
     }
 
     ionViewDidEnter() {
-        console.log('=' + this.params.get('position'));
         if (this.params.get('position') && this.params.get('position') > 1) {
-            console.log("OUI");
             this.scrollToElement('position_' + this.params.get('position'));
         }
     }

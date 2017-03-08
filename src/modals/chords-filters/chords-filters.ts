@@ -55,7 +55,6 @@ export class ChordsFiltersModal {
 
     onChanged(element) {
         this.config.save();
-        console.log(this.parent);
         this.parent.generateList();
     }
 

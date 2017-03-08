@@ -23,32 +23,11 @@ export class DataProvider {
 
     constructor(public http:Http, public favoritesProvider:FavoritesProvider) { }
 
-    /* Public */
-
     load():Promise<Boolean> {
         return this.http.get('assets/json/data.json').toPromise().then(res => {
             this.parseJSON(res.json()[0]);
             return Promise.resolve(true);
         });
-    }
-
-    save() {
-        /*
-        let favorites:Object = {'notes':[], 'chords':[]};
-        for (let i=0; i<this.notes.length; i++) {
-            if (this.notes[i].isFavorited) {
-                favorites['notes'].push(this.notes[i].toFavorite());
-            }
-        }
-        for (let i=0; i<this.chords.length; i++) {
-            for (let j=0; j<this.chords[i].positions.length; j++) {
-                if (this.chords[i].positions[j].isFavorited) {
-                    favorites['chords'].push({'note':this.chords[i].note.name, 'type':this.chords[i].type.name, 'position':j});
-                }
-            }
-        }
-        this.favoritesProvider.save(favorites);
-        */
     }
 
     getScales():Array<Object> {
@@ -197,7 +176,6 @@ export class DataProvider {
                 let started:Boolean = false;
                 let currentNote:Note = null;
                 let currentFret = 0;
-                //console.log("START");
 
                 let builder:ScaleBuilder = new ScaleBuilder();
                 builder.set(this.getLetters());

@@ -104,7 +104,6 @@ export class ChordPosition {
             let stringName = strings[p_x];
             let fretPosition = (p_y+1);
 
-            console.log(stringName + " : " + fretPosition);
             // Find if this position already exists
             let found = false;
             for (var i=0; i<this.fingers.length; i++) {

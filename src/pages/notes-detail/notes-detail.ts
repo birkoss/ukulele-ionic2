@@ -44,10 +44,6 @@ export class NotesDetailPage {
         }
     }
 
-    onPageDidEnter() {
-        console.log('onPageDidEnter()');
-    }
-
     generateList() {
         this.positions = [];
         for (let i=1; i<=2; i++) {
@@ -86,11 +82,8 @@ export class NotesDetailPage {
     }
 
     scrollToElement(id) { 
-        console.log('SCROLL!!!' + id);
         let el = document.getElementById(id);
-            console.log(el);
         if (el != undefined) {
-            console.log(el);
             var rect = el.getBoundingClientRect();
             this.content.scrollTo(0, rect.top);
         }

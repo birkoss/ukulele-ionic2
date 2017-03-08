@@ -43,7 +43,6 @@ export class NotesFavoritesPage {
     }
 
     public onCardClicked(element) {
-        console.log(element);
         this.navCtrl.push(NotesDetailPage, {note:element['note'], clef:element['clef'], position:element['position']});
     }
 }

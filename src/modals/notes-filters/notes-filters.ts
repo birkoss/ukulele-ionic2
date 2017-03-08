@@ -30,7 +30,6 @@ export class NotesFiltersModal {
     }
 
     onChanged() {
-        console.log('On Changed!');
         this.config.save();
         this.parent.generateList();
     }

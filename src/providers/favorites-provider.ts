@@ -36,7 +36,6 @@ export class FavoritesProvider {
     add(favorite:Object, type:string = "chords") {
         if (!this.exists(favorite, type)) {
             this.favorites[type].push(favorite);
-            console.log(this.favorites);
             this.save();
         }
     }

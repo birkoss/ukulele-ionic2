@@ -21,7 +21,6 @@ export class ChordsQuizModal {
 
     ionViewWillEnter() {
         this.forms = this.data.getForms();
-        console.log(this.forms);
     }
 
     close() {
