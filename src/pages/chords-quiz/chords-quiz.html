@@ -5,7 +5,7 @@
       </ion-buttons>
       <ion-title>Quiz</ion-title>
       <ion-buttons end *ngIf="isPlaying && !isDone">
-          <button ion-button icon-only (click)="showPopup($event, 'options')"><ion-icon name="settings"></ion-icon></button>
+          <button ion-button icon-only (click)="showPopup($event)"><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -25,12 +25,12 @@
     </div>
 
     <div *ngIf="isPlaying && !isDone">
-        <h1>Reproduire cet accord <chord-name [note]="current_chord.note" [french]="config.ChordsOptions.show_note_in_french" [form]="current_chord.type"></chord-name></h1>
+        <h1>Reproduire cet accord <chord-name [note]="current_question.note" [french]="config.general.letter_in_french" [form]="current_question.form"></chord-name></h1>
         <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting" [(startPosition)]="start" [position]="position"></chord-position>
         <div class="buttons">
             <button *ngIf="isWaiting" ion-button [disabled]="start <= 1" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
-            <button *ngIf="!isWaiting && !isLastQuestion()" ion-button (click)="pickChord()">Prochaine question</button>
-            <button *ngIf="!isWaiting && isLastQuestion()" ion-button (click)="pickChord()">Voir le résultat</button>
+            <button *ngIf="!isWaiting && !isLastQuestion()" ion-button (click)="pickQuestion()">Prochaine question</button>
+            <button *ngIf="!isWaiting && isLastQuestion()" ion-button (click)="pickQuestion()">Voir le résultat</button>
             <button *ngIf="isWaiting" ion-button (click)="showSolution()">Abandonner</button>
 
             <button *ngIf="isWaiting" ion-button [disabled]="start >= 12" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
@@ -42,7 +42,7 @@
 
         <h2>{{goodAnswer}}</h2>
         <h2 class="divider">sur</h2>
-        <h2>{{chords.length}}</h2>
+        <h2>{{questions.length}}</h2>
 
         <div class="buttons">
             <button ion-button (click)="reset()">OK</button>

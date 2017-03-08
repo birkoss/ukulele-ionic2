@@ -6,8 +6,7 @@ import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
-import { ChordsFiltersPopover } from '../../popovers/chords-filters/chords-filters';
-import { ChordsOptionsPopover } from '../../popovers/chords-options/chords-options';
+import { GeneralPopover } from '../../popovers/general/general';
 
 import { ChordsQuizModal } from '../../modals/chords-quiz/chords-quiz'
 
@@ -42,19 +41,136 @@ export class ChordsQuizPage {
         this.generateList();
     }
 
-
     generateList() {
         this.questions = [];
 
-        this.data.getChords().forEach(chord => {
+        this.data.getForms().forEach(form => {
+            if (this.config.isEmpty(this.config.chords['quiz_forms']) || this.config.chords['quiz_forms'][form['type']+'-'+form['quality']]) {
+                this.data.getNotes().forEach(note => {
+                    let n:Object = {
+                        note:note,
+                        form:form
+                    };
 
+                    if (!this.config.chords['quiz_flat'] && note.accidental < 0) { n = null; }
+
+                    if (!this.config.chords['quiz_sharp'] && note.accidental > 0) { n = null; }
+
+                    if (this.favorites.all('chords').length > 0 && this.config.chords['quiz_favorites']) {
+                        this.favorites.all('chords').forEach(favorite => {
+                            if (favorite['letter'] == note.letter['name'] && favorite['accidental'] == note.accidental && favorite['type'] == form['type'] && favorite['quality'] == form['quality']) {
+                                if (n != null) {
+                                    this.questions.push(n);
+                                    n = null;
+                                }
+                            }
+                        });
+                    } else {
+                        if (n != null) {
+                            this.questions.push(n);
+                        }
+                    }
+                });
+            }
         });
     }
 
-    public showConfiguration() {
+    showConfiguration() {
         let modal = this.modalCtrl.create(ChordsQuizModal, {parent:this});
         modal.present();
     }
+
+    shuffle(a) {
+        for (let i = a.length; i; i--) {
+            let j = Math.floor(Math.random() * i);
+            [a[i - 1], a[j]] = [a[j], a[i - 1]];
+        }
+    }
+
+    private startQuiz() {
+        this.goodAnswer = 0;
+        this.generateList();
+        this.questionIndex = 0;
+
+        this.isPlaying = true;
+        this.pickQuestion();
+    }
+
+    pickQuestion() {
+        if (this.isLastQuestion()) {
+            this.isDone = true;
+        } else {
+            this.current_question = this.questions[this.questionIndex];
+            this.isWaiting = true;
+
+            this.questionIndex++;
+        }
+    }
+
+    isLastQuestion():Boolean {
+        return (this.questionIndex >= this.questions.length);
+    }
+
+    verifyAnswer(answer:Array<any>) {
+        let answerPositions:Array<string> = [];
+        answer.filter(item => {
+            answerPositions.push(item.string + (item.fret + this.start - 1));
+        });
+        answerPositions.sort();
+
+        let solution:Position;
+        this.data.getChord(this.current_question['note'], this.current_question['form']).positions.forEach(position => {
+            let chordPositions:Array<string> = [];
+            position.strings.filter(item => {
+                if (item['fret'] > 0) {
+                    chordPositions.push(item['string'] + item['fret']);
+                }
+            });
+            chordPositions.sort();
+
+            if (answerPositions.toString() === chordPositions.toString()) {
+                this.goodAnswer++;
+                solution = position;
+            }
+        });
+
+        if (solution) {
+            let alert = this.alertCtrl.create({
+                title: 'Bravo!',
+                subTitle: 'C\'est un bon accord!',
+                enableBackdropDismiss: false,
+                buttons: [{
+                    text: 'OK',
+                    handler: data => {
+                        this.showSolution(solution);
+                    }
+                }]
+            });
+            alert.present();
+        }
+    }
+
+    showSolution(position:Position) {
+        this.position = position;
+        this.isWaiting = false;
+    }
+
+    moveFret(direction:number) {
+        this.start += direction;
+    }
+
+    showPopup(event) {
+        let popover = this.popoverCtrl.create(GeneralPopover);
+        popover.present({
+            ev: event
+        });
+    }
+
+    reset() {
+        this.isDone = false;
+        this.isPlaying = false;
+    }
+
         /* Pick all chord type if no quiz options exists */
         /*
         if (Object.keys(this.config.ChordsFilters['quiz_chord_types']).length == 0) {
@@ -68,10 +184,6 @@ export class ChordsQuizPage {
         */
     /*
 
-    public reset():void {
-        this.isDone = false;
-        this.isPlaying = false;
-    }
 
     private startQuiz():void {
         this.goodAnswer = 0;
@@ -128,49 +240,7 @@ export class ChordsQuizPage {
         return (this.chordIndex >= this.chords.length);
     }
 
-    public showSolution(index:number = 0):void {
-        this.position = this.current_chord.positions[index];
-        this.isWaiting = false;
-    }
 
-    public verifyAnswer(answer:Array<any>):void {
-        let answerPositions:Array<string> = [];
-        answer.filter(item => {
-            answerPositions.push(item.string + (item.fret + this.start - 1));
-        });
-        answerPositions.sort();
-
-        for (let i:number=0; i<this.current_chord.positions.length; i++) {
-            let chordPositions:Array<string> = [];
-            this.current_chord.positions[i].strings.filter(item => {
-                if (item.fret > 0) {
-                    chordPositions.push(item.name.name + item.fret);
-                }
-            });
-            chordPositions.sort();
-
-            if (answerPositions.toString() === chordPositions.toString()) {
-                this.goodAnswer++;
-                let alert = this.alertCtrl.create({
-                    title: 'Bravo!',
-                    subTitle: 'C\'est un bon accord!',
-                    enableBackdropDismiss: false,
-                    buttons: [{
-                        text: 'OK',
-                        handler: data => {
-                            this.showSolution(i);
-                        }
-                    }]
-                });
-                alert.present();
-                break;
-            }
-        }
-    }
-
-    public moveFret(direction:number):void {
-        this.start += direction;
-    }
 
     private updateLabels():void {
         this.labels = [];
@@ -179,19 +249,7 @@ export class ChordsQuizPage {
         }
     }
 
-    private shuffle(a) {
-        for (let i = a.length; i; i--) {
-            let j = Math.floor(Math.random() * i);
-            [a[i - 1], a[j]] = [a[j], a[i - 1]];
-        }
-    }
 
-    public showPopup(event, type:string) {
-        let popover = this.popoverCtrl.create((type == 'filters' ? ChordsFiltersPopover : ChordsOptionsPopover));
-        popover.present({
-            ev: event
-        });
-    }
 
     */
     

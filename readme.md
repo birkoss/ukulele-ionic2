@@ -10,3 +10,5 @@ Chord in DataProvider
 * See why Object.assign is overwritting the main attributes (config['aaa']['bbb'] with config['aaa']['ccc'] will be ['aaa']['ccc'] instead of ['aaa']['ccc'] AND ['aaa']['bbb'])
 
 * Scale Builder : See if a flat should be reversed or not
+
+* Fix all warnings
