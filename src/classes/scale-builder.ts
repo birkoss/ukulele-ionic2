@@ -58,6 +58,10 @@ export class ScaleBuilder {
             }
             this.select(this.letters[this.currentIndex]['name'], accidental);
         }
+
+        if (this.direction == "down") {
+            this.scale.reverse();
+        }
     }
 
     moveIndex(mod:number = 1) {
