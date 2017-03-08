@@ -12,11 +12,17 @@ export class Note {
 
         let accidental:number = this.accidental;
 
-        /* @TODO Replace double sharp with the correct symbol */
+        /* Double sharp */
+        while (accidental >= 1) {
+            name += "x";
+            accidental -= 1;
+        }
+        /* Sharp */
         while (accidental > 0) {
             name += "♯";
             accidental -= 0.5;
         }
+        /* Flat */
         while (accidental < 0) {
             name += "♭";
             accidental += 0.5;
