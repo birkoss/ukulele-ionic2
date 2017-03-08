@@ -35,12 +35,12 @@ export class NotesQuizPage {
         this.generateList();
     }
 
-    public reset():void {
+    reset() {
         this.isDone = false;
         this.isPlaying = false;
     }
 
-    private startQuiz():void {
+    startQuiz() {
         this.goodAnswer = 0;
         this.generateList();
         this.questionIndex = 0;
@@ -49,7 +49,7 @@ export class NotesQuizPage {
         this.pickNote();
     }
 
-    private generateList() {
+    generateList() {
         this.questions = [];
 
         this.data.getClefs().forEach(clef => {
@@ -86,7 +86,8 @@ export class NotesQuizPage {
         this.shuffle(this.questions);
     }
 
-    private hasFavorited(clef:Note, note:Note, position:number):Boolean {
+    /* Deprecated ? */
+    hasFavorited(clef:Note, note:Note, position:number):Boolean {
         let favorited:Boolean = false;
         this.favorites.all('notes').filter(favorite => {
             if (favorite['letter'] == note.letter['name'] && favorite['accidental'] == note.accidental && favorite['clef'] == clef.letter['name'] && favorite['position'] == position) {
@@ -96,7 +97,7 @@ export class NotesQuizPage {
         return favorited;
     }
 
-    public pickNote():void {
+    pickNote() {
         this.answers = [];
         this.wrongAnswers = [];
 
@@ -133,11 +134,11 @@ export class NotesQuizPage {
         }
     }
 
-    public isLastQuestion():Boolean {
+    isLastQuestion():Boolean {
         return (this.questionIndex >= this.questions.length);
     }
 
-    public tryAnswer(index:number):void {
+    tryAnswer(index:number) {
         if (this.current_question['note'].letter['name'] == this.answers[index].letter['name'] && this.current_question['note'].accidental == this.answers[index].accidental) {
             if (this.wrongAnswers.length == 0) {
                 this.goodAnswer++;
@@ -167,16 +168,15 @@ export class NotesQuizPage {
         }
     }
 
-    public showPopup(event) {
+    showPopup(event) {
         let popover = this.popoverCtrl.create(GeneralPopover);
         popover.present({
             ev: event
         });
     }
 
-    public showConfiguration() {
+    showConfiguration() {
         let modal = this.modalCtrl.create(NotesQuizModal, {parent:this});
         modal.present();
     }
-
 }

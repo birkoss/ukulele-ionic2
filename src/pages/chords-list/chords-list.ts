@@ -33,7 +33,7 @@ export class ChordsListPage {
         });
     }
 
-    showDetail(chord:Object): void {
+    showDetail(chord:Object) {
         this.navCtrl.push(ChordsDetailPage, {chord: chord['chord']});
     }
 
