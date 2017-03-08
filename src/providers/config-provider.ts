@@ -9,7 +9,7 @@ export class ConfigProvider {
     constructor(public storage: Storage) { }
 
     load() {
-        this.configs['general'] = {'letter_in_french':false};
+        this.configs['general'] = {'letter_in_french':false, 'language':'en', 'sway':'pinpin'};
 
         this.configs['chords'] = {'list_forms':{}, 'list_notes':{}, 'quiz_forms':{}, 'quiz_favorites':false, 'quiz_sharp':false, 'quiz_flat':false};
     
@@ -19,7 +19,11 @@ export class ConfigProvider {
 
         return this.storage.get('config').then(data => {
             if (data != null) {
-                this.configs = Object.assign(this.configs, JSON.parse(data));
+                /* Merge loaded configs over default configs */
+                let loadedConfig:Object = JSON.parse(data);
+                for (let key in loadedConfig) {
+                    this.configs[key] = Object.assign(this.configs[key], loadedConfig[key]);
+                }
             }
         });
     }
