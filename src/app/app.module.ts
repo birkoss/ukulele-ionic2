@@ -23,6 +23,8 @@ import { NotesQuizPage } from '../pages/notes-quiz/notes-quiz';
 
 import { ScalesListPage } from '../pages/scales-list/scales-list';
 
+import { SettingsPage } from '../pages/settings/settings';
+
 import { GeneralPopover } from '../popovers/general/general';
 
 import { ChordsQuizModal } from '../modals/chords-quiz/chords-quiz';
@@ -63,6 +65,8 @@ export function createTranslateLoader(http:Http) { return new TranslateStaticLoa
     NotesQuizPage,
 
     ScalesListPage,
+
+    SettingsPage,
 
     MusicalNote,
     ChordPosition,
@@ -105,6 +109,8 @@ export function createTranslateLoader(http:Http) { return new TranslateStaticLoa
     NotesQuizPage,
 
     ScalesListPage,
+
+    SettingsPage,
 
     MusicalNote,
     ChordPosition,

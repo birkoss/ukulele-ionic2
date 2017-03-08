@@ -14,6 +14,8 @@ import { NotesQuizPage } from '../pages/notes-quiz/notes-quiz';
 
 import { ScalesListPage } from '../pages/scales-list/scales-list';
 
+import { SettingsPage } from '../pages/settings/settings';
+
 import { ConfigProvider } from '../providers/config-provider';
 import { DataProvider } from '../providers/data-provider';
 import { FavoritesProvider } from '../providers/favorites-provider';
@@ -60,7 +62,7 @@ export class MyApp {
                         translate.use(this.config.general['language']).subscribe(data => {
                             console.log(this.config);
                             //this.rootPage = NotesTabs;
-                            this.rootPage = ScalesListPage;
+                            this.rootPage = SettingsPage;
                         });
                     });
                 });

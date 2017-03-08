@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+      <ion-buttons start>
+          <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
+      </ion-buttons>
+      <ion-title>{{ 'Settings' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item>
+            <ion-label>{{ 'Langue' | translate }}</ion-label>
+            <ion-select [(ngModel)]="config.general.language" (ionChange)="onChanged('language')">
+                <ion-option *ngFor="let language of languages" [value]="language.suffix">{{ language.name }}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Voir en français</ion-label>
+            <ion-toggle [ngModel]="config.general.letter_in_french" (ngModelChange)="onChanged()"></ion-toggle>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
