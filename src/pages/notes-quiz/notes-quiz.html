@@ -3,7 +3,7 @@
       <ion-buttons start>
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
-      <ion-title>Quiz</ion-title>
+      <ion-title>{{ 'Quiz' | translate }}</ion-title>
       <ion-buttons end *ngIf="isPlaying && !isDone">
           <button ion-button icon-only (click)="showPopup($event)"><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
@@ -17,33 +17,33 @@
             <button (click)="startQuiz()" [disabled]="questions.length == 0" ion-button>Commencer</button>
         </ion-row>
         <ion-row>
-            <button (click)="showConfiguration()" ion-button clear>Configuration</button>
+            <button (click)="showConfiguration()" ion-button clear>{{ 'Settings' | translate }}</button>
         </ion-row>
         <ion-row>
-            {{questions.length}} notes
+            {{questions.length}} {{ 'notes' | translate }}
         </ion-row>
     </div>
 
     <div *ngIf="isPlaying && !isDone">
-        <h1>Quelle est cette note ?</h1>
+        <h1>{{ 'What is this note ?' | translate }}</h1>
         <musical-note [clef]="current_question.clef.letter.name" [singlePosition]="current_question.position" [note]="current_question.note"></musical-note>
         <div class="buttons" *ngIf="isWaiting">
             <button *ngFor="let answer of answers; let i = index" ion-button (click)="tryAnswer(i)" [disabled]="wrongAnswers.indexOf(i) >= 0"><note-name [note]="answer" [french]="config.general.letter_in_french"></note-name></button>
         </div>
         <div *ngIf="!isWaiting && isLastQuestion()">
-            <button ion-button (click)="pickChord()">Voir le résultat</button>
+            <button ion-button (click)="pickChord()">{{ 'See the result' | translate }}</button>
         </div>
     </div>
 
     <div *ngIf="isDone" class="done">
-        <h1>Résultat</h1>
+        <h1>{{ 'Results' | translate }}</h1>
 
         <h2>{{goodAnswer}}</h2>
-        <h2 class="divider">sur</h2>
+        <h2 class="divider">{{ 'on' | translate }}</h2>
         <h2>{{questions.length}}</h2>
 
         <div class="buttons">
-            <button ion-button (click)="reset()">OK</button>
+            <button ion-button (click)="reset()">{{ 'OK' | translate }}</button>
         </div>
     </div>
 
