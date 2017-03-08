@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar color="secondary">
-        <ion-title>Filtres</ion-title>
+        <ion-title>{{ 'Filters' | translate }}</ion-title>
         <ion-buttons start>
             <button ion-button (click)="close()">
                 <ion-icon name="arrow-back" showWhen="android,windows"></ion-icon>
@@ -12,29 +12,29 @@
 <ion-content padding>
 
     <ion-list radio-group [(ngModel)]="config.notes.list_clef">
-        <ion-item-divider>Afficher les notes sur la clef suivante</ion-item-divider>
+        <ion-item-divider>{{ 'Show notes of these clefs' | translate }}</ion-item-divider>
         <ion-item *ngFor="let clef of clefs">
-            <ion-label>Clef de <note-name [note]="clef" [french]="config.general.letter_in_french"></note-name></ion-label>
+            <ion-label>{{ 'clef prefix' | translate }}<note-name [note]="clef" [french]="config.general.letter_in_french"></note-name>{{ 'clef suffix' | translate }}</ion-label>
             <ion-radio [value]="clef.letter.name" (click)="onChanged()"></ion-radio>
         </ion-item>
     </ion-list>
 
     <ion-list>
-        <ion-item-divider>Afficher la note plus haute dans la portée</ion-item-divider>
+        <ion-item-divider>{{ 'Show the highest note in the staff' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Afficher</ion-label>
+            <ion-label>{{ 'Show' | translate }}</ion-label>
             <ion-checkbox [(ngModel)]="config.notes.list_high_note" (click)="onChanged()"></ion-checkbox>
         </ion-item>
     </ion-list>
 
     <ion-list>
-        <ion-item-divider>Inclure</ion-item-divider>
+        <ion-item-divider>{{ 'Include' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Bémol</ion-label>
+            <ion-label>{{ 'Flat' | translate }}</ion-label>
             <ion-checkbox [(ngModel)]="config.notes.list_flat" (click)="onChanged()"></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>Dièse</ion-label>
+            <ion-label>{{ 'Sharp' | translate }}</ion-label>
             <ion-checkbox [(ngModel)]="config.notes.list_sharp" (click)="onChanged()"></ion-checkbox>
         </ion-item>
     </ion-list>

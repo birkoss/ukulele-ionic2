@@ -1,8 +1,6 @@
 <ion-header>
     <ion-toolbar color="secondary">
-        <ion-title>
-            Configuration
-        </ion-title>
+        <ion-title>{{ 'Settings' | translate }}</ion-title>
         <ion-buttons start>
             <button ion-button (click)="close()">
                 <ion-icon name="arrow-back" showWhen="android,windows"></ion-icon>
@@ -14,33 +12,33 @@
 <ion-content padding>
 
     <ion-list radio-group>
-        <ion-item-divider>Prendre les clefs suivantes</ion-item-divider>
+        <ion-item-divider>{{ 'Use the following clefs' | translate }}</ion-item-divider>
         <ion-item *ngFor="let clef of clefs">
-            <ion-label>Clef de <note-name [note]="clef" [french]="config.general.letter_in_french"></note-name></ion-label>
+            <ion-label>{{ 'clef prefix' | translate }}<note-name [note]="clef" [french]="config.general.letter_in_french"></note-name>{{ 'clef suffix' | translate }}</ion-label>
             <ion-checkbox [(ngModel)]="config.notes.quiz_clefs[clef.letter.name]" (click)="onFilterChanged($event)"></ion-checkbox>
         </ion-item>
     </ion-list>
 
     <ion-list radio-group>
-        <ion-item-divider>Favoris</ion-item-divider>
+        <ion-item-divider>{{ 'Favorites' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Seulement utiliser ces notes</ion-label>
+            <ion-label>{{ 'Only use these notes' | translate }}</ion-label>
             <ion-toggle value="exclude" [(ngModel)]="config.notes.quiz_favorites" [disabled]="this.favorites.all('notes').length == 0" (ionChange)="onFilterChanged($event)"></ion-toggle>
         </ion-item>
     </ion-list>
 
     <ion-list>
-        <ion-item-divider>Bémol</ion-item-divider>
+        <ion-item-divider>{{ 'Flat' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Inclure</ion-label>
+            <ion-label>{{ 'Include' | translate }}</ion-label>
             <ion-toggle [(ngModel)]="config.notes.quiz_flat" (ionChange)="onFilterChanged()"></ion-toggle>
         </ion-item>
     </ion-list>
 
     <ion-list>
-        <ion-item-divider>Dièse</ion-item-divider>
+        <ion-item-divider>{{ 'Sharp' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Inclure</ion-label>
+            <ion-label>{{ 'Include' | translate }}</ion-label>
             <ion-toggle [(ngModel)]="config.notes.quiz_sharp" (ionChange)="onFilterChanged()"></ion-toggle>
         </ion-item>
     </ion-list>

@@ -1,8 +1,6 @@
 <ion-header>
     <ion-toolbar color="secondary">
-        <ion-title>
-            Configuration
-        </ion-title>
+        <ion-title>{{ 'Settings' | translate }}</ion-title>
         <ion-buttons start>
             <button ion-button (click)="close()">
                 <ion-icon name="arrow-back" showWhen="android,windows"></ion-icon>
@@ -14,33 +12,33 @@
 <ion-content padding>
 
     <ion-list>
-        <ion-item-divider>Choisir les types disponibles</ion-item-divider>
+        <ion-item-divider>{{ 'Choose the forms' | translate }}</ion-item-divider>
         <ion-item *ngFor="let type of forms">
-            <ion-label>{{type.type}} {{type.quality}}</ion-label>
+            <ion-label>{{ type.type + ' ' + type.quality | translate }}</ion-label>
             <ion-checkbox [(ngModel)]="config.chords.quiz_forms[type.type+'-'+type.quality]" (ionChange)="onFilterChanged($event)"></ion-checkbox>
         </ion-item>
     </ion-list>
 
     <ion-list radio-group>
-        <ion-item-divider>Favoris</ion-item-divider>
+        <ion-item-divider>{{ 'Favorites' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Seulement utiliser ces accords</ion-label>
+            <ion-label>{{ 'Only use these chords' | translate }}</ion-label>
             <ion-toggle value="exclude" [(ngModel)]="config.chords.quiz_favorites" [disabled]="this.favorites.all('chords').length == 0" (ionChange)="onFilterChanged($event)"></ion-toggle>
         </ion-item>
     </ion-list>
 
     <ion-list>
-        <ion-item-divider>Bémol</ion-item-divider>
+        <ion-item-divider>{{ 'Flat' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Inclure</ion-label>
+            <ion-label>{{ 'Include' | translate }}</ion-label>
             <ion-toggle [(ngModel)]="config.chords.quiz_flat" (ionChange)="onFilterChanged()"></ion-toggle>
         </ion-item>
     </ion-list>
 
     <ion-list>
-        <ion-item-divider>Dièse</ion-item-divider>
+        <ion-item-divider>{{ 'Sharp' | translate }}</ion-item-divider>
         <ion-item>
-            <ion-label>Inclure</ion-label>
+            <ion-label>{{ 'Include' | translate }}</ion-label>
             <ion-toggle [(ngModel)]="config.chords.quiz_sharp" (ionChange)="onFilterChanged()"></ion-toggle>
         </ion-item>
     </ion-list>

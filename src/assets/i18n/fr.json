@@ -26,5 +26,16 @@
     "What is this note?": "Quelle est cette note?",
     "See the result": "Voir le résultat",
     "Results": "Résultats",
-    "on": "sur"
+    "on": "sur",
+    "Use the following clefs": "Prendre les clefs suivantes",
+    "Only use these notes": "Seulement utiliser ces notes",
+    "Sharp": "Dièse",
+    "Flat": "Bémol",
+    "Include": "Inclure",
+    "Show notes of these clefs": "Afficher les notes sur la clef suivante",
+    "Show the highest note in the staff": "Afficher la note plus haute dans la portée",
+    "Show": "Afficher",
+    "Choose the forms": "Choisir les formes",
+    "Only use these chords": "Seulement utiliser ces accords",
+    "Chords List": "Liste des accords"
 }

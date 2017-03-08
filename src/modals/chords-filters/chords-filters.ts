@@ -15,7 +15,7 @@ export class ChordsFiltersModal {
     notes:Array<Object> = [];
 
     notesFilters:Array<Object> = [
-        {'name':'Toutes', 'value':'all'},
+        {'name':'All', 'value':'all'},
         {'name':'♮', 'value':'natural'},
         {'name':'♭', 'value':'flat'},
         {'name':'♯', 'value':'sharp'},
