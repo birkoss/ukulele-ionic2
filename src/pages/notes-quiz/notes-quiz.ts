@@ -109,26 +109,26 @@ export class NotesQuizPage {
             this.questionIndex++;
 
             this.answers.push(this.current_question['note']);
-            /* @todo Better finding the answers without looping 10 times: Build a pre-generated array first */
-            while (this.answers.length < 5) {
-                let note:Note = this.data.pickNote();
 
-                let exists:Boolean = false;
-                this.answers.forEach(answer => {
-                    if (note.letter['name'] == answer.letter['name'] && note.accidental == answer.accidental) {
-                        exists = true;
-                    }
-                });
-                if (exists) {
-                    continue;
+            let answersCollection:Array<Note> = this.data.getNotes().filter(note => {
+                if (note.letter['name'] == this.current_question['note'].letter['name'] && note.accidental == this.current_question['note'].accidental) {
+                    return false;
                 }
 
-                if (!this.config.notes['quiz_flat'] && note.accidental < 0) { continue; }
-                if (!this.config.notes['quiz_sharp'] && note.accidental > 0) { continue; }
+                if (!this.config.notes['quiz_flat'] && note.accidental < 0) { return false; }
+                if (!this.config.notes['quiz_sharp'] && note.accidental > 0) { return false; }
 
-                this.answers.push(note);
-            }
-            
+                return true;
+            });
+
+            this.shuffle(answersCollection);
+
+            answersCollection.forEach(answer => {
+                if (this.answers.length < 5) {
+                    this.answers.push(answer);
+                }
+            });
+
             this.shuffle(this.answers);
         }
     }
