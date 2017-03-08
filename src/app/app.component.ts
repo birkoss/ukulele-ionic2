@@ -4,6 +4,8 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar, Splashscreen } from 'ionic-native';
 
+import { TranslateService } from 'ng2-translate';
+
 import { ChordsTabs } from '../pages/chords-tabs/chords-tabs';
 import { ChordsQuizPage } from '../pages/chords-quiz/chords-quiz';
 
@@ -46,19 +48,20 @@ export class MyApp {
         {title:'Liste', component:ScalesListPage}
     ];
 
-    constructor(public platform: Platform, public menu: MenuController, public config:ConfigProvider, public favorites:FavoritesProvider, public data:DataProvider) {
-        this.init();
-    }
-
-    init() {
+    constructor(public platform:Platform, public menu:MenuController, public config:ConfigProvider, public favorites:FavoritesProvider, public data:DataProvider, public translate:TranslateService) {
         this.platform.ready().then(() => {
             StatusBar.styleDefault();
             Splashscreen.hide();
+
+            translate.setDefaultLang('en');
             this.favorites.load().then(result => {
                 this.data.load().then(result => {
                     this.config.load().then(result => {
-                        //this.rootPage = NotesTabs;
-                        this.rootPage = ScalesListPage;
+                        translate.use(this.config.general['language']).subscribe(data => {
+                            console.log(this.config);
+                            //this.rootPage = NotesTabs;
+                            this.rootPage = ScalesListPage;
+                        });
                     });
                 });
             });

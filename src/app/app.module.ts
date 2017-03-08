@@ -1,9 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Http } from '@angular/http';
 
 import { Storage } from '@ionic/storage';
 
-import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
 import { MyApp } from './app.component';
 
@@ -41,7 +43,7 @@ import { DataProvider } from '../providers/data-provider';
 import { FavoritesProvider } from '../providers/favorites-provider';
 
 /* Used to fetch the translations from assets/i18n folder */
-export function createTranslateLoader(http:Http) { return new TranslateStaticLoader(http, 'assets/i18n', 'json'); }
+export function createTranslateLoader(http:Http) { return new TranslateStaticLoader(http, 'assets/i18n', '.json'); }
 
 @NgModule({
   declarations: [
