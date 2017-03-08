@@ -86,7 +86,6 @@ export class NotesQuizPage {
         this.shuffle(this.questions);
     }
 
-    /* Deprecated ? */
     hasFavorited(clef:Note, note:Note, position:number):Boolean {
         let favorited:Boolean = false;
         this.favorites.all('notes').filter(favorite => {

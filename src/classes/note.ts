@@ -1,17 +1,7 @@
 export class Note {
-    name:string = "DEPRECATED";
-    french:string = "DEPRECATED";
-    direction:string = "DEPRECATED";
-
-    isFavorited:Boolean = false;
-
     alternate:Note;
 
     constructor(public letter:Object, public accidental:number) { }
-
-    toFavorite() {
-        return "DEPRECATED";
-    }
 
     setAlternate(note:Note) {
         this.alternate = note;

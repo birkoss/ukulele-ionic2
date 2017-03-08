@@ -58,7 +58,7 @@ export class NotesDetailPage {
         }
     }
 
-    public showPopup(event, type:string) {
+    public showPopup(event) {
         let popover = this.popoverCtrl.create(GeneralPopover);
         popover.present({
             ev: event
