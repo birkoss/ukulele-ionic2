@@ -23,8 +23,12 @@ div.buttons {
     width: 100%;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding-left: 50px;
+    padding-right: 50px;
 
-    p {
+    p, h1 {
+        text-align: center;
         color: #bdbdbd;
         font-weight: bold;
     }
@@ -34,6 +38,7 @@ div.buttons {
     white-space: normal;
 }
 
+/* State for the active button in the side menu */
 ion-menu ion-list button.active {
     font-weight: bold;
 }

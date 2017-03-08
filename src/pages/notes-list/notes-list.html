@@ -3,9 +3,9 @@
       <ion-buttons start>
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
-      <ion-title>Notes</ion-title>
+      <ion-title>{{ 'Notes' | translate }}</ion-title>
       <ion-buttons end>
-          <button (click)="showModal($event)" ion-button outline>Filtres</button>
+          <button (click)="showModal($event)" ion-button outline>{{ 'Filters' | translate }}</button>
           <button (click)="showPopup($event)" ion-button icon-only><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
