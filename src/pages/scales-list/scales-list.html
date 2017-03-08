@@ -3,9 +3,9 @@
       <ion-buttons start>
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
-      <ion-title>Gammes</ion-title>
+      <ion-title>{{ 'Scales' | translate }}</ion-title>
       <ion-buttons end>
-        <button ion-button outline (click)="showModal($event)">Filtres</button>
+          <button ion-button outline (click)="showModal($event)">{{ 'Filters' | translate }}</button>
         <button ion-button icon-only (click)="showPopup($event)"><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
@@ -14,7 +14,7 @@
 <ion-content>
     <div class="scales">
         <ion-list *ngFor="let scale of scales">
-            <ion-item-divider color="primary">{{scale.name}}</ion-item-divider>
+            <ion-item-divider color="primary">{{ scale.name | translate }}</ion-item-divider>
             <div *ngFor="let s of scale.scales">
                 <ion-item-divider *ngIf="s.note" color="secondary"><note-name [note]="s.note" [french]="config.general.letter_in_french"></note-name></ion-item-divider>
                 <ion-item>
