@@ -6,7 +6,7 @@ import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
-import { DetailOptionsPopover } from '../../popovers/detail-options/detail-options';
+import { GeneralPopover } from '../../popovers/general/general';
 
 import { Chord } from '../../classes/chord';
 import { Position } from '../../classes/position';
@@ -53,8 +53,8 @@ export class ChordsDetailPage {
         });
     }
 
-    public showPopup(event, type:string) {
-        let popover = this.popoverCtrl.create(DetailOptionsPopover);
+    showPopup(event) {
+        let popover = this.popoverCtrl.create(GeneralPopover);
         popover.present({
             ev: event
         });

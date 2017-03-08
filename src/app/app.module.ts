@@ -19,10 +19,6 @@ import { NotesQuizPage } from '../pages/notes-quiz/notes-quiz';
 
 import { ScalesListPage } from '../pages/scales-list/scales-list';
 
-import { ChordsFiltersPopover } from '../popovers/chords-filters/chords-filters';
-import { NotesFiltersPopover } from '../popovers/notes-filters/notes-filters';
-import { ChordsOptionsPopover } from '../popovers/chords-options/chords-options';
-import { DetailOptionsPopover } from '../popovers/detail-options/detail-options';
 import { GeneralPopover } from '../popovers/general/general';
 
 import { ChordsQuizModal } from '../modals/chords-quiz/chords-quiz';
@@ -68,10 +64,6 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordCard,
     NoteCard,
 
-    ChordsFiltersPopover,
-    NotesFiltersPopover,
-    ChordsOptionsPopover,
-    DetailOptionsPopover,
     GeneralPopover,
 
     ChordsQuizModal,
@@ -109,10 +101,6 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordCard,
     NoteCard,
 
-    ChordsFiltersPopover,
-    NotesFiltersPopover,
-    ChordsOptionsPopover,
-    DetailOptionsPopover,
     GeneralPopover,
 
     ChordsQuizModal,

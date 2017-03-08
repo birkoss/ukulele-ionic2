@@ -2,7 +2,7 @@
   <ion-navbar color="primary">
       <ion-title><chord-name *ngIf="chord" [note]="chord.note" [form]="chord.form" [french]="config.general.letter_in_french" ></chord-name></ion-title>
       <ion-buttons end>
-          <button (click)="showPopup($event, 'options')" ion-button icon-only><ion-icon name="settings"></ion-icon></button>
+          <button (click)="showPopup($event)" ion-button icon-only><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
