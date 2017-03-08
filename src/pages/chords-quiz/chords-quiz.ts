@@ -10,9 +10,6 @@ import { GeneralPopover } from '../../popovers/general/general';
 
 import { ChordsQuizModal } from '../../modals/chords-quiz/chords-quiz'
 
-import { Note } from '../../classes/note';
-import { Type } from '../../classes/type';
-import { Chord } from '../../classes/chord';
 import { Position } from '../../classes/position';
 
 @Component({
@@ -87,7 +84,7 @@ export class ChordsQuizPage {
         }
     }
 
-    private startQuiz() {
+    startQuiz() {
         this.goodAnswer = 0;
         this.generateList();
         this.questionIndex = 0;

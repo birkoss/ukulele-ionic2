@@ -12,7 +12,6 @@ import { FavoritesProvider } from '../../providers/favorites-provider';
 
 import { Chord } from '../../classes/chord';
 import { Note } from '../../classes/note';
-import { Position } from '../../classes/Position';
 
 @Component({
     selector: 'chords-favorites',

@@ -2,8 +2,6 @@
 
 * See why Object.assign is overwritting the main attributes (config['aaa']['bbb'] with config['aaa']['ccc'] will be ['aaa']['ccc'] instead of ['aaa']['ccc'] AND ['aaa']['bbb'])
 
-* Fix all warnings
-
 * Find and remove todo
 
 * Find and remove deprecated

@@ -10,9 +10,6 @@ import { GeneralPopover } from '../../popovers/general/general';
 import { DataProvider } from '../../providers/data-provider';
 import { ConfigProvider } from '../../providers/config-provider';
 
-import { Chord } from '../../classes/chord';
-import { Position } from '../../classes/Position';
-
 @Component({
   selector: 'chords-list',
   templateUrl: 'chords-list.html',

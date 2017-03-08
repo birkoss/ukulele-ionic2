@@ -8,9 +8,7 @@ import { FavoritesProvider } from '../../providers/favorites-provider';
 
 import { GeneralPopover } from '../../popovers/general/general';
 
-import { Chord } from '../../classes/chord';
 import { Note } from '../../classes/note';
-import { Type } from '../../classes/type';
 
 @Component({
     selector: "notes-detail",
