@@ -75,7 +75,7 @@ export class ChordPosition {
 
 	constructor(public data:DataProvider) { }
 
-    public toggleMarker(event):void {
+    public toggleMarker(event) {
         if (this._interactive) {
             let svg_parent;
             for (var i=0; i<event.path.length; i++) {

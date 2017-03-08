@@ -4,8 +4,6 @@
 
 * Fix all warnings
 
-* Code cleanup: Remove :void and public
-
 * Find and remove todo
 
 * Find and remove deprecated

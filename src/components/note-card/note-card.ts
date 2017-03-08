@@ -34,7 +34,7 @@ export class NoteCard {
 
 	constructor(private dataProvider:DataProvider, private config:ConfigProvider) { }
 
-    public showDetail():void {
+    public showDetail() {
         this.onButtonClicked.emit({'note':this._note, 'clef':this._clef, 'position':this._singlePosition});
     }
 }

@@ -20,8 +20,7 @@ export class ChordCard {
 
 	constructor(public data:DataProvider, public config:ConfigProvider) { }
 
-    public showDetail(): void {
-        console.log('ChordCard...showDetail');
+    public showDetail() {
         this.onDetailClicked.emit({'chord':this._chord});
     }
 }
