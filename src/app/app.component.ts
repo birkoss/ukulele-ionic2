@@ -50,6 +50,12 @@ export class MyApp {
         {title:'Liste', component:ScalesListPage}
     ];
 
+    settingsPage:PageInterface[] = [
+        {title:'Settings', component:SettingsPage}
+    ];
+
+    currentPage:PageInterface;
+
     constructor(public platform:Platform, public menu:MenuController, public config:ConfigProvider, public favorites:FavoritesProvider, public data:DataProvider, public translate:TranslateService) {
         this.platform.ready().then(() => {
             StatusBar.styleDefault();
@@ -60,7 +66,6 @@ export class MyApp {
                 this.data.load().then(result => {
                     this.config.load().then(result => {
                         translate.use(this.config.general['language']).subscribe(data => {
-                            console.log(this.config);
                             //this.rootPage = NotesTabs;
                             this.rootPage = SettingsPage;
                         });
@@ -71,6 +76,8 @@ export class MyApp {
     }
 
     openPage(page) {
+        this.currentPage = page;
+
         this.menu.close();
 
         if (page.index) {

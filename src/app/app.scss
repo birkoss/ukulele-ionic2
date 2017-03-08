@@ -33,3 +33,7 @@ div.buttons {
 .popover-content ion-label {
     white-space: normal;
 }
+
+ion-menu ion-list button.active {
+    font-weight: bold;
+}
