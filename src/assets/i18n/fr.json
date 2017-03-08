@@ -7,5 +7,13 @@
     "Settings": "Configuration",
     "Language": "Langue",
     "French Notation (DO, RE, MI, ...)": "Notation française (DO, RE, ...)",
-    "Chords": "Accords"
+    "Chords": "Accords",
+    "Chromatic": "Chromatique",
+    "Major": "Majeure",
+    "Minor": "Mineure",
+    "Major Pentatonic": "Pentatonique Majeure",
+    "Minor Pentatonic": "Pentatonique Mineure",
+    "Scales List": "Liste des gammes",
+    "All": "Tous",
+    "Notes List": "Liste des notes"
 }

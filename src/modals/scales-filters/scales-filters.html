@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar color="secondary">
-        <ion-title>Filtres</ion-title>
+        <ion-title>{{ 'Filtres' | translate }}</ion-title>
         <ion-buttons start>
             <button ion-button (click)="close()">
                 <ion-icon name="arrow-back" showWhen="android,windows"></ion-icon>
@@ -12,23 +12,23 @@
 <ion-content padding>
 
     <ion-list radio-group>
-        <ion-item-divider>Liste des gammes</ion-item-divider>
+        <ion-item-divider>{{ 'Scales List' | translate }}</ion-item-divider>
         <ion-item *ngFor="let scale of scales">
-            <ion-label>{{scale.name}}</ion-label>
+            <ion-label>{{ scale.name | translate }}</ion-label>
             <ion-checkbox value="exclude" [(ngModel)]="config.scales.list_scales[scale.name]" (click)="onChanged($event)"></ion-checkbox>
         </ion-item>
     </ion-list>
 
     <div class="notes-filters">
         <ion-segment [ngModel]="notesFilter">
-            <ion-segment-button *ngFor="let filter of notesFilters" [ngClass]="filter.value" [value]="filter.value" (ionSelect)="onFilterChanged($event)">{{filter.name}}</ion-segment-button>
+            <ion-segment-button *ngFor="let filter of notesFilters" [ngClass]="filter.value" [value]="filter.value" (ionSelect)="onFilterChanged($event)">{{ filter.name | translate }}</ion-segment-button>
         </ion-segment>
     </div>
 
     <ion-list>
-        <ion-item-divider>Liste des notes</ion-item-divider>
+        <ion-item-divider>{{ 'Notes List' | translate }}</ion-item-divider>
         <ion-item *ngFor="let note of notes">
-            <ion-label>{{note}}</ion-label>
+            <ion-label><note-name [note]="note" [french]="config.general.letter_in_french"></note-name></ion-label>
             <ion-checkbox [(ngModel)]="config.scales.list_notes[note]" (click)="onChanged($event)"></ion-checkbox>
         </ion-item>
     </ion-list>

@@ -15,7 +15,7 @@ export class ScalesFiltersModal {
     notes:Array<Object> = [];
 
     notesFilters:Array<Object> = [
-        {'name':'Toutes', 'value':'all'},
+        {'name':'All', 'value':'all'},
         {'name':'♮', 'value':'natural'},
         {'name':'♭', 'value':'flat'},
         {'name':'♯', 'value':'sharp'},
@@ -24,7 +24,7 @@ export class ScalesFiltersModal {
 
     parent:any;
 
-    constructor(public viewCtrl:ViewController, private data:DataProvider, private config:ConfigProvider, params:NavParams) {
+    constructor(public viewCtrl:ViewController, private data:DataProvider, public config:ConfigProvider, params:NavParams) {
         this.parent = params.get('parent');
     }
 
