@@ -35,19 +35,19 @@ export class MyApp {
     rootPage:Component;
 
     chordsPages: PageInterface[] = [
-        {title: 'Liste', component: ChordsTabs},
-        {title: 'Favoris', component: ChordsTabs, index: 1},
+        {title: 'List', component: ChordsTabs},
+        {title: 'Favorites', component: ChordsTabs, index: 1},
         {title: 'Quiz', component: ChordsQuizPage}
     ];
 
     notesPages: PageInterface[] = [
-        {title: 'Liste', component: NotesTabs},
-        {title: 'Favoris', component: NotesTabs, index: 1},
+        {title: 'List', component: NotesTabs},
+        {title: 'Favorites', component: NotesTabs, index: 1},
         {title: 'Quiz', component: NotesQuizPage}
     ];
 
     scalesPages:PageInterface[] = [
-        {title:'Liste', component:ScalesListPage}
+        {title:'List', component:ScalesListPage}
     ];
 
     settingsPage:PageInterface[] = [
