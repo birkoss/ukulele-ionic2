@@ -3,7 +3,7 @@
       <ion-buttons start>
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
-      <ion-title>Favoris</ion-title>
+      <ion-title>{{ 'Favorites' | translate }}</ion-title>
       <ion-buttons end>
           <button (click)="showPopup($event)" ion-button icon-only><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
@@ -16,6 +16,7 @@
     </div>
 
     <div class="label-container" *ngIf="chords.length == 0">
-        <p>Aucun accord n'est dans les favoris!</p> 
+        <h1>{{ 'No favorites' | translate }}</h1>
+        <p>{{ 'Chords you mark as favorite will show up here' | translate }}</p> 
     </div>
 </ion-content>

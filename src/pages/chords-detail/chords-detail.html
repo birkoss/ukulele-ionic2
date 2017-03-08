@@ -14,13 +14,13 @@
             <ion-card-content>
                 <chord-position [position]="p.position"></chord-position>
             </ion-card-content>
-                <ion-card-header>Position</ion-card-header>
+            <ion-card-header>{{ 'Position' | translate }}</ion-card-header>
                 <ion-row class="strings-container">
                     <ion-col *ngFor="let s of p.position.strings">
                         {{s.fret}}
                     </ion-col>
                 </ion-row>
-                <ion-card-header>Notes</ion-card-header>
+                <ion-card-header>{{ 'Notes' | translate }}</ion-card-header>
                 <ion-row class="strings-container">
                     <ion-col *ngFor="let s of p.position.strings">
                         <note-name *ngIf="s.finger >= 0" [note]="s.note" [french]="config.general.letter_in_french"></note-name>
@@ -28,10 +28,10 @@
                 </ion-row>
             <div class="buttons">
                 <button *ngIf="!p.isFavorited" ion-button icon-left (click)="favorite(i)">
-                    <ion-icon name="star" item-left></ion-icon> Ajouter
+                    <ion-icon name="star" item-left></ion-icon>{{ 'Add' | translate }}
                 </button>
                 <button *ngIf="p.isFavorited" ion-button icon-left (click)="favorite(i)">
-                    <ion-icon name="star" item-left></ion-icon> Enlever
+                    <ion-icon name="star" item-left></ion-icon>{{ 'Remove' | translate }}
                 </button>
             </div>
         </ion-card>

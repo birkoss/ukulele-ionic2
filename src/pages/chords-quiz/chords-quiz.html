@@ -3,7 +3,7 @@
       <ion-buttons start>
           <button ion-button menuToggle icon-only><ion-icon name="menu"></ion-icon></button>
       </ion-buttons>
-      <ion-title>Quiz</ion-title>
+      <ion-title>{{ 'Quiz' | translate }}</ion-title>
       <ion-buttons end *ngIf="isPlaying && !isDone">
           <button ion-button icon-only (click)="showPopup($event)"><ion-icon name="options"></ion-icon></button>
       </ion-buttons>
@@ -14,38 +14,38 @@
 
     <div class="intro" *ngIf="!isPlaying">
         <ion-row>
-            <button (click)="startQuiz()" [disabled]="questions.length == 0" ion-button>Commencer</button>
+            <button (click)="startQuiz()" [disabled]="questions.length == 0" ion-button>{{ 'Start' | translate }}</button>
         </ion-row>
         <ion-row>
-            <button (click)="showConfiguration()" ion-button clear>Configuration</button>
+            <button (click)="showConfiguration()" ion-button clear>{{ 'Settings' | translate }}</button>
         </ion-row>
         <ion-row>
-            {{questions.length}} accords
+            {{questions.length}} {{ 'chords' | translate }}
         </ion-row>
     </div>
 
     <div *ngIf="isPlaying && !isDone">
-        <h1>Reproduire cet accord <chord-name [note]="current_question.note" [french]="config.general.letter_in_french" [form]="current_question.form"></chord-name></h1>
+        <h1>{{ 'Reproduce this chord' | translate }} <chord-name [note]="current_question.note" [french]="config.general.letter_in_french" [form]="current_question.form"></chord-name></h1>
         <chord-position (onMarkerToggled)="verifyAnswer($event)" [interactive]="isWaiting" [(startPosition)]="start" [position]="position"></chord-position>
         <div class="buttons">
             <button *ngIf="isWaiting" ion-button [disabled]="start <= 1" (click)="moveFret(-1)"><ion-icon name="arrow-up"></ion-icon></button>
-            <button *ngIf="!isWaiting && !isLastQuestion()" ion-button (click)="pickQuestion()">Prochaine question</button>
-            <button *ngIf="!isWaiting && isLastQuestion()" ion-button (click)="pickQuestion()">Voir le résultat</button>
-            <button *ngIf="isWaiting" ion-button (click)="showSolution()">Abandonner</button>
+            <button *ngIf="!isWaiting && !isLastQuestion()" ion-button (click)="pickQuestion()">{{ 'Next question' | translate }}</button>
+            <button *ngIf="!isWaiting && isLastQuestion()" ion-button (click)="pickQuestion()">{{ 'See the result' | translate }}</button>
+            <button *ngIf="isWaiting" ion-button (click)="showSolution()">{{ 'Give up' | translate }}</button>
 
             <button *ngIf="isWaiting" ion-button [disabled]="start >= 12" (click)="moveFret(1)"><ion-icon name="arrow-down"></ion-icon></button>
         </div>
     </div>
 
     <div *ngIf="isDone" class="done">
-        <h1>Résultat</h1>
+        <h1>{{ 'Results' | translate }}</h1>
 
         <h2>{{goodAnswer}}</h2>
-        <h2 class="divider">sur</h2>
+        <h2 class="divider">{{ 'on' | translate }}</h2>
         <h2>{{questions.length}}</h2>
 
         <div class="buttons">
-            <button ion-button (click)="reset()">OK</button>
+            <button ion-button (click)="reset()">{{ 'OK' | translate }}</button>
         </div>
     </div>
 

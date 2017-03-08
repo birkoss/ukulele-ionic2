@@ -18,6 +18,7 @@
     "Notes List": "Liste des notes",
     "No favorites": "Aucun favori",
     "Notes you mark as favorite will show up here": "Les notes que vous marquerez comme favoris seront affichées ici",
+    "Chords you mark as favorite will show up here": "Les accords que vous marquerez comme favoris seront affichées ici",
     "Details": "Détail",
     "clef prefix": "Clef de ",
     "clef suffix": "",
@@ -37,5 +38,9 @@
     "Show": "Afficher",
     "Choose the forms": "Choisir les formes",
     "Only use these chords": "Seulement utiliser ces accords",
-    "Chords List": "Liste des accords"
+    "Chords List": "Liste des accords",
+    "Start": "Commencer",
+    "Reproduce this chord": "Reproduire cet accord",
+    "Next question": "Prochaine question",
+    "Give up": "Abandonner"
 }
