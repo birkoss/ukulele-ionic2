@@ -3,6 +3,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
+import { TranslateModule } from 'ng2-translate/ng2-translate';
+
 import { MyApp } from './app.component';
 
 import { ChordsTabs } from '../pages/chords-tabs/chords-tabs';
@@ -37,6 +39,9 @@ import { NoteName } from '../components/note-name/note-name';
 import { ConfigProvider } from '../providers/config-provider';
 import { DataProvider } from '../providers/data-provider';
 import { FavoritesProvider } from '../providers/favorites-provider';
+
+/* Used to fetch the translations from assets/i18n folder */
+export function createTranslateLoader(http:Http) { return new TranslateStaticLoader(http, 'assets/i18n', 'json'); }
 
 @NgModule({
   declarations: [
@@ -73,7 +78,12 @@ import { FavoritesProvider } from '../providers/favorites-provider';
     ChordsFiltersModal,
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
