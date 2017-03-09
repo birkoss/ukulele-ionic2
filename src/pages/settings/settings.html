@@ -17,8 +17,8 @@
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label>{{ 'French Notation (DO, RE, MI, ...)' | translate }}</ion-label>
-            <ion-toggle [ngModel]="config.general.letter_in_french" (ngModelChange)="onChanged()"></ion-toggle>
+            <ion-label>{{ config.general.letter_in_french}}{{ 'French Notation (DO, RE, MI, ...)' | translate }}</ion-label>
+            <ion-toggle [(ngModel)]="config.general.letter_in_french" (ngModelChange)="onChanged()"></ion-toggle>
         </ion-item>
     </ion-list>
 
