@@ -14,18 +14,21 @@ export class NoteName {
     @Input()
     set note(note: Note) {
         this._note = note;
-        this.updateName();
     }
 
     @Input()
     set french(inFrench: Boolean) {
         this.inFrench = inFrench;
-        this.updateName();
     }
+
+    @Input('suffix') suffix:string = "";
 
     constructor() { }
 
+    ngDoCheck() {
+        this.updateName();
+    }
     private updateName() {
-        this.name = this._note.toString(this.inFrench);
+        this.name = this._note.toString(this.suffix, this.inFrench);
     }
 }

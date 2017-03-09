@@ -4,7 +4,7 @@ import { Note } from '../../classes/note';
 
 @Component({
     selector: 'chord-name',
-    template: '<note-name [note]="note" [french]="french"></note-name>{{suffix}}'
+    template: '<note-name [note]="note" [french]="french" [suffix]="suffix"></note-name>'
 })
 export class ChordName {
     private suffix:string = "";
@@ -16,7 +16,7 @@ export class ChordName {
     set form(form:Object) {
         this.suffix = "";
         if (form['suffix'] != undefined) {
-            this.suffix = " " + form['suffix'];
+            this.suffix = form['suffix'];
         }
     }
 

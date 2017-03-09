@@ -7,8 +7,9 @@ export class Note {
         this.alternate = note;
     }
 
-    toString(inFrench:Boolean = false) {
+    toString(suffix:string = "", inFrench:Boolean = false) {
         let name:string = (inFrench ? this.letter['french'] : this.letter['name']);
+
 
         let accidental:number = this.accidental;
 
@@ -26,6 +27,10 @@ export class Note {
         while (accidental < 0) {
             name += "♭";
             accidental += 0.5;
+        }
+
+        if (suffix != "") {
+            name += suffix;
         }
 
         return name;
