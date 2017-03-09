@@ -37,7 +37,13 @@ export class Position {
             }
         });
 
-        if (this.max > 4) { this.start = this.min; }
+        if (this.max > 4) { 
+            if (this.max - this.min <= 3) {
+                this.start = this.min - 1;
+            } else {
+                this.start = this.min;
+            }
+        }
     }
 
 }
