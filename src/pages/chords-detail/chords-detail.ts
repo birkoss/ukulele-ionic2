@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { NavController, NavParams, PopoverController, Content } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, Content, Slides } from 'ionic-angular';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
@@ -18,6 +18,7 @@ import { ScaleBuilder } from '../../classes/scale-builder';
 })
 
 export class ChordsDetailPage {
+    @ViewChild(Slides) slides: Slides;
     @ViewChild(Content) content: Content;
 
     chord:Chord;
@@ -46,7 +47,7 @@ export class ChordsDetailPage {
 
     ionViewDidEnter() {
         if (this.params.get('position') && this.params.get('position') > 1) {
-            this.scrollToElement('position_' + this.params.get('position'));
+            this.slides.slideTo(this.params.get('position'), 0);
         }
     }
 

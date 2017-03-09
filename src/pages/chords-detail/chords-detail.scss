@@ -1,6 +1,32 @@
 chords-detail {
-    ion-row.strings-container {
 
+    ion-list {
+        margin-bottom: 6px !important;
+    }
+
+    .swiper-wrapper {
+        margin-top: 10px;
+    }
+
+    .swiper-container-horizontal > .swiper-pagination-bullets {
+        top: 0;
+        bottom: inherit;
+    }
+
+ .swiper-pagination-bullet-active {
+     background: map-get($colors, 'primary');
+ }
+
+    chord-position {
+        max-width: 200px;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    ion-row.strings-container {
         ion-col {
             text-align: center;
         }

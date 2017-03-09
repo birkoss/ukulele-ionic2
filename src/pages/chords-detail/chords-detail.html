@@ -22,7 +22,9 @@
             </ion-item>
         </ion-list>
 
-        <ion-card id="position_{{i}}" *ngFor="let p of positions; let i = index;">
+        <ion-slides pager>
+            <ion-slide *ngFor="let p of positions; let i = index;">
+        <ion-card id="position_{{i}}" >
             <ion-card-content>
                 <chord-position [position]="p.position"></chord-position>
             </ion-card-content>
@@ -47,6 +49,8 @@
                 </button>
             </div>
         </ion-card>
+            </ion-slide>
+        </ion-slides>
 
     </div>
 </ion-content>
