@@ -24,6 +24,7 @@ export interface PageInterface {
     title: string;
     component: any;
     index?: number;
+    changeRoot?: Boolean;
 }
 
 @Component({
@@ -51,7 +52,7 @@ export class MyApp {
     ];
 
     settingsPage:PageInterface[] = [
-        {title:'Settings', component:SettingsPage}
+        {title:'Settings', component:SettingsPage, changeRoot:false}
     ];
 
     currentPage:PageInterface;
@@ -66,7 +67,6 @@ export class MyApp {
                 this.data.load().then(result => {
                     this.config.load().then(result => {
                         translate.use(this.config.general['language']).subscribe(data => {
-                            //this.rootPage = NotesTabs;
                             this.rootPage = ChordsTabs;
                         });
                     });
@@ -80,10 +80,14 @@ export class MyApp {
 
         this.menu.close();
 
-        if (page.index) {
-            this.nav.setRoot(page.component, {tabIndex: page.index});
+        if (!page.changeRoot) {
+            this.nav.push(page.component);
         } else {
-            this.nav.setRoot(page.component);
+            if (page.index) {
+                this.nav.setRoot(page.component, {tabIndex: page.index});
+            } else {
+                this.nav.setRoot(page.component);
+            }
         }
     }
 }
