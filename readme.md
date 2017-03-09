@@ -6,6 +6,7 @@
 
 * Show all notes on a complete fret
 
-* Show scale parts
 
 * Find a way to show barre chords
+
+* Verify scale parts

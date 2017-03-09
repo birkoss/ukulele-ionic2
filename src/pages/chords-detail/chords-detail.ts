@@ -24,6 +24,7 @@ export class ChordsDetailPage {
     positions:Array<Object> = [];
     hasScrolled:Boolean = false;
     scale:Array<Note> = [];
+    scale_parts:Array<number> = [];
 
     constructor(public navCtrl:NavController, public params:NavParams, public config:ConfigProvider, public data:DataProvider, public popoverCtrl:PopoverController, public favorites:FavoritesProvider) {
         let chord:Object = params.get('chord');
@@ -35,6 +36,7 @@ export class ChordsDetailPage {
         this.generateList();
 
         let scale:Object = this.data.getScale(this.chord.form['scale']);
+        this.scale_parts = this.chord.form['scale_parts'];
         let builder:ScaleBuilder = new ScaleBuilder();
         builder.set(this.data.getLetters());
         builder.select(this.chord.note.letter['name'], this.chord.note.accidental);
