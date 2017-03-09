@@ -1,5 +1,9 @@
 <ion-list>
     <ion-item>
+        <ion-label>{{ 'Show scale' | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="config.chords.detail_scale" (ionChange)="onChanged()"></ion-toggle>
+    </ion-item>
+    <ion-item>
         <ion-label>{{ 'Show strings' | translate }}</ion-label>
         <ion-toggle [(ngModel)]="config.chords.detail_strings" (ionChange)="onChanged()"></ion-toggle>
     </ion-item>

@@ -9,6 +9,8 @@ import { FavoritesProvider } from '../../providers/favorites-provider';
 import { ChordsDetailPopover } from '../../popovers/chords-detail/chords-detail';
 
 import { Chord } from '../../classes/chord';
+import { Note } from '../../classes/note';
+import { ScaleBuilder } from '../../classes/scale-builder';
 
 @Component({
     selector: "chords-detail",
@@ -21,6 +23,7 @@ export class ChordsDetailPage {
     chord:Chord;
     positions:Array<Object> = [];
     hasScrolled:Boolean = false;
+    scale:Array<Note> = [];
 
     constructor(public navCtrl:NavController, public params:NavParams, public config:ConfigProvider, public data:DataProvider, public popoverCtrl:PopoverController, public favorites:FavoritesProvider) {
         let chord:Object = params.get('chord');
@@ -30,6 +33,13 @@ export class ChordsDetailPage {
 
     ionViewWillEnter() {
         this.generateList();
+
+        let scale:Object = this.data.getScale(this.chord.form['scale']);
+        let builder:ScaleBuilder = new ScaleBuilder();
+        builder.set(this.data.getLetters());
+        builder.select(this.chord.note.letter['name'], this.chord.note.accidental);
+        builder.create(scale['steps']);
+        this.scale = builder.getScale();
     }
 
     ionViewDidEnter() {

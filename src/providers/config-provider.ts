@@ -11,7 +11,7 @@ export class ConfigProvider {
     load() {
         this.configs['general'] = {'letter_in_french':false, 'language':'en', 'sway':'pinpin'};
 
-        this.configs['chords'] = {'list_forms':{}, 'list_notes':{}, 'quiz_forms':{}, 'quiz_favorites':false, 'quiz_sharp':false, 'quiz_flat':false, 'detail_strings':true, 'detail_notes':true};
+        this.configs['chords'] = {'list_forms':{}, 'list_notes':{}, 'quiz_forms':{}, 'quiz_favorites':false, 'quiz_sharp':false, 'quiz_flat':false, 'detail_strings':true, 'detail_notes':true, 'detail_scale':true};
     
         this.configs['notes'] = {'list_flat':false, 'list_sharp':false, 'list_high_note':true, 'list_clef':"G", 'quiz_sharp':false, 'quiz_flat':false, 'quiz_favorites':false, 'quiz_clefs':{}};
 

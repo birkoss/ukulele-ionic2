@@ -1,12 +1,14 @@
 chords-detail {
+    ion-row.strings-container {
+
+        ion-col {
+            text-align: center;
+        }
+    }
     ion-card {
         ion-row.strings-container {
             max-width: 220px;
             margin: 16px auto;
-
-            ion-col {
-                text-align: center;
-            }
         }
 
         ion-card-header {

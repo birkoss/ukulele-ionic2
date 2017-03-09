@@ -42,5 +42,8 @@
     "Start": "Commencer",
     "Reproduce this chord": "Reproduire cet accord",
     "Next question": "Prochaine question",
-    "Give up": "Abandonner"
+    "Give up": "Abandonner",
+    "Show strings": "Voir les cordes",
+    "Show notes": "Voir les notes",
+    "Show scale": "Voir la gamme"
 }

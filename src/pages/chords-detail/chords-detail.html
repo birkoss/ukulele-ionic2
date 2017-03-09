@@ -10,6 +10,17 @@
 <ion-content>
     <div class="chords">
 
+        <ion-list>
+            <ion-item-divider *ngIf="config.chords.detail_scale">{{ 'Scale' | translate }}</ion-item-divider>
+            <ion-item *ngIf="config.chords.detail_scale">
+                <ion-row class="strings-container">
+                    <ion-col *ngFor="let s of scale">
+                        <note-name [note]="s" [french]="config.general.letter_in_french"></note-name>
+                    </ion-col>
+                </ion-row>
+            </ion-item>
+        </ion-list>
+
         <ion-card id="position_{{i}}" *ngFor="let p of positions; let i = index;">
             <ion-card-content>
                 <chord-position [position]="p.position"></chord-position>
