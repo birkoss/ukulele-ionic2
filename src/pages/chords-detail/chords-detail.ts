@@ -6,7 +6,7 @@ import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
 import { FavoritesProvider } from '../../providers/favorites-provider';
 
-import { GeneralPopover } from '../../popovers/general/general';
+import { ChordsDetailPopover } from '../../popovers/chords-detail/chords-detail';
 
 import { Chord } from '../../classes/chord';
 
@@ -50,7 +50,7 @@ export class ChordsDetailPage {
     }
 
     showPopup(event) {
-        let popover = this.popoverCtrl.create(GeneralPopover);
+        let popover = this.popoverCtrl.create(ChordsDetailPopover);
         popover.present({
             ev: event
         });

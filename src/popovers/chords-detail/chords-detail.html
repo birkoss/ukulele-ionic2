@@ -1,0 +1,17 @@
+<ion-list>
+    <ion-item>
+        <ion-label>{{ 'Show strings' | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="config.chords.detail_strings" (ionChange)="onChanged()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+        <ion-label>{{ 'Show notes' | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="config.chords.detail_notes" (ionChange)="onChanged()"></ion-toggle>
+    </ion-item>
+</ion-list>
+
+<ion-list>
+    <ion-item>
+        <ion-label>{{ 'French Notation (DO, RE, MI, ...)' | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="config.general.letter_in_french" (ionChange)="onChanged()"></ion-toggle>
+    </ion-item>
+</ion-list>

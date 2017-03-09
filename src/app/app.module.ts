@@ -26,6 +26,7 @@ import { ScalesListPage } from '../pages/scales-list/scales-list';
 import { SettingsPage } from '../pages/settings/settings';
 
 import { GeneralPopover } from '../popovers/general/general';
+import { ChordsDetailPopover } from '../popovers/chords-detail/chords-detail';
 
 import { ChordsQuizModal } from '../modals/chords-quiz/chords-quiz';
 import { NotesQuizModal } from '../modals/notes-quiz/notes-quiz';
@@ -76,6 +77,7 @@ export function createTranslateLoader(http:Http) { return new TranslateStaticLoa
     NoteCard,
 
     GeneralPopover,
+    ChordsDetailPopover,
 
     ChordsQuizModal,
     NotesQuizModal,
@@ -120,6 +122,7 @@ export function createTranslateLoader(http:Http) { return new TranslateStaticLoa
     NoteCard,
 
     GeneralPopover,
+    ChordsDetailPopover,
 
     ChordsQuizModal,
     NotesQuizModal,
