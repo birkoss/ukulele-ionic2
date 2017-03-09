@@ -5,5 +5,3 @@
 * Add to the chord detail Popover custom settings
 
 * Add to the details page, slide to represent the main data
-
-* Translate the GeneralPopover
