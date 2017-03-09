@@ -67,7 +67,7 @@ export class MyApp {
                     this.config.load().then(result => {
                         translate.use(this.config.general['language']).subscribe(data => {
                             //this.rootPage = NotesTabs;
-                            this.rootPage = SettingsPage;
+                            this.rootPage = ChordsTabs;
                         });
                     });
                 });

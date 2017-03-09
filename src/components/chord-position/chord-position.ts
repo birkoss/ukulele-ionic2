@@ -43,7 +43,7 @@ export class ChordPosition {
             }
         });
 
-        for (let i:number=0; i<4; i++) {
+        for (let i:number=0; i<5; i++) {
             this.labels.push(this.start + i);
         }
     }
@@ -53,7 +53,7 @@ export class ChordPosition {
         this._interactive = interactive;
         if (this._interactive) {
             this.fingers = [];
-            this.labels = [1, 2, 3, 4];
+            this.labels = [1, 2, 3, 4, 5];
             this.start = 1;
         }
     }
@@ -63,7 +63,7 @@ export class ChordPosition {
         this.start = start;
 
         this.labels = [];
-        for (let i:number=0; i<4; i++) {
+        for (let i:number=0; i<5; i++) {
             this.labels.push(i + this.start);
         }
 
@@ -97,7 +97,7 @@ export class ChordPosition {
             y-= origin_start;
 
             var p_x = Math.min(3, Math.max(0, Math.round(x / grid_size)));
-            var p_y = Math.min(3, Math.max(0, Math.floor(y / grid_size)));
+            var p_y = Math.min(4, Math.max(0, Math.floor(y / grid_size)));
 
             var strings = {'0':'G', '1':'C', '2':'E', '3':'A'};
 

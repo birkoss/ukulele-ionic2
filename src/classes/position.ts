@@ -38,7 +38,6 @@ export class Position {
         });
 
         if (this.max > 4) { this.start = this.min; }
-        /* @todo: Detect the range, if > 5, alert */
     }
 
 }

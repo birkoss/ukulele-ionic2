@@ -1,180 +1,197 @@
-<svg (click)="toggleMarker($event)" *ngIf="labels" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
+<svg (click)="toggleMarker($event)" *ngIf="labels" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="320" viewBox="0 0 210 320">
     <text *ngFor="let label of labels; let i = index" [ngClass]="['fret-label fret-label-' + (i+1)]" x="-16" y="0" fill="black">{{label}}</text>
 
     <g *ngIf="start == 1" id="chord-top">
-    <g class="frets">
-    <rect
-       transform="matrix(0,1,-1,0,0,0)"
-       y="-188.5"
-       x="257.19321"
-       height="168.5"
-       width="4.1208792"
-       id="rect4458"
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <rect
-       transform="matrix(0,1,-1,0,0,0)"
-       y="-188.5"
-       x="202.33516"
-       height="168.5"
-       width="4.1208792"
-       id="rect4460"
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <rect
-       transform="matrix(0,1,-1,0,0,0)"
-       y="-188.5"
-       x="147.39011"
-       height="168.5"
-       width="4.1208792"
-       id="rect4462"
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <rect
-       transform="matrix(0,1,-1,0,0,0)"
-       y="-188.5"
-       x="92.71978"
-       height="168.5"
-       width="4.1208792"
-       id="rect4464"
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <rect
-       transform="matrix(0,1,-1,0,0,0)"
-       y="-188.5"
-       x="38.598904"
-       height="168.5"
-       width="4.1208792"
-       id="rect4466"
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
-    <g class="string string-A" [ngClass]="{muted:muted['A']}">
-    <rect
-                               y="38.263737"
-                               x="185.3022"
-                               height="249.09891"
-                               width="4.1208792"
-                               id="rect4454"
-                               style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
-    <g class="string string-E" [ngClass]="{muted:muted['E']}">
-    <rect
-                               y="38.263737"
-                               x="129.94505"
-                               height="249.09891"
-                               width="4.1208792"
-                               id="rect4444"
-                               style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
-    <g class="string string-C" [ngClass]="{muted:muted['C']}">
-    <rect
-                               y="38.263737"
-                               x="74.587914"
-                               height="249.09891"
-                               width="4.1208792"
-                               id="rect4448"
-                               style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
-    <g class="string string-G" [ngClass]="{muted:muted['G']}">
-    <rect
-                               y="38.263737"
-                               x="19.230768"
-                               height="249.09891"
-                               width="4.1208792"
-                               id="rect4456"
-                               style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
-    <g
-                               inkscape:groupmode="layer"
-                               id="layer6"
-                               inkscape:label="Top bar"
-                               style="display:inline">
-    <rect
-                               style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                               id="rect3502-5-2-9"
-                               width="4.1208792"
-                               height="170.05495"
-                               x="20.654757"
-                               y="-189.56767"
-                               transform="matrix(0,1,-1,0,0,0)" />
-    </g>
-    </g>
+        <g class="frets">
+          <rect
+             transform="matrix(0,1,-1,0,0,0)"
+             y="-189.02747"
+             x="238.47144"
+             height="170.05495"
+             width="4.1208792"
+             id="rect4458"
+             style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <rect
+             transform="matrix(0,1,-1,0,0,0)"
+             y="-187.37912"
+             x="184.00331"
+             height="168.4066"
+             width="4.1208792"
+             id="rect4460"
+             style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <rect
+             transform="matrix(0,1,-1,0,0,0)"
+             y="-187.92856"
+             x="129.53519"
+             height="168.95604"
+             width="4.1208792"
+             id="rect4462"
+             style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <rect
+             transform="matrix(0,1,-1,0,0,0)"
+             y="-187.65384"
+             x="75.067055"
+             height="168.68132"
+             width="4.1208792"
+             id="rect4464"
+             style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <rect
+             transform="matrix(0,1,-1,0,0,0)"
+             y="-188.20329"
+             x="20.598904"
+             height="169.23077"
+             width="4.1208792"
+             id="rect4466"
+             style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <rect
+             transform="matrix(0,1,-1,0,0,0)"
+             y="-189.02747"
+             x="292.93958"
+             height="170.05495"
+             width="4.1208792"
+             id="rect4458-3"
+             style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+        <g class="string string-A" [ngClass]="{muted:muted['A']}">
+          <rect
+             y="1.1939691"
+             x="185.3022"
+             height="296.70355"
+             width="4.1208792"
+             id="rect4454"
+             style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+        <g class="string string-E" [ngClass]="{muted:muted['E']}">
+          <rect
+             y="1.1939691"
+             x="129.94505"
+             height="296.70355"
+             width="4.1208792"
+             id="rect4444"
+             style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+        <g class="string string-C" [ngClass]="{muted:muted['C']}">
+          <rect
+             y="1.1939691"
+             x="74.587914"
+             height="296.70355"
+             width="4.1208792"
+             id="rect4448"
+             style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+        <g class="string string-G" [ngClass]="{muted:muted['G']}">
+          <rect
+             y="1.1939691"
+             x="19.230768"
+             height="296.70355"
+             width="4.1208792"
+             id="rect4456"
+             style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+        <g
+           inkscape:groupmode="layer"
+           id="layer6"
+           inkscape:label="Top bar"
+           style="display:inline"
+           sodipodi:insensitive="true">
+          <rect
+             style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             id="rect3502-5-2-9"
+             width="4.1208792"
+             height="170.05495"
+             x="2.6547565"
+             y="-189.56767"
+             transform="matrix(0,1,-1,0,0,0)" />
+        </g>
+      </g>
 
     <g *ngIf="start > 1" id="chord-middle">
-    <g class="frets">
-    <rect
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-5"
-       width="4.1208792"
-       height="168.5"
-       x="257.19321"
-       y="-188.5"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-5-3"
-       width="4.1208792"
-       height="168.5"
-       x="202.33516"
-       y="-188.5"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-5-5"
-       width="4.1208792"
-       height="168.5"
-       x="147.39011"
-       y="-188.5"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-5-6"
-       width="4.1208792"
-       height="168.5"
-       x="92.71978"
-       y="-188.5"
-       transform="matrix(0,1,-1,0,0,0)" />
-    <rect
-       style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-5-2"
-       width="4.1208792"
-       height="168.5"
-       x="38.598904"
-       y="-188.5"
-       transform="matrix(0,1,-1,0,0,0)" />
-    </g>
-    <g class="string string-A">
-    <rect
-       style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-3-6-7"
-       width="4.1208792"
-       height="272.25275"
-       x="185.3022"
-       y="14.56044" />
-    </g>
-    <g class="string string-E">
-    <rect
-       style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-3-6"
-       width="4.1208792"
-       height="272.25275"
-       x="129.94505"
-       y="14.56044" />
-    </g>
-    <g class="string string-C">
-    <rect
-       style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502-3"
-       width="4.1208792"
-       height="272.25275"
-       x="74.587914"
-       y="14.56044" />
-    </g>
-    <g class="string string-G">
-    <rect
-       style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3502"
-       width="4.1208792"
-       height="272.25275"
-       x="19.230768"
-       y="14.56044" />
-    </g>
+      <g class="frets">
+        <rect
+           style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-5"
+           width="4.1208792"
+           height="170.05495"
+           x="239.19321"
+           y="-189.29294"
+           transform="matrix(0,1,-1,0,0,0)" />
+        <rect
+           style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-5-3"
+           width="4.1208792"
+           height="168.95604"
+           x="184.33516"
+           y="-189.14836"
+           transform="matrix(0,1,-1,0,0,0)" />
+        <rect
+           style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-5-5"
+           width="4.1208792"
+           height="168.95604"
+           x="129.39011"
+           y="-188.32417"
+           transform="matrix(0,1,-1,0,0,0)" />
+        <rect
+           style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-5-6"
+           width="4.1208792"
+           height="168.68132"
+           x="74.71978"
+           y="-188.04944"
+           transform="matrix(0,1,-1,0,0,0)" />
+        <rect
+           style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-5-2"
+           width="4.1208792"
+           height="168.68132"
+           x="20.598904"
+           y="-188.04945"
+           transform="matrix(0,1,-1,0,0,0)" />
+        <rect
+           transform="matrix(0,1,-1,0,0,0)"
+           y="-189.10927"
+           x="292.84305"
+           height="170.05495"
+           width="4.1208792"
+           id="rect4458-3-6"
+           style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      </g>
+      <g class="string string-A" [ngClass]="{muted:muted['A']}">
+        <rect
+           style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-3-6-7"
+           width="4.1208792"
+           height="312.65024"
+           x="185.3022"
+           y="-16.430044" />
+      </g>
+      <g class="string string-E" [ngClass]="{muted:muted['E']}">
+        <rect
+           style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-3-6"
+           width="4.1208792"
+           height="312.65024"
+           x="129.94505"
+           y="-16.430044" />
+      </g>
+      <g class="string string-C" [ngClass]="{muted:muted['C']}">
+        <rect
+           style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502-3"
+           width="4.1208792"
+           height="312.65024"
+           x="74.587914"
+           y="-16.430044" />
+      </g>
+      <g class="string string-G" [ngClass]="{muted:muted['G']}">
+        <rect
+           style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect3502"
+           width="4.1208792"
+           height="312.65024"
+           x="19.230768"
+           y="-16.430044" />
+      </g>
     </g>
 
     <g *ngFor="let finger of fingers" [ngClass]="['finger fret-' + finger.string + (finger.fret)]">

@@ -28,8 +28,7 @@ export class FavoritesProvider {
         return this.favorites[type];
     }
 
-    /* @TODO remove the unused param */
-    save(favorites:Object = null) {
+    save() {
         this.storage.set('favorites', JSON.stringify(this.favorites));
     }
 
@@ -42,7 +41,6 @@ export class FavoritesProvider {
 
     getIndex(favorite:Object, type:string = "chords"):number {
         for (let i:number=0; i<this.favorites[type].length; i++) {
-            // @todo: Better object comparaison
             if (JSON.stringify(this.favorites[type][i]) == JSON.stringify(favorite)) {
                 return i;
             }
