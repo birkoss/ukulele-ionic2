@@ -1,5 +1,6 @@
 {
     "Triad Major": "Tierce Majeure",
+    "Triad Minor": "Tierce Mineure",
     "Scales": "Gammes",
     "List": "Liste",
     "Favorites": "Favoris",
@@ -13,6 +14,7 @@
     "Minor": "Mineure",
     "Major Pentatonic": "Pentatonique Majeure",
     "Minor Pentatonic": "Pentatonique Mineure",
+    "Seventh Dominant": "Septième Dominante",
     "Scales List": "Liste des gammes",
     "All": "Tous",
     "Notes List": "Liste des notes",
