@@ -18,7 +18,6 @@ export class ChordsFiltersModal {
         {'name':'All', 'value':'all'},
         {'name':'♮', 'value':'natural'},
         {'name':'♭', 'value':'flat'},
-        {'name':'♯', 'value':'sharp'},
     ];
     notesFilter:string = "all";
 
@@ -49,7 +48,7 @@ export class ChordsFiltersModal {
                     return (note.accidental < 0);
             }
 
-            return true;
+            return (note.accidental <= 0);
         });
     }
 
