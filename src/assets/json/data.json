@@ -62,6 +62,14 @@
         "quality":"Dominant",
         "suffix":"7",
         "scale":"Major",
+        "scale_parts":[1, 3, 5, 7],
+        "scale_mods":[0, 0, 0, -0.5]
+
+    },{
+        "type":"Seventh",
+        "quality":"Major",
+        "suffix":"maj7",
+        "scale":"Major",
         "scale_parts":[1, 3, 5, 7]
     }],
     "chords": [{
@@ -99,6 +107,16 @@
             {"G9":1, "C9":1, "E9":1, "A10":2}
         ]
     },{
+        "note": "A",
+        "type": "Seventh",
+        "quality":"Major",
+        "positions": [
+            {"G1":1, "C1":2},
+            {"G2":1, "C4":4, "E4":4, "A4":4},
+            {"G6":2, "C8":4, "E5":1, "A7":3},
+            {"G9":1, "C9":1, "E9":1, "A11":3}
+        ]
+    },{
         "note": "B♭",
         "type": "Triad",
         "quality": "Major",
@@ -124,6 +142,15 @@
             {"G1":1, "C2":2, "E1":1, "A1":1},
             {"G7":2, "C8":3, "E6":1, "A8":4},
             {"G10":1, "C10":1, "E10":1, "A11":2}
+        ]
+    },{
+        "note": "B♭",
+        "type": "Seventh",
+        "quality":"Major",
+        "positions": [
+            {"G3":3, "C2":2, "E1":1},
+            {"G2":2, "C2":3, "E1":1, "A1":1},
+            {"G3":1, "C5":3, "E5":3, "A5":3}
         ]
     },{
         "note": "B",
