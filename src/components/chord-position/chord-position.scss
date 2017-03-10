@@ -33,6 +33,10 @@ chord-position {
 				fill: #ffffff;
 			}
 
+            text {
+                font-weight: bold;
+            }
+
 			&.fret-G1 { transform: translate(3px, -18px); }
 			&.fret-C1 { transform: translate(55px, -18px); }
 			&.fret-E1 { transform: translate(110px, -18px); }

@@ -154,12 +154,12 @@ export class DataProvider {
             }
             let letterName:string = json['chords'][i]['note'].substr(0, 1);
             let chord:Chord = new Chord(this.getNote(letterName, accidental), this.getForm(json['chords'][i]['type'], json['chords'][i]['quality']));
-            chord.positions = this.buildPositions(json['chords'][i]['positions']);
+            chord.positions = this.buildPositions(chord.note, json['chords'][i]['positions']);
             this.chords.push(chord);
         }
     }
 
-    private buildPositions(positions:any):Array<Position> {
+    private buildPositions(first_note:Note, positions:any):Array<Position> {
         let chordPositions:Array<Position> = [];
 
         for (let i:number=0; i<positions.length; i++) {
@@ -180,7 +180,7 @@ export class DataProvider {
                 let builder:ScaleBuilder = new ScaleBuilder();
                 builder.set(this.getLetters());
                 builder.select(s, 0);
-                builder.create(this.getScale('Chromatic')['steps'], false);
+                builder.create(this.getScale('Chromatic')['steps'], false, (first_note.accidental < 0 ? 'down' : 'up'));
                 builder.getScale().forEach(note => {
                     if (note.letter['name'] == s && note.accidental == 0 && currentNote == null) {
                         started = true;

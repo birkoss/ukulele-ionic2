@@ -11,9 +11,9 @@
     <div class="chords">
 
         <ion-list>
-            <ion-item-divider *ngIf="config.chords.detail_scale">{{ 'Scale' | translate }}</ion-item-divider>
             <ion-item *ngIf="config.chords.detail_scale">
                 <ion-row class="strings-container">
+                    <ion-col>{{ 'Scale' | translate }}:</ion-col>
                     <ion-col *ngFor="let s of scale;let i = index;">
                         <note-name [class.active]="scale_parts.indexOf(i+1) >= 0" [note]="s" [french]="config.general.letter_in_french"></note-name>
 

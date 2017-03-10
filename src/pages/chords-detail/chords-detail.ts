@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { NavController, NavParams, PopoverController, Content, Slides } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, Slides } from 'ionic-angular';
 
 import { ConfigProvider } from '../../providers/config-provider';
 import { DataProvider } from '../../providers/data-provider';
@@ -19,7 +19,6 @@ import { ScaleBuilder } from '../../classes/scale-builder';
 
 export class ChordsDetailPage {
     @ViewChild(Slides) slides: Slides;
-    @ViewChild(Content) content: Content;
 
     chord:Chord;
     positions:Array<Object> = [];
@@ -90,13 +89,5 @@ export class ChordsDetailPage {
             'position':position
         };
         return favorite;
-    }
-
-    scrollToElement(id) { 
-        let el = document.getElementById(id);
-        if (el != undefined) {
-            var rect = el.getBoundingClientRect();
-            this.content.scrollTo(0, rect.top);
-        }
     }
 }

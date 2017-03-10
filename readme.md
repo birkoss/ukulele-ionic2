@@ -3,5 +3,3 @@
 * Show all notes on a complete fretboard
 
 * Find a way to show barre chords
-
-* Verify scale parts
